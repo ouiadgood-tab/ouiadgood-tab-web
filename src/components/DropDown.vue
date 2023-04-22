@@ -20,7 +20,7 @@
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
         <li>2<i class="fa-regular fa-heart"></i></li>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
-          <li><a href="#">Item a</a></li>
+          <li><a href="#">Setting</a></li>
           <li><a href="#">Item b</a></li>
           <li><a href="#">Item c</a></li>
         </ul>
