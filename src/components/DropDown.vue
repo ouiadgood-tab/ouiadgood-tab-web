@@ -12,9 +12,10 @@
       <ul class="dropdown" @click="toggleDropdown('dropdown2')" :class="{ active: activeDropdown === 'dropdown2' }">
         <li><i class="fa-solid fa-tv"></i></li>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
-          <li><a href="#">Item a</a></li>
-          <li><a href="#">Item b</a></li>
-          <li><a href="#">Item c</a></li>
+          <li>
+            <h3 class="info">Watch a video, earn 100 hearts!</h3>
+            <p class="info">No videos available right now, but we’ll let you know when one is.</p>
+          </li>
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
@@ -36,14 +37,17 @@
     </div>
   </template>
   
-  <style>
+  <style scoped>
   .dropdowns {
     display: flex;
     justify-content:right;
+    margin-top: -25px;
+    margin-right: 20px;
+    color: rgba(255, 255, 255, 0.795);
   }
   
   .dropdown {
-    margin: 10px;
+    margin-right: -15px;
     list-style: none;
     position: relative;
     font-size: 30px;
@@ -56,8 +60,8 @@
     left: 0;
     width: 150px;
     padding: 0;
-    margin: 0;
-    background-color: white;
+    margin: 0, 10px, 10px, 2px;
+    background-color: rgba(255, 255, 255, 0.24);
     border: 1px solid #ccc;
     border-top: none;
     z-index: 1;
@@ -68,17 +72,17 @@
   }
   
   .dropdown li {
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
   }
   
-  .dropdown:hover {
-    background-color: #f2f2f2;
+  li:hover {
+    color: #fff;
   }
   
   .dropdown-items li {
     padding: 10px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ffffffdc;
   }
   
   .dropdown-items li:first-child {
@@ -88,7 +92,7 @@
   .dropdown-items li a {
     display: block;
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 14px;
   }
@@ -98,6 +102,7 @@
   }
 .info{
   font-size: small;
+  color: #ffffff;
 }
   </style>
   

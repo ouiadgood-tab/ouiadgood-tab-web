@@ -23,8 +23,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .levelUp{
   margin-top: -5px;
+  color: rgba(255, 255, 255, 0.795);
+}
+
+.levelUp:hover{
+  color: #fff;
 }
 </style>

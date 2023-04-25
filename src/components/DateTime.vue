@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="TimeDate">
     <h1>{{ currentTime }}</h1>
     <h3>{{ formattedDate }}</h3>
   </div>
@@ -37,9 +37,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin-top: -3%;
+  color: #fff;
+  font-size: 2rem;
 }
 h1{
   font-size:5rem;
+  color: #fff;
 }
+
 </style>
