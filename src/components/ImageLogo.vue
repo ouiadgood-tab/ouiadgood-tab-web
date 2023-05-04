@@ -17,8 +17,9 @@ export default{
 <style scoped>
 img{
     height: 150px;
-    margin-bottom: 6%;
-    margin-left: 5%;
+    margin-bottom: 1%;
+    margin-left: 7%;
+    margin-top: 4%;
 }
 
 .centerDiv{

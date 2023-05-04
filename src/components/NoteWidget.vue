@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 div{
-  margin-top: -1.5%;
+  margin-top: -5%;
   margin-left: 5%;
 }
 .note-icon {
@@ -47,8 +47,8 @@ div{
 
 .dropdown {
   position: absolute;
-  top: 110px;
-  left: 20px;
+  top: 180px;
+  left: 40px;
   z-index: 2;
   
 }
