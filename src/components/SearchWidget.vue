@@ -5,14 +5,15 @@
         <input type="text" v-model="searchQuery" placeholder="Search">
         <button type="submit" class="search-icon">
           <i class="fa fa-search"></i>
-        </button>
+       </button>
         <div class="dropdown">
-          <button class="dropbtn">
-            <i class="fa fa-google"></i>
-          </button>
-          <div class="dropdown-content">
+          <!--<button class="dropbtn google-logo search-engine-google">
+
+          </button> -->
+          <div class="dropdown-content" :class="{ 'show': showDropdown }">
             <a href="#" @click="changeSearchEngine('google')">
-              <i class="fa-brands fa-google"></i> Google
+              <i class="fa-brands fa-google"></i> 
+              Google
             </a>
             <a href="#" @click="changeSearchEngine('bing')">
               <i class="fa fa-microsoft"></i> Bing
@@ -20,13 +21,14 @@
             <a href="#" @click="changeSearchEngine('duckduckgo')">
               <i class="fa fa-duck"></i> DuckDuckGo
             </a>
-            <a href="#" @click="changeSearchEngine('safari')">
-              <i class="fa-brands fa-safari"></i> Safari
-            </a>
           </div>
+          
         </div>
       </div>
     </form>
+    <button class="dropbtn" @click="toggleDropdown">
+            {{ searchEngine.toUpperCase() }} <i class="fas fa-angle-down"></i>
+          </button>
   </div>
 </template>
 
@@ -36,7 +38,8 @@ export default {
   data() {
     return {
       searchQuery: '',
-      searchEngine: 'google' // set the default search engine
+      searchEngine: 'google', // set the default search engine
+      showDropdown: false // keep track of dropdown visibility
     }
   },
   methods: {
@@ -46,15 +49,19 @@ export default {
     },
     changeSearchEngine(engine) {
       this.searchEngine = engine;
+      this.showDropdown = false; // hide dropdown after selecting an option
     },
+
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown; // toggle dropdown visibility
+    },
+
     getSearchEngineUrl() {
       switch (this.searchEngine) {
         case 'bing':
           return 'https://www.bing.com/search?q=';
         case 'duckduckgo':
           return 'https://duckduckgo.com/?q=';
-        case 'safari':
-          return 'https://www.apple.com/search/?q=';
         default: // Google as default search engine
           return 'https://www.google.com/search?q=';
       }
@@ -67,14 +74,31 @@ export default {
 .search-container {
   position: relative;
   display: inline-block;
-  margin-top: 10%;
-  margin-left: -25%;
+  margin-top: -5%;
+  margin-right:30%;
   font-size: 30px;
+  justify-content: center;
 }
 
 .input-container {
   position: relative;
 }
+
+input[type="text"] {
+  width: 100%;
+  height: 100%;
+  padding: 10px 5px 10px 120px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
 
 .search-form {
   position: relative;
@@ -84,12 +108,12 @@ export default {
 
 .search-icon {
   position: absolute;
-  top: 50%;
+  top: 47%;
   right: 0;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  margin-right: -5%;
+  margin-right: -15%;
   border: none;
   background: transparent;
   color: rgba(88, 85, 85, 0.8);
@@ -105,20 +129,6 @@ export default {
   color: rgb(3, 13, 158);
 }
 
-input[type="text"] {
-  width: 100%;
-  height: 100%;
-  padding: 10px 40px 10px 10px;
-  font-size: 20px;
-  border-radius: 20px;
-  border: none;
-  background-color: rgba(255, 255, 255);
-  color: white;
-}
-
-input[type="text"]:focus {
-  outline: none;
-}
 
 .search-engine-icons {
   position: absolute;
@@ -162,7 +172,47 @@ input[type="text"]:focus {
   background-image: url("https://duckduckgo.com/assets/logo_homepage.normal.v108.svg");
 }
 
-.search-engine-safari {
-  background-image: url("https://www.apple.com/ac/globalnav/5/en_US/images/globalnav/apple/image_large.svg");
+.dropdown {
+  position: relative;
+  margin-left: 10px;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  top: 20px;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #F0F0F0;
+}
+
+.show {
+  display: block;
+}
+
+.dropbtn{
+  color: rgb(85,85,85);
+  background:transparent;
+  border: none;
+  cursor:pointer;
+  font-size: 1rem;
+  margin-left: -50%;
+  top: 25%;
+  position: absolute;
+}
+
 </style>

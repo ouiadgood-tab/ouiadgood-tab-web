@@ -6,7 +6,7 @@
           <li><p class="info">This is how much money our community has raised for charity.
           Recruit your friends to raise more!</p>
           <button>Invite a friend</button>
-        </li>
+          </li>
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2')" :class="{ active: activeDropdown === 'dropdown2' }">
