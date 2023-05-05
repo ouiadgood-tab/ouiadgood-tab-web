@@ -45,5 +45,8 @@ h1{
   font-size:5rem;
   color: #fff;
 }
+.TimeDate{
+  margin-top: -2%;
+}
 
 </style>

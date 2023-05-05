@@ -1,42 +1,35 @@
 <template>
-  <DropDown/>
-  <BookMark/> <NoteWidget/>
-  <SearchWidget/>
-  <AddNote/>
-  <!--<img alt="Vue logo" src="./assets/logo.png"> -->
-  <DateTime/>
+  <router-view/>
 </template>
 
 <script>
-import AddNote from './components/AddNote.vue';
-import BookMark from './components/BookMark.vue';
-import DateTime from './components/DateTime.vue';
-import DropDown from './components/DropDown.vue';
-import NoteWidget from './components/NoteWidget.vue';
-import SearchWidget from './components/SearchWidget.vue'
+
+export default{
 
 
-
-export default {
-  name: 'App',
-  components: {
-    DateTime,
-    DropDown,
-    BookMark,
-    NoteWidget,
-    SearchWidget,
-    AddNote
-}
 }
 </script>
 
 <style>
 #app {
+  margin-top: 50px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

@@ -7,7 +7,7 @@
 </template>
 
 <script >
-export default {
+export default{
   name: 'BookMark',
 }
 </script>
@@ -15,7 +15,7 @@ export default {
 <style scoped>
 div{
   margin-top: -7%;
-  margin-left: 5px;
+  margin-left: 30px;
   font-size: 30px;
 }
   .bookmark-icon {
