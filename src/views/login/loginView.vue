@@ -2,7 +2,7 @@
   <div class="login">
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
-      <GoogleLogin/>
+      <GoogleLogin @click="auth0Login"/>
      <FaceBookLogin/>
       <TwitterLogin/>
       <EmailLogin/>
@@ -25,7 +25,14 @@ export default {
       GoogleLogin, 
       FaceBookLogin, 
       TwitterLogin, 
-      EmailLogin }
+      EmailLogin },
+
+      methods: {
+        auth0Login(){
+
+          console.log("it's going to work and you are welcome");
+        }
+      }
 }
 </script>
 

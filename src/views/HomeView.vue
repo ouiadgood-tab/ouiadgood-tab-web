@@ -4,6 +4,7 @@
   <the-book-mark/>
   <note-widget/>
   <image-logo/>
+  <h1>{{ clientId }}</h1>
   <date-time/>
 </template>
 
@@ -28,6 +29,14 @@ export default {
     ImageLogo,
     DateTime,
     BookMark
-}
+},
+
+data (){
+    return{
+      clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
+    }
+  },
+
+    
 }
 </script>
