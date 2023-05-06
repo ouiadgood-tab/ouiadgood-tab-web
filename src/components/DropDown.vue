@@ -31,7 +31,7 @@
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
           <li><a href="#">Item -</a></li>
           <li><a href="#">Item --</a></li>
-          <li><a href="#">Item ---</a></li>
+          <li @click="logout"><a href="#">Logout</a></li>
         </ul>
       </ul>
     </div>
@@ -125,6 +125,10 @@ import MoneyCount from './MoneyCount.vue';
                 this.activeDropdown = dropdown;
             }
         },
+
+        logout(){
+          console.log('logging out')
+        }
     },
     components: { MoneyCount }
 };
