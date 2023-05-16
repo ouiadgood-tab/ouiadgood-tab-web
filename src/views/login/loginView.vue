@@ -3,7 +3,7 @@
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
       <GoogleLogin @click="auth0Login"/>
-     <FaceBookLogin/>
+     <FaceBookLogin @click="checkDomain" />
       <TwitterLogin/>
       <EmailLogin/>
       <div class="terms">
@@ -19,20 +19,46 @@ import EmailLogin from './EmailLogin.vue';
 import FaceBookLogin from './FaceBookLogin.vue';
 import GoogleLogin from './GoogleLogin.vue';
 import TwitterLogin from './TwitterLogin.vue';
+import { mapActions } from 'vuex';
+import store from '@/store';
 
 export default {
     components: { 
       GoogleLogin, 
       FaceBookLogin, 
       TwitterLogin, 
-      EmailLogin },
+      EmailLogin 
+    },
+    props: {
+    store: {
+      type: Object,
+      required: true
+    }
+  },
 
-      methods: {
-        auth0Login(){
+  computed: {
+    
+  },
 
-          console.log("it's going to work and you are welcome");
-        }
-      }
+  methods: {
+    ...mapActions(['login']),
+    auth0Login (){
+      this.$store.dispatch('login');
+      this.$auth0.loginWithRedirect();
+      this.$store.dispatch('auth0HandleAuthentication')
+      console.log('Logged in successfully');
+    },//.bind(this),
+
+    checkDomain(){
+      console.log(process.env.VUE_APP_AUTH0_CONFIG_DOMAIN)
+    }
+  },
+  
+  created() {
+    this.$store = store
+
+  },
+
 }
 </script>
 

@@ -12,14 +12,13 @@
           </button> -->
           <div class="dropdown-content" :class="{ 'show': showDropdown }">
             <a href="#" @click="changeSearchEngine('google')">
-              <i class="fa-brands fa-google"></i> 
-              Google
+              <img src="../assets/google.png" alt="Google">
             </a>
             <a href="#" @click="changeSearchEngine('bing')">
-              <i class="fa fa-microsoft"></i> Bing
+              <img src="../assets/Bing.png" alt="Bing">
             </a>
             <a href="#" @click="changeSearchEngine('duckduckgo')">
-              <i class="fa fa-duck"></i> DuckDuckGo
+              <img src="../assets/duckDuckGo.png" alt="DuckDuckGo">
             </a>
           </div>
           
@@ -27,7 +26,7 @@
       </div>
     </form>
     <button class="dropbtn" @click="toggleDropdown">
-            {{ searchEngine.toUpperCase() }} <i class="fas fa-angle-down"></i>
+      <img :src="searchEngine" :alt="searchEngineAlt"> <i class="fas fa-angle-down"></i>
           </button>
   </div>
 </template>
@@ -38,7 +37,8 @@ export default {
   data() {
     return {
       searchQuery: '',
-      searchEngine: 'google', // set the default search engine
+      searchEngine: require('../assets/google.png'), // set the default search engine image URL
+      searchEngineAlt: 'Google', // set the default search engine alt text
       showDropdown: false // keep track of dropdown visibility
     }
   },
@@ -47,8 +47,29 @@ export default {
       const searchEngineUrl = this.getSearchEngineUrl();
       window.location.href = searchEngineUrl + encodeURIComponent(this.searchQuery);
     },
-    changeSearchEngine(engine) {
-      this.searchEngine = engine;
+    changeSearchEngine(image) {
+      let searchEngineUrl;
+      let searchEngineAlt;
+
+      switch (image) {
+        case 'google':
+          searchEngineUrl = require('../assets/google.png');
+          searchEngineAlt = 'Google';
+          break;
+        case 'bing':
+          searchEngineUrl = require('../assets/Bing.png');
+          searchEngineAlt = 'Bing';
+          break;
+        case 'duckduckgo':
+          searchEngineUrl =require('../assets/duckDuckGo.png');
+          searchEngineAlt = 'DuckDuckGo';
+          break;
+        default:
+          searchEngineUrl = require('../assets/google.png'); // Default to Google image if image value is unknown
+          searchEngineAlt = 'Google';
+      }
+      this.searchEngine = searchEngineUrl;
+      this.searchEngineAlt = searchEngineAlt;
       this.showDropdown = false; // hide dropdown after selecting an option
     },
 
@@ -87,7 +108,7 @@ export default {
 input[type="text"] {
   width: 100%;
   height: 100%;
-  padding: 10px 5px 10px 120px;
+  padding: 10px 5px 10px 60px;
   font-size: 20px;
   border-radius: 20px;
   border: none;
@@ -113,7 +134,7 @@ input[type="text"]:focus {
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  margin-right: -15%;
+  margin-right: -10%;
   border: none;
   background: transparent;
   color: rgba(88, 85, 85, 0.8);
@@ -129,6 +150,10 @@ input[type="text"]:focus {
   color: rgb(3, 13, 158);
 }
 
+img{
+  width: 20px;
+  height: 20px;
+}
 
 .search-engine-icons {
   position: absolute;
@@ -182,7 +207,7 @@ input[type="text"]:focus {
   position: absolute;
   z-index: 1;
   background-color: #fff;
-  min-width: 160px;
+  min-width: 80px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   top: 20px;
@@ -198,6 +223,7 @@ input[type="text"]:focus {
 
 .dropdown-content a:hover {
   background-color: #F0F0F0;
+  border-radius: 10px;
 }
 
 .show {
@@ -210,7 +236,7 @@ input[type="text"]:focus {
   border: none;
   cursor:pointer;
   font-size: 1rem;
-  margin-left: -50%;
+  margin-left: -47%;
   top: 25%;
   position: absolute;
 }

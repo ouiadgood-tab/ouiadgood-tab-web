@@ -1,10 +1,7 @@
 <template>
    <drop-down/>
-  <BookMark/>
-  <the-book-mark/>
   <note-widget/>
   <image-logo/>
-  <h1>{{ clientId }}</h1>
   <date-time/>
 </template>
 
@@ -13,8 +10,8 @@ import DateTime from '@/components/DateTime.vue';
 import DropDown from '@/components/DropDown.vue';
 import ImageLogo from '@/components/ImageLogo.vue';
 import NoteWidget from '@/components/NoteWidget.vue';
-import TheBookMark from '@/components/TheBookMark.vue';
-import BookMark from '@/components/BookMark.vue';
+//import TheBookMark from '@/components/TheBookMark.vue';
+//import BookMark from '@/components/BookMark.vue';
 
 // @ is an alias to /src
 
@@ -24,16 +21,14 @@ export default {
 
     components: {
     DropDown,
-    TheBookMark,
     NoteWidget,
     ImageLogo,
-    DateTime,
-    BookMark
+    DateTime
 },
 
 data (){
     return{
-      clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
+      //clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
     }
   },
 

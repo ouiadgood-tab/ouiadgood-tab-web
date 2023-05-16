@@ -5,7 +5,7 @@
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown1'">
           <li><p class="info">This is how much money our community has raised for charity.
           Recruit your friends to raise more!</p>
-          <button>Invite a friend</button>
+          <button class="btnInvite">Invite a friend</button>
           </li>
         </ul>
       </ul>
@@ -21,18 +21,16 @@
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
         <li>2<i class="fa-regular fa-heart"></i></li>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
-          <li><a href="#">Setting</a></li>
-          <li><a href="#">Item b</a></li>
-          <li><a href="#">Item c</a></li>
+         
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown3')" :class="{ active: activeDropdown === 'dropdown3' }">
         <li>...</li>
+        <li>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
-          <li><a href="#">Item -</a></li>
-          <li><a href="#">Item --</a></li>
-          <li @click="logout"><a href="#">Logout</a></li>
+          <li @click="logout" ><a href="#">Logout</a></li>
         </ul>
+        </li>
       </ul>
     </div>
   </template>
@@ -42,10 +40,10 @@
     display: flex;
     justify-content:right;
     margin-top: -25px;
-    margin-right: 20px;
+    margin-right: 100px;
     color: rgba(255, 255, 255, 0.795);
   }
-  
+
   .dropdown {
     margin-right: -15px;
     list-style: none;
@@ -87,27 +85,52 @@
   
   .dropdown-items li:first-child {
     border-top: none;
+    
   }
   
   .dropdown-items li a {
     display: block;
     background-color: transparent;
+    border-right: none;
     color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 14px;
   }
   
   .dropdown-items li a:hover {
-    background-color: #f2f2f2;
+    background-color: #f2f2f21a;
   }
 .info{
   font-size: small;
   color: #ffffff;
 }
+
+ul{
+  list-style-type: none;
+}
+
+.btnInvite{
+  background-color: #f7be01d5; 
+  border: none; 
+  color: white;
+  padding: 10px 10px;
+  text-align: center; 
+  font-size: 14px; 
+  margin: 10px; 
+  cursor: pointer; 
+  border-radius: 8px; 
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+  transition: background-color 0.3s ease;
+}
+
+.btnInvite:hover{
+  background-color: #0eb0b6;
+}
   </style>
   
   <script >
 import MoneyCount from './MoneyCount.vue';
+
 
   export default {
     name: "DropDown",
@@ -127,10 +150,11 @@ import MoneyCount from './MoneyCount.vue';
         },
 
         logout(){
-          console.log('logging out')
+          console.log('logging out');
+          this.$auth0.logout();
+
         }
     },
     components: { MoneyCount }
 };
   </script>
-  
