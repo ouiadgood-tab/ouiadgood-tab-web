@@ -44,8 +44,8 @@ export default {
     ...mapActions(['login']),
     auth0Login (){
       this.$store.dispatch('login');
-      this.$auth0.loginWithRedirect();
-      this.$store.dispatch('auth0HandleAuthentication')
+      //this.$auth0.loginWithRedirect();
+      //this.$store.dispatch('auth0HandleAuthentication')
       console.log('Logged in successfully');
     },//.bind(this),
 
