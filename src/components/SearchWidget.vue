@@ -48,29 +48,31 @@ export default {
       window.location.href = searchEngineUrl + encodeURIComponent(this.searchQuery);
     },
     changeSearchEngine(image) {
-      let searchEngineUrl;
+      let searchEngineImage;
       let searchEngineAlt;
 
       switch (image) {
         case 'google':
-          searchEngineUrl = require('../assets/google.png');
+          searchEngineImage = require('../assets/google.png');
           searchEngineAlt = 'Google';
           break;
         case 'bing':
-          searchEngineUrl = require('../assets/Bing.png');
+          searchEngineImage = require('../assets/Bing.png');
           searchEngineAlt = 'Bing';
           break;
         case 'duckduckgo':
-          searchEngineUrl =require('../assets/duckDuckGo.png');
+          searchEngineImage =require('../assets/duckDuckGo.png');
           searchEngineAlt = 'DuckDuckGo';
           break;
         default:
-          searchEngineUrl = require('../assets/google.png'); // Default to Google image if image value is unknown
+          searchEngineImage = require('../assets/google.png'); // Default to Google image if image value is unknown
           searchEngineAlt = 'Google';
       }
-      this.searchEngine = searchEngineUrl;
+      this.searchEngine = searchEngineImage;
       this.searchEngineAlt = searchEngineAlt;
       this.showDropdown = false; // hide dropdown after selecting an option
+
+      this.getSearchEngineUrl(); // Call getSearchEngineUrl() after updating searchEngine and searchEngineAlt
     },
 
     toggleDropdown() {
@@ -79,9 +81,9 @@ export default {
 
     getSearchEngineUrl() {
       switch (this.searchEngine) {
-        case 'bing':
+        case require('../assets/Bing.png'):
           return 'https://www.bing.com/search?q=';
-        case 'duckduckgo':
+        case require('../assets/duckDuckGo.png'):
           return 'https://duckduckgo.com/?q=';
         default: // Google as default search engine
           return 'https://www.google.com/search?q=';

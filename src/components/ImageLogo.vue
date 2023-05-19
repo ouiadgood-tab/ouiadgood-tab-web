@@ -18,7 +18,7 @@ export default{
 img{
     height: 150px;
     margin-bottom: 1%;
-    margin-left: 7%;
+    margin-right: 11.5%;
     margin-top: 4%;
 }
 

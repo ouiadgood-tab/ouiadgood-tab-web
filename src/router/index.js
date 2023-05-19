@@ -48,8 +48,6 @@ router.beforeEach( (to,from, next)=> {
         path: '/login',
       query: { redirect: to.fullPath }}))
     })
-  } else if (to.path === '/home' && isAuthenticated()) {
-    next({ path: '/home' });
   }
   else{
     next()

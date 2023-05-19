@@ -130,6 +130,7 @@ ul{
   
   <script >
 import MoneyCount from './MoneyCount.vue';
+import AuthService from '@/auth';
 
 
   export default {
@@ -150,8 +151,9 @@ import MoneyCount from './MoneyCount.vue';
         },
 
         logout(){
+          AuthService.logout();
           console.log('logging out');
-          this.$auth0.logout();
+          //this.$auth0.logout();
 
         }
     },

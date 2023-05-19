@@ -1,8 +1,10 @@
 <template>
+  <div :style="backgroundStyle">
    <drop-down/>
   <note-widget/>
   <image-logo/>
   <date-time/>
+  </div>
 </template>
 
 <script>
@@ -12,6 +14,7 @@ import ImageLogo from '@/components/ImageLogo.vue';
 import NoteWidget from '@/components/NoteWidget.vue';
 //import TheBookMark from '@/components/TheBookMark.vue';
 //import BookMark from '@/components/BookMark.vue';
+
 
 // @ is an alias to /src
 

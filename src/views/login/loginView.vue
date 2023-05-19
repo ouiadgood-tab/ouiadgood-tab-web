@@ -2,8 +2,8 @@
   <div class="login">
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
-      <GoogleLogin @click="auth0Login"/>
-     <FaceBookLogin @click="checkDomain" />
+      <GoogleLogin @click="Login"/>
+     <FaceBookLogin />
       <TwitterLogin/>
       <EmailLogin/>
       <div class="terms">
@@ -19,8 +19,9 @@ import EmailLogin from './EmailLogin.vue';
 import FaceBookLogin from './FaceBookLogin.vue';
 import GoogleLogin from './GoogleLogin.vue';
 import TwitterLogin from './TwitterLogin.vue';
-import { mapActions } from 'vuex';
-import store from '@/store';
+import AuthService from '@/auth';
+
+
 
 export default {
     components: { 
@@ -35,17 +36,12 @@ export default {
       required: true
     }
   },
-
-  computed: {
-    
-  },
-
   methods: {
-    ...mapActions(['login']),
-    auth0Login (){
-      this.$store.dispatch('login');
-      this.$auth0.loginWithRedirect();
-      this.$store.dispatch('auth0HandleAuthentication')
+  
+    Login (){
+      AuthService.login();
+      //this.$store.dispatch('login');
+      //this.$auth0.loginWithRedirect();
       console.log('Logged in successfully');
     },//.bind(this),
 
@@ -54,10 +50,7 @@ export default {
     }
   },
   
-  created() {
-    this.$store = store
-
-  },
+  
 
 }
 </script>
