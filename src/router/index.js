@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/login/loginView.vue'
 //import { useAuth0 } from '@auth0/auth0-vue'
+//import Store from '@/store'
 
 const routes = [
   {
@@ -33,26 +34,25 @@ const router = createRouter({
   routes
 })
 
-const isAuthenticated = () => {
-  return true;
-};
+// const isAuthenticated = () => {
+//   return true;
+// };
 
 
-router.beforeEach( (to,from, next)=> {
+// router.beforeEach( (to,from, next)=> {
 
-  if (to.meta.requiresAuth && !isAuthenticated()) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    return new Promise((resolve) =>{
-      resolve(next ({
-        path: '/login',
-      query: { redirect: to.fullPath }}))
-    })
-  }
-  else{
-    next()
-  }
-});
-
+//   if (to.meta.requiresAuth && !isAuthenticated()) {
+//     // this route requires auth, check if logged in
+//     // if not, redirect to login page.
+//     return new Promise((resolve) =>{
+//       resolve(next ({
+//         path: '/login',
+//       query: { redirect: to.fullPath }}))
+//     })
+//   }
+//   else{
+//     next()
+//   }
+// });
 
 export default router
