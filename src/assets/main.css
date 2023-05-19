@@ -8,19 +8,38 @@ body {
     0% {
         background-image: url(./bg1.jpg);
     }
-    33% {
+    11.11% {
         background-image: url(./bg2.jpg);
     }
-    66% {
+    22.22% {
         background-image: url(./bg3.jpg);
     }
+    33.33% {
+        background-image: url(./bg4.jpg);
+    }
+    44.44% {
+        background-image: url(./bg5.jpeg);
+    }
+    55.56% {
+        background-image: url(./bg6.jpg);
+    }
+    66.67% {
+        background-image: url(./bg7.jpg);
+    }
+    77.78% {
+        background-image: url(./bg8.jpg);
+    }
+    88.89% {
+        background-image: url(./bg9.jpg);
+    }
     100% {
-        background-image: url(./bg1.jpg);
+        background-image: url(./bg4.jpg);
     }
 }
 
+
 body {
-    animation: changeBackground 90s infinite;
+    animation: changeBackground 120s infinite;
 }
 
 .TimeDate{
