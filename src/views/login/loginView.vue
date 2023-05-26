@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <div class="login">
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
@@ -9,6 +10,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -32,6 +34,12 @@ export default {
 
 <style scoped>
 
+.container {
+  background-color: #333131; /* Add your desired background color here */
+  min-height: 90vh;
+  margin: 0;
+  padding: 0;
+}
 .logo {
   float: left;
   width: 200px;
@@ -42,19 +50,23 @@ export default {
 .login {
   display: flex;
   flex-direction: column;
-  height: 15vh;
+  height: 10vh;
   border: none;
-  border-radius: 10%;
 }
 .buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 10%;
 }
 .terms{
   color: #fff;
 }
 
+body {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
 </style>

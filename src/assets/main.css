@@ -1,48 +1,35 @@
 body {
-    background-image: url(./bg1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    transition: background-image 40s ease-in-out;
-}
+    animation: changeBackground 300s infinite;
+    height: 90vh;
+    min-height: 90vh;
+  }
 
-@keyframes changeBackground {
+  @keyframes changeBackground {
     0% {
-        background-image: url(./bg1.jpg);
+      background-image: url(./img1.jpg);
     }
-    11.11% {
-        background-image: url(./bg2.jpg);
+    20% {
+      background-image: url(./img2.jpg);
     }
-    22.22% {
-        background-image: url(./bg3.jpg);
+    40% {
+      background-image: url(./img3.jpg);
     }
-    33.33% {
-        background-image: url(./bg4.jpg);
+    60% {
+      background-image: url(./img4.jpg);
     }
-    44.44% {
-        background-image: url(./bg5.jpeg);
-    }
-    55.56% {
-        background-image: url(./bg6.jpg);
-    }
-    66.67% {
-        background-image: url(./bg7.jpg);
-    }
-    77.78% {
-        background-image: url(./bg8.jpg);
-    }
-    88.89% {
-        background-image: url(./bg9.jpg);
+    80% {
+      background-image: url(./img5.jpg);
     }
     100% {
-        background-image: url(./bg4.jpg);
+      background-image: url(./img1.jpg);
     }
-}
+  }
 
-body {
-    animation: changeBackground 150s infinite;
-}
+
 body::after {
-    content: url(./bg1.jpg) url(./bg2.jpg) url(./bg3.jpg) url(./bg4.jpg) url(./bg5.jpeg) url(./bg6.jpg) url(./bg7.jpg) url(./bg8.jpg) url(./bg9.jpg);
+    content: url(./img1.jpg) url(./img2.jpg) url(./img3.jpg) url(./img4.jpg) url(./img5.jpg);
     display: none;
 }
 
@@ -50,3 +37,10 @@ body::after {
     justify-content: center;
     margin-top: 10%;
 }
+
+  /* Example: Modify background-size for screens between 768px and 1024px */
+  @media (min-width: 320px) and (min-width: 375px) and (min-width: 425px){
+    body {
+      background-size:cover;
+    }
+  }

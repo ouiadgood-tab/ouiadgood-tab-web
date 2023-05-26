@@ -18,9 +18,12 @@
           </div>
           <div class="field">
             <label class="label">Password</label>
-            <div class="control">
-              <input class="input" type="password" placeholder="Enter your password" v-model="password" @input="validatePassword" ref="passwordInput">
-            </div>
+            <div class="control password-input">
+            <input class="input" :type="passwordVisible ? 'text' : 'password'" placeholder="Enter your password" v-model="password" @input="validatePassword" ref="passwordInput">
+            <span class="icon is-small is-right password-toggle-icon" @click="togglePasswordVisibility">
+              <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </span>
+           </div>
           </div>
           <div class="field">
             <div class="button">
@@ -39,9 +42,10 @@ export default {
   name: 'EmailLogin',
   data() {
     return {
-      email: '',
-      password: '',
+      email: localStorage.getItem('email') || '',
+      password: localStorage.getItem('password') || '',
       showModal: false,
+      passwordVisible: false, // added property for password visibility
     };
   },
   computed: {
@@ -57,7 +61,12 @@ export default {
   },
   methods: {
     showLoginModal() {
+      this.email = localStorage.getItem('email') || '';
+      this.password = localStorage.getItem('password') || '';
       this.showModal = true;
+    },
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
     },
     closeModal() {
       this.showModal = false;
@@ -82,7 +91,6 @@ export default {
         // Save email and password to local storage
         localStorage.setItem('email', this.email);
         localStorage.setItem('password', this.password);
-        
         // Redirect to /home
         this.$router.push('/home');
       }
@@ -206,4 +214,23 @@ export default {
   cursor: pointer;
 }
 
+ /* Eye icon styles */
+ .password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #888;
+    transition: color 0.3s;
+  }
+
+  .password-toggle-icon:hover {
+    color: #333;
+  }
+
+  /* Password input styles */
+  .password-input {
+    padding-right: 0px; /* Increase padding to accommodate the icon */
+    position: relative; /* Make the container relative for absolute positioning of the icon */
+  }
 </style>

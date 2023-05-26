@@ -5,7 +5,7 @@ import router from './router';
 import store from '@/store';
  import { createAuth0 } from '@auth0/auth0-vue';
 //import GAuth from 'vue3-google-oauth2';
-import './assets/main.css';
+//import './assets/main.css';
 
 const app = createApp(App)
 app.use(

@@ -17,12 +17,17 @@ export default{
 <style scoped>
 img{
     height: 150px;
-    margin-bottom: 1%;
-    margin-right: 11.5%;
+    margin-bottom: 5%;
+    margin-right: 7.5%;
     margin-top: 4%;
 }
 
 .centerDiv{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin-left: 4%;
 }
 </style>
