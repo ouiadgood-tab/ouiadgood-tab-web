@@ -41,7 +41,7 @@ export default createStore({
           localStorage.setItem('id_token', authResult.idToken);
           localStorage.setItem('expires_at', expiresAt);
 
-          router.replace('/');
+          router.replace('/home');
         } 
         else if (err) {
           alert('login failed. try again');

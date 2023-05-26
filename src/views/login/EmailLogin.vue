@@ -79,6 +79,12 @@ export default {
     submitLogin() {
       if (this.validEmail && this.validPassword) {
         // perform login with email and password
+        // Save email and password to local storage
+        localStorage.setItem('email', this.email);
+        localStorage.setItem('password', this.password);
+        
+        // Redirect to /home
+        this.$router.push('/home');
       }
     },
   },

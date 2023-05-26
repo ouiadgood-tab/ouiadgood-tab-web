@@ -19,7 +19,7 @@
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
-        <li>2<i class="fa-regular fa-heart"></i></li>
+        <li><i class="fa-regular fa-heart"></i></li>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
          
         </ul>
@@ -130,7 +130,7 @@ ul{
   
   <script >
 import MoneyCount from './MoneyCount.vue';
-import AuthService from '@/auth';
+//import { useAuth0 } from '@auth0/auth0-vue';
 
 
   export default {
@@ -140,6 +140,10 @@ import AuthService from '@/auth';
             activeDropdown: null,
         };
     },
+
+    
+    
+
     methods: {
         toggleDropdown(dropdown) {
             if (this.activeDropdown === dropdown) {
@@ -150,12 +154,20 @@ import AuthService from '@/auth';
             }
         },
 
-        logout(){
-          AuthService.logout();
-          console.log('logging out');
-          //this.$auth0.logout();
+        // logout(){
+        //   console.log('logging out');
+        //   this.$auth0.logout();
 
-        }
+        // }
+
+        logout() {
+      // Delete local storage data
+      localStorage.removeItem('email');
+      localStorage.removeItem('password');
+      
+      // Redirect to /login
+      this.$router.push('/login');
+    },
     },
     components: { MoneyCount }
 };

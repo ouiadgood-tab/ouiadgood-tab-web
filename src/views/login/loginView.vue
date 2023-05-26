@@ -2,9 +2,6 @@
   <div class="login">
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
-      <GoogleLogin @click="Login"/>
-     <FaceBookLogin />
-      <TwitterLogin/>
       <EmailLogin/>
       <div class="terms">
         <p>By continuing, you are indicating that you accept our</p>
@@ -15,44 +12,22 @@
 </template>
 
 <script>
+//import { useAuth0 } from '@auth0/auth0-vue';
+//import axios from 'axios';
 import EmailLogin from './EmailLogin.vue';
-import FaceBookLogin from './FaceBookLogin.vue';
-import GoogleLogin from './GoogleLogin.vue';
-import TwitterLogin from './TwitterLogin.vue';
-import AuthService from '@/auth';
-
-
 
 export default {
-    components: { 
-      GoogleLogin, 
-      FaceBookLogin, 
-      TwitterLogin, 
-      EmailLogin 
-    },
-    props: {
+  components: {
+    EmailLogin
+},
+  props: {
     store: {
       type: Object,
-      required: true
-    }
-  },
-  methods: {
-  
-    Login (){
-      AuthService.login();
-      //this.$store.dispatch('login');
-      //this.$auth0.loginWithRedirect();
-      console.log('Logged in successfully');
-    },//.bind(this),
-
-    checkDomain(){
-      console.log(process.env.VUE_APP_AUTH0_CONFIG_DOMAIN)
-    }
+      required: true,
+    },
   },
   
-  
-
-}
+};
 </script>
 
 <style scoped>
@@ -68,7 +43,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 15vh;
-
+  border: none;
+  border-radius: 10%;
 }
 .buttons {
   display: flex;

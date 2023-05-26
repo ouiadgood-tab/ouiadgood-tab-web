@@ -13,8 +13,9 @@ app.use(
        domain: "dev-8fb7e5kg24azc51x.us.auth0.com",
        clientId: "geHen3fHpDG8MiXAKq4V7szvY0dqaKqx",
         authorizationParams: {
-          redirect_uri: 'http://localhost:8080',
-          scope: 'openid profile email'
+          redirect_uri: 'http://localhost:8080/home',
+          scope: 'openid profile email',
+          audience: "https://famesfx.com/users",
        }
      })
   );

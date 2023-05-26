@@ -25,6 +25,13 @@ export default {
       notes: [],
     };
   },
+
+  created(){
+    const data = localStorage.getItem('notes');
+      if (data) {
+        this.notes = JSON.parse(data);
+      }
+  },
   methods: {
     addNote() {
       const note = {
@@ -39,6 +46,7 @@ export default {
         note.top = 50 + index * 155;
         note.left = 50 + index * 0;
         note.zIndex = this.notes.length - index;
+        localStorage.setItem('notes', JSON.stringify(this.notes));
       });
     },
     deleteNote(index) {
@@ -47,8 +55,10 @@ export default {
         note.top = 50 + index * 155;
         note.left = 50 + index * 0;
         note.zIndex = this.notes.length - index;
+        localStorage.setItem('notes', JSON.stringify(this.notes));
       });
     },
+    
   },
 };
 </script>

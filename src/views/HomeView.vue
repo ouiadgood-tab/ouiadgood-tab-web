@@ -1,5 +1,5 @@
 <template>
-  <div :style="backgroundStyle">
+  <div>
    <drop-down/>
   <note-widget/>
   <image-logo/>
@@ -29,12 +29,17 @@ export default {
     DateTime
 },
 
-data (){
-    return{
-      //clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
-    }
+created() {
+    this.preloadImages();
   },
-
+  methods: {
+    preloadImages() {
+      for (let i = 1; i <= 9; i++) {
+        const img = new Image();
+        img.src = `./bg${i}.jpg`;
+      }
+    }
+  }
     
 }
 </script>

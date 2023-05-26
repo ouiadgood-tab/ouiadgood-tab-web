@@ -1,25 +1,31 @@
 <template>
-  <p class="levelUp">${{ levelUp.toFixed(2) }}</p>
+  <p class="levelUp">${{ count }}</p>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'MoneyCount',
+  
   data() {
     return {
-      levelUp: 0.01,
+      count: null
     };
   },
-  computed: {
-    formattedLevelUp() {
-      return this.levelUp.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    }
-  },
   mounted() {
-    setInterval(() => {
-      this.levelUp += 0.01;
-    }, 1330);
+    this.fetchCount();
   },
+  methods: {
+    fetchCount() {
+      axios.get('https://famesfx.com/update_count/')
+        .then(response => {
+          this.count = response.data.count;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }
 };
 </script>
 

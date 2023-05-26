@@ -1,7 +1,7 @@
 <template>
     <button class="btn btnG">
-        <img class="loginLogo logoG" src="./google.png">
-        Login with Google
+        <i class="fa-regular fa-user loginLogo logoG"></i>
+        Login
       </button>
 </template>
 
