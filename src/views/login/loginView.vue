@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container with-background-color">
   <div class="login">
     <img src="./oag.png" alt="Logo" class="logo">
     <div class="buttons">
@@ -33,13 +33,16 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
-  background-color: #333131; /* Add your desired background color here */
   min-height: 90vh;
   margin: 0;
   padding: 0;
 }
+
+.with-background-color {
+  background-color: #333131; /* Add your desired background color here */
+}
+
 .logo {
   float: left;
   width: 200px;
@@ -53,6 +56,7 @@ export default {
   height: 10vh;
   border: none;
 }
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -60,13 +64,11 @@ export default {
   align-items: center;
   margin-top: 10%;
 }
-.terms{
+
+.terms {
   color: #fff;
 }
 
-body {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-}
+/* Include main.css styles */
+@import url('@/assets/main.css');
 </style>

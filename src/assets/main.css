@@ -27,12 +27,6 @@ body {
     }
   }
 
-
-body::after {
-    content: url(./img1.jpg) url(./img2.jpg) url(./img3.jpg) url(./img4.jpg) url(./img5.jpg);
-    display: none;
-}
-
 .TimeDate {
     justify-content: center;
     margin-top: 10%;
