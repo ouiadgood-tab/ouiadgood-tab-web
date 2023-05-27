@@ -34,13 +34,18 @@ export default {
 
 <style scoped>
 .container {
-  min-height: 90vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
 .with-background-color {
-  background-color: #333131; /* Add your desired background color here */
+  
+  background-color: rgb(231, 229, 229);
+    height: 100vh;
+    margin-left: -5%;
+    margin-right: -1%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .logo {
