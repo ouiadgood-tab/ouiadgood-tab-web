@@ -41,6 +41,5 @@ created() {
       }
     }
   }
-    
 }
 </script>

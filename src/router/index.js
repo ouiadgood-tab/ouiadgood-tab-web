@@ -3,6 +3,10 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/login/loginView.vue'
 //import { useAuth0 } from '@auth0/auth0-vue'
 import Store from '@/store'
+import StatsView from '@/views/settings/StatsView.vue'
+import DonateView from '@/views/settings/DonateView.vue'
+import InviteView from '@/views/settings/InviteView.vue'
+import AccountView from '@/views/settings/AccountView.vue'
 
 
 
@@ -15,6 +19,34 @@ const routes = [
 
     
   },
+    {
+      path: '/setting/Stats',
+      name: 'Stats',
+      component: StatsView,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/setting/Donate',
+      name: 'Donate',
+      component: DonateView,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/setting/Account',
+      name: 'Account',
+      component: AccountView,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/setting/Invite',
+      name: 'Invite',
+      component: InviteView,
+      meta: { requiresAuth: true },
+    },
+
   {
     path: '/login',
     name: 'login',
