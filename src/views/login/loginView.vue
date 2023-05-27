@@ -40,19 +40,21 @@ export default {
 }
 
 .with-background-color {
-  
   background-color: rgb(231, 229, 229);
     height: 100vh;
-    margin-left: -5%;
-    margin-right: -1%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    margin-left: -6%;
+    margin-right: -0.5%;
+    margin-top: -3.8%;
+    margin-bottom: -20%;
 }
 
 .logo {
   float: left;
   width: 200px;
   height: 50px;
+  margin-top: 2%;
   margin-right: 1px;
+  margin-left: 7%;
 }
 
 .login {
@@ -71,7 +73,7 @@ export default {
 }
 
 .terms {
-  color: #fff;
+  color: #292828;
 }
 
 /* Include main.css styles */

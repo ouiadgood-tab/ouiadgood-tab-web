@@ -174,6 +174,9 @@ export default {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.1);
 }
+.note-body textarea::placeholder {
+  color: #fff; /* Change the placeholder color here */
+}
 
 .note-body textarea:focus {
   background-color: rgba(255, 255, 255, 0.1);

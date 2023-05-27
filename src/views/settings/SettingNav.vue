@@ -29,17 +29,20 @@ export default {
   .background{
     background-color: rgb(231, 229, 229);
     height: 100vh;
-    margin-left: -5%;
-    margin-right: -1%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    margin-left: -4%;
+    margin-right: -0.6%;
+    margin-top: -4%;
+    margin-bottom: -20%;
   }
   .vertical-nav {
     background: #f2d70f;
+    position: fixed;
     padding:5px 5px 25px 5px;
-    margin-top: -4%;
-    margin-left: -0.4%;
+    margin-top: 0%;
+    margin-left: 3%;
     height: 5%;
     width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   }
   
   .vertical-nav router-link {
@@ -82,6 +85,7 @@ export default {
   padding-top: 10px;
   padding-left: 8%;
   color: #b3aeae;
+  margin-top: 5%;
   
 }
 
