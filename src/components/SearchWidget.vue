@@ -149,7 +149,7 @@ input[type="text"]:focus {
 }
 
 .search-icon:hover {
-  color: rgb(3, 13, 158);
+  color: #13b0c0;
 }
 
 img{
