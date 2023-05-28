@@ -24,24 +24,24 @@
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
         <i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
-          <div>
+          <div class="heartDrop">
           <h2>82 <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>donated</P>
-          <button class="btnInvite">DONATE HEARTS</button>
+          <button class="btnInvite"><router-link class="router" to="/setting/Donate">DONATE HEARTS</router-link></button>
          </div>
-         <div>
+         <div class="heartDrop">
           <h2>0<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>recruited friends</P>
-          <button class="btnInvite">INVITE FRIEND</button>
+          <button class="btnInvite"><router-link class="router" to="/setting/Invite">INVITE FRIEND</router-link></button>
          </div>
-         <div>
-          <div>
-            <p>Open a tab</p>
-            <p>+1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+         <div >
+          <div class="heartDrop">
+            <p class="leftSide">Open a tab</p>
+            <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
-          <div>
-            <p>Recruit a friend</p>
-            <p>+350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+          <div class="heartDrop">
+            <p class="leftSide">Recruit friend</p>
+            <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
          </div>
         </ul>
@@ -146,6 +146,9 @@
     color: #fff;
     cursor: pointer;
   }
+  .heartDrop{
+    font-size: 15px;
+  }
   
   .dropdown-items div {
     padding: 10px;
@@ -166,6 +169,9 @@
   .router {
   text-decoration: none;
   color: #ffffff;
+}
+.leftSide{
+  float: left;
 }
 
 .drop-icon{
