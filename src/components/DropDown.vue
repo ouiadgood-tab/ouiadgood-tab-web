@@ -1,36 +1,77 @@
 <template>
     <div class="dropdowns">
       <ul class="dropdown" @click="toggleDropdown('dropdown1')" :class="{ active: activeDropdown === 'dropdown1' }">
-        <li><MoneyCount/></li>
-        <ul class="dropdown-items" v-if="activeDropdown === 'dropdown1'">
-          <li><p class="info">This is how much money our community has raised for charity.
-          Recruit your friends to raise more!</p>
-          <button class="btnInvite">Invite a friend</button>
-          </li>
+        <div><MoneyCount class="icon"/></div>
+        <ul class="dropdown-items1" v-if="activeDropdown === 'dropdown1'">
+            <div>
+              <p class="info">
+                This is how much money our community has raised for charity.
+                Recruit your friends to raise more!
+              </p>
+              <button class="btnInvite">Invite a friend</button>
+            </div>
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2')" :class="{ active: activeDropdown === 'dropdown2' }">
-        <li><i class="fa-solid fa-tv"></i></li>
+        <i class="fa-solid fa-display icon"></i>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
-          <li>
+          <div>
             <h3 class="info">Watch a video, earn 100 hearts!</h3>
             <p class="info">No videos available right now, but we’ll let you know when one is.</p>
-          </li>
+          </div>
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
-        <li><i class="fa-regular fa-heart"></i></li>
-        <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
-         
+        <i class="fa-sharp fa-regular fa-heart icon"></i>
+        <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
+          <div>
+          <h2>82 <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+          <P>donated</P>
+          <button class="btnInvite">DONATE HEARTS</button>
+         </div>
+         <div>
+          <h2>0<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+          <P>recruited friends</P>
+          <button class="btnInvite">INVITE FRIEND</button>
+         </div>
+         <div>
+          <div>
+            <p>Open a tab</p>
+            <p>+1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+          </div>
+          <div>
+            <p>Recruit a friend</p>
+            <p>+350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+          </div>
+         </div>
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown3')" :class="{ active: activeDropdown === 'dropdown3' }">
-        <li>...</li>
-        <li>
-        <ul class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
-          <li @click="logout" ><a href="#">Logout</a></li>
-        </ul>
-        </li>
+        <i class="fa-solid fa-ellipsis icon"></i>
+          <div>
+            <div class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
+              <div>
+                <i class="fa-solid fa-heart drop-icon"></i>
+                <router-link class="router" to="/setting/Donate">Donate Hearts</router-link>
+              </div>
+              <div>
+                <i class="fa-solid fa-chart-simple drop-icon"></i>
+                <router-link class="router" to="/setting/Stats">Your Stats</router-link>
+              </div>
+              <div>
+                <i class="fa-solid fa-user-plus drop-icon"></i>
+                <router-link class="router" to="/setting/Invite">Invite Friends</router-link>
+              </div>
+              <div>
+                <i class="fa-solid fa-user drop-icon"></i>
+                <router-link class="router" to="/setting/Account">Account</router-link>
+              </div>
+              <div @click="logout" class="router" >
+                <i class="fa-solid fa-right-from-bracket drop-icon"></i>
+                Logout
+              </div>
+            </div>
+          </div>
       </ul>
     </div>
   </template>
@@ -45,7 +86,7 @@
   }
 
   .dropdown {
-    margin-right: -15px;
+    margin-right: 15px;
     list-style: none;
     position: relative;
     font-size: 30px;
@@ -56,11 +97,32 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 150px;
+    width: 130px;
     padding: 0;
-    margin: 0, 10px, 10px, 2px;
-    background-color: rgba(255, 255, 255, 0.24);
-    border: 1px solid #ccc;
+    background-color: #13afc02f;
+    border-top: none;
+    z-index: 1;
+  }
+
+  .dropdown-items1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    background-color: #13afc02f;
+    border-top: none;
+    z-index: 1;
+  }
+  .dropdown-items2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 25vh;
+    padding: 0;
+    background-color: #13afc02f;
     border-top: none;
     z-index: 1;
   }
@@ -68,37 +130,51 @@
   .active .dropdown-items {
     display: block;
   }
+  .active .dropdown-items1 {
+    display: block;
+  }
+  .active .dropdown-items2 {
+    display: block;
+  }
   
-  .dropdown li {
+  .dropdown div {
     padding: 5px;
     cursor: pointer;
   }
   
-  li:hover {
+  .icon:hover {
     color: #fff;
+    cursor: pointer;
   }
   
-  .dropdown-items li {
+  .dropdown-items div {
     padding: 10px;
     border-top: 1px solid #ffffffdc;
   }
   
-  .dropdown-items li:first-child {
-    border-top: none;
-    
-  }
   
-  .dropdown-items li a {
+  
+  .dropdown-items div {
     display: block;
     background-color: transparent;
-    border-right: none;
+    border: none;
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 14px;
+    font-size:14px;
+    margin-top: -3%;
   }
+  .router {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.drop-icon{
+  float: left;
+  margin-left: -6%;
+}
   
-  .dropdown-items li a:hover {
-    background-color: #f2f2f21a;
+  .dropdown-items div:hover {
+    background-color: #13afc063;
   }
 .info{
   font-size: small;
@@ -110,21 +186,23 @@ ul{
 }
 
 .btnInvite{
-  background-color: #f7be01d5; 
+  background-color: #13b0c0; 
   border: none; 
   color: white;
   padding: 10px 10px;
   text-align: center; 
-  font-size: 14px; 
-  margin: 10px; 
+  font-size: 70%; 
+  font-weight: 300;
+  margin: 5px ; 
   cursor: pointer; 
+  width: 80%;
   border-radius: 8px; 
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
   transition: background-color 0.3s ease;
 }
 
 .btnInvite:hover{
-  background-color: #0eb0b6;
+  background-color: #f2d70f;
 }
   </style>
   

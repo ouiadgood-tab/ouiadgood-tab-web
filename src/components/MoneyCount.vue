@@ -1,5 +1,8 @@
 <template>
-  <p class="levelUp">${{ count }}</p>
+  <p class="levelUp">
+    <i class="fas fa-dollar-sign"></i> 3,456,4565.34
+    {{ count }}
+  </p>
 </template>
 
 <script>
