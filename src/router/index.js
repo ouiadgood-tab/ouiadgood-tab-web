@@ -63,6 +63,12 @@ const routes = [
   {
     path: '/home',
     redirect: '/'
+  },
+
+  // catch-all route for undefined routes
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/home'
   }
 ]
 
