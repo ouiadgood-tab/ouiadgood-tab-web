@@ -42,7 +42,7 @@
             <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
           <div class="heartDrop">
-            <p class="leftSide">Recruit friend</p>
+            <p class="leftSide1">Recruit friend</p>
             <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
          </div>
