@@ -35,7 +35,7 @@
           <button class="btnInvite"><router-link class="router" to="/setting/Invite">INVITE FRIEND</router-link></button>
          </div>
          <div >
-          <div class="heartDrop">
+          <div class="heartDrop openSpace">
             <p class="leftSide">Open a tab</p>
             <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
@@ -126,7 +126,6 @@
     border-top: none;
     z-index: 1;
   }
-  
   .active .dropdown-items {
     display: block;
   }
@@ -146,6 +145,15 @@
     color: #fff;
     cursor: pointer;
   }
+  h2{
+    margin-bottom:-8%;
+  }
+  p{
+    margin-bottom: -3%;
+  }
+  .openSpace{
+    margin-bottom: -6%;
+  }
   .heartDrop{
     font-size: 15px;
   }
@@ -154,10 +162,8 @@
     padding: 10px;
     border-top: 1px solid #ffffffdc;
   }
-  
-  
-  
-  .dropdown-items div {
+ 
+.dropdown-items div {
     display: block;
     background-color: transparent;
     border: none;
