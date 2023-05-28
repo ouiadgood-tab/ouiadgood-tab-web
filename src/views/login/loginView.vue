@@ -45,7 +45,7 @@ export default {
     margin-left: -6%;
     margin-right: -0.5%;
     margin-top: -3.8%;
-    margin-bottom: -20%;
+    padding-bottom: 5%;
 }
 
 .logo {

@@ -181,4 +181,23 @@ export default {
 .note-body textarea:focus {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+@media (min-width: 768px) {
+  /* Apply specific styles for screens larger than 768px width (laptops) */
+
+  .notes {
+    left: 15%;
+    width: 70%;
+  }
+}
+
+/* Additional styles to improve mobile experience */
+@media (max-width: 480px) {
+  /* Apply specific styles for screens smaller than 480px width (mobile devices) */
+
+  .notes {
+    left: 0;
+    width: 100%;
+  }
+}
 </style>

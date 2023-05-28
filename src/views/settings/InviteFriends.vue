@@ -3,7 +3,7 @@
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">Share this link</p>
-                <input type="url" name="invite-link" class="inviteInput" value="https://tab.gladly.io/?u=worldsech"/>
+                <input type="url" name="invite-link" class="inviteInput" value="https://ouiadgood.com/?u=worldsech"/>
                 <p class="msg">and you'll get 350 Hearts for every person who joins!</p>
             </div>
             <div class="fNum">

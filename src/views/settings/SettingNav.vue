@@ -6,10 +6,10 @@
     </div>
     <nav class="horizontal-nav">
         <p>YOUR PROFILE</p>
-    <router-link class="router" to="/setting/Stats">Your Stats</router-link>
-    <router-link class="router" to="/setting/Donate">Donate Hearts</router-link>
-    <router-link class="router" to="/setting/Invite">Invite Friends</router-link>
-    <router-link class="router" to="/setting/Account">Account</router-link>
+    <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">Your Stats</router-link>
+    <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">Donate Hearts</router-link>
+    <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">Invite Friends</router-link>
+    <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">Account</router-link>
   </nav>
     </div>
   </template>
@@ -20,6 +20,9 @@ export default {
   methods: {
     closeNav() {
       this.$router.push('/');
+    },
+    isActive(route) {
+      return this.$route.path === route;
     }
   }
 }
@@ -32,7 +35,8 @@ export default {
     margin-left: -4%;
     margin-right: -0.6%;
     margin-top: -4%;
-    margin-bottom: -20%;
+    padding-bottom: 4%;
+    margin-bottom: 0%;
   }
   .vertical-nav {
     background: #f2d70f;
@@ -99,6 +103,9 @@ export default {
 
 }
 .horizontal-nav a:hover {
+  background-color: #b3aeae;
+}
+.router.active {
   background-color: #b3aeae;
 }
 
