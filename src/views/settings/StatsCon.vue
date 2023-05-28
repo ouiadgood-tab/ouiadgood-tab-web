@@ -30,12 +30,12 @@
             <div>
                 <span>0</span>
                 <p>Tabbers recruited</p>
-                <button class="btnTab"> <router-link class="router" to="/contact">INVITE FRIENDS</router-link></button>
+                <button class="btnTab"> <router-link class="router" to="/setting/Invite">INVITE FRIENDS</router-link></button>
             </div>
             <div>
                 <span>84</span>
                 <p>Heart donated</p>
-                <button class="btnTab"><router-link class="router" to="/">DONATE HEARTS </router-link></button>
+                <button class="btnTab"><router-link class="router" to="/setting/Donate">DONATE HEARTS </router-link></button>
             </div>
         </div>
     </div>

@@ -165,7 +165,7 @@ export default {
 }
 
 input:checked + .slider {
-  background-color: #171717;
+  background-color: #a10903;
   box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
 }
 

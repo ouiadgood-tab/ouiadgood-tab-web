@@ -104,7 +104,7 @@ export default {
 
 .notes {
   position: absolute;
-  top: 20px;
+  top: 42px;
   left: 15%;
   transform: translateX(-50%);
   width: 210%;

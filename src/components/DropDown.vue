@@ -8,7 +8,7 @@
                 This is how much money our community has raised for charity.
                 Recruit your friends to raise more!
               </p>
-              <button class="btnInvite">Invite a friend</button>
+              <button class="btnInvite"><router-link class="router" to="/setting/Invite">Invite a friend</router-link></button>
             </div>
         </ul>
       </ul>
