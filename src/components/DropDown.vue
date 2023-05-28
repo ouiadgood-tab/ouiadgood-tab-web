@@ -29,11 +29,13 @@
           <P>donated</P>
           <button class="btnInvite"><router-link class="router" to="/setting/Donate">DONATE HEARTS</router-link></button>
          </div>
+         <hr/>
          <div class="heartDrop">
           <h2>0<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>recruited friends</P>
           <button class="btnInvite"><router-link class="router" to="/setting/Invite">INVITE FRIEND</router-link></button>
          </div>
+         <hr/>
          <div >
           <div class="heartDrop openSpace">
             <p class="leftSide">Open a tab</p>
@@ -148,9 +150,6 @@
   h2{
     margin-bottom:-8%;
   }
-  p{
-    margin-bottom: -3%;
-  }
   .openSpace{
     margin-bottom: -6%;
   }
@@ -178,6 +177,10 @@
 }
 .leftSide{
   float: left;
+}
+.leftSide1{
+  float: left;
+  margin-left: -40%;
 }
 
 .drop-icon{
