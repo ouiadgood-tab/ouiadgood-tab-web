@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
         <div class="head">
             <div class="grayHead">
                 <i class="fa-solid fa-circle-exclamation"></i>
@@ -29,13 +29,13 @@
         <div class="cards">
             <div class="card">
                 <img src="./image/ftdws.jpg" class="imgDonate"/>
-                <h1>The Foundation to Decrease Worldsuck</h1>
+                <h1 class="worldSuck">The Foundation to Decrease Worldsuck</h1>
                 <p>Distributes 100% of donations to non-profits selected by Nerdfighteria and the Project for Awesome</p>
                 <button class="btnTab">DONATE 365 HEARTS</button>
             </div>
             <div class="card">
                 <img src="./image/givedirectly.png" class="imgDonate"/>
-                <h1>GiveDirectly</h1>
+                <h1 class="gDir">GiveDirectly</h1>
                 <p>Offers a simple approach to addressing poverty: cut out intermediaries and allow poor families to decide for themselves what they need most</p>
                 <button class="btnTab">DONATE 365 HEARTS</button>
             </div>
@@ -76,6 +76,9 @@ export default{
 </script>
 
 <style scoped>
+.container{
+    margin-right: 10vh;
+}
 .head {
   background-color: #fff;
   color: #333;
@@ -101,12 +104,19 @@ p{
     margin-bottom: 30px;
 }
 h1{
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 30px;
+}
+.worldSuck{
+    margin-top: -1% !important;
+    margin-bottom: -3%;
+}
+.gDir{
+    margin-top: -1% !important;
 }
 
 .card {
-  width: 30%;
+  width: 35%;
   height: 400px;
  margin-left: 2%;
   margin-bottom: 1%;
@@ -116,10 +126,10 @@ h1{
 }
 .cards {
   display: flex;
-  margin-left: 30%;
+  margin-left: 25%;
 }
 .imgDonate{
-    width: 39.3vh;
+    width: 45vh;
 }
 .btnTab {
   background-color: #13b0c0;
