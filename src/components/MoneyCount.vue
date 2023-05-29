@@ -1,6 +1,6 @@
 <template>
   <p class="levelUp">
-    <i class="fas fa-dollar-sign"></i> 3,456,4565.34
+    <i class="fas fa-dollar-sign"></i>
     {{ count }}
   </p>
 </template>
@@ -20,9 +20,10 @@ export default {
   },
   methods: {
     fetchCount() {
-      axios.get('https://famesfx.com/update_count/')
+      axios.get('https://ouiadgood.onrender.com/money')
         .then(response => {
-          this.count = response.data.count;
+          console.log(response)
+          this.count = Number(response.data[0].totalmoney).toFixed(2);
         })
         .catch(error => {
           console.error(error);
