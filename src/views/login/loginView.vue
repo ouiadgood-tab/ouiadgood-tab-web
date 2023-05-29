@@ -74,9 +74,7 @@ export default {
 
 .terms {
   color: #292828;
-  margin-top: 11%;
+  margin-top: 12%;
 }
 
-/* Include main.css styles */
-@import url('@/assets/main.css');
 </style>

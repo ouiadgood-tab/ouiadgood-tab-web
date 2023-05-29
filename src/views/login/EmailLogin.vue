@@ -150,13 +150,13 @@ export default {
 .modal {
   position: absolute;
   top: 38%;
-  left: 48%;
+  left: 47%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border-radius: 5px;
   padding: 20px;
   width: 400px;
-  border-radius: 10%;
+  border-radius: 5%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
