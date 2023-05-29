@@ -27,7 +27,7 @@
           </div>
           <div class="field">
             <div class="button">
-              <button class="btnSubmit" :disabled="!isValidForm" @click.prevent="submitLogin">Submit</button>
+              <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Login</button>
             </div>
           </div>
         </form>
@@ -39,72 +39,72 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'EmailLogin',
-  data() {
-    return {
-      email: '',
-      password: '',
-      showModal: true,
-      passwordVisible: false, // added property for password visibility
-    };
-  },
-  computed: {
-    validEmail() {
-      return /\S+@\S+\.\S+/.test(this.email);
+    name: "EmailLogin",
+    data() {
+        return {
+            email: "",
+            password: "",
+            showModal: true,
+            passwordVisible: false, // added property for password visibility
+        };
     },
-    validPassword() {
-      return this.password.length >= 8;
+    computed: {
+        validEmail() {
+            return /\S+@\S+\.\S+/.test(this.email);
+        },
+        validPassword() {
+            return this.password.length >= 8;
+        },
+        isValidForm() {
+            return this.validEmail && this.validPassword;
+        },
     },
-    isValidForm() {
-      return this.validEmail && this.validPassword;
+    methods: {
+        // showLoginModal() {
+        //   this.email = localStorage.getItem('email') || '';
+        //   this.password = localStorage.getItem('password') || '';
+        //   this.showModal = true;
+        // },
+        togglePasswordVisibility() {
+            this.passwordVisible = !this.passwordVisible;
+        },
+        validateEmail() {
+            if (this.email.length === 0 || this.validEmail) {
+                this.$refs.emailInput.setCustomValidity("");
+            }
+            else {
+                this.$refs.emailInput.setCustomValidity("Please enter a valid email address.");
+            }
+        },
+        validatePassword() {
+            if (this.password.length === 0 || this.validPassword) {
+                this.$refs.passwordInput.setCustomValidity("");
+            }
+            else {
+                this.$refs.passwordInput.setCustomValidity("Please enter a password with at least 8 characters.");
+            }
+        },
+        submitLogin() {
+            if (this.validEmail && this.validPassword) {
+                // Create a user object with the login details
+                const user = {
+                    email: this.email,
+                    password: this.password,
+                };
+                // Make a POST request to the API endpoint
+                axios.post("https://ouiadgood.onrender.com/users/add", user)
+                    .then(response => {
+                    // Save the request in LocalStorage
+                    localStorage.setItem("loginRequest", JSON.stringify(response.data));
+                    // Redirect to /home
+                    this.$router.push("/home");
+                })
+                    .catch(error => {
+                    console.error(error);
+                });
+            }
+        }
     },
-  },
-  methods: {
-    // showLoginModal() {
-    //   this.email = localStorage.getItem('email') || '';
-    //   this.password = localStorage.getItem('password') || '';
-    //   this.showModal = true;
-    // },
-    togglePasswordVisibility() {
-      this.passwordVisible = !this.passwordVisible;
-    },
-    validateEmail() {
-      if (this.email.length === 0 || this.validEmail) {
-        this.$refs.emailInput.setCustomValidity('');
-      } else {
-        this.$refs.emailInput.setCustomValidity('Please enter a valid email address.');
-      }
-    },
-    validatePassword() {
-      if (this.password.length === 0 || this.validPassword) {
-        this.$refs.passwordInput.setCustomValidity('');
-      } else {
-        this.$refs.passwordInput.setCustomValidity('Please enter a password with at least 8 characters.');
-      }
-    },
-    submitLogin() {
-  if (this.validEmail && this.validPassword) {
-    // Create a user object with the login details
-    const user = {
-      email: this.email,
-      password: this.password,
-    };
-
-    // Make a POST request to the API endpoint
-    axios.post('https://ouiadgood.onrender.com/users/add', user)
-      .then(response => {
-        // Save the request in LocalStorage
-        localStorage.setItem('loginRequest', JSON.stringify(response.data));
-
-        // Redirect to /home
-        this.$router.push('/home');
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-}
-  },
 };
 </script>
 
@@ -199,15 +199,21 @@ export default {
   color: #dc3545;
 }
 
-.btnSubmit {
-  border: none;
-  border-radius: 5px;
-  width: 80px;
-  height: 40px;
-  font-size: 20px;
+
+.btnTab {
   background-color: #13b0c0;
   color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.btnTab:hover {
+  background-color: #14c3d6;
 }
 
  /* Eye icon styles */

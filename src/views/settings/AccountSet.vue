@@ -7,14 +7,7 @@
             <div class="grayOutMain">
                 <h3 class="mainText">Username</h3>
                 <p class="userE">user Name</p>
-                <div class="btnCha"> CHANGE</div>
-            </div>
-        </div>
-        <div class="head">
-            <div class="grayOutMain">
-                <h3 class="mainText">Email</h3>
-                <p class="userE">users Email</p>
-                <div class="btnCha"> CHANGE</div>
+                <div class="btnCha" @click="showUserNamePopup"> CHANGE</div>
             </div>
         </div>
         <div class="head">
@@ -32,21 +25,33 @@
                 </div>
             </div>
         </div>
+        <div v-if="isUserNamePopupVisible">
+            <UserName/>
+        </div>
     </div>
 </template>
 
 <script>
+import UserName from  './UserName.vue';
 export default {
   name: 'AccountSet',
+  components: {
+    UserName,
+  },
   data() {
     return {
       showDeleteAcct: false,
+      isUserNamePopupVisible: false, // Track the visibility of the UserName popup
     };
   },
   methods: {
     toggleDeleteAcct() {
       this.showDeleteAcct = !this.showDeleteAcct;
     },
+    showUserNamePopup() {
+      this.isUserNamePopupVisible = true; // Show the UserName popup
+    },
+    
   },
 };
 </script>
