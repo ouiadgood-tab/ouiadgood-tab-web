@@ -247,12 +247,6 @@ import MoneyCount from './MoneyCount.vue';
             }
         },
 
-        // logout(){
-        //   console.log('logging out');
-        //   this.$auth0.logout();
-
-        // }
-
         logout() {
       // Delete local storage data
       localStorage.removeItem('loginRequest');

@@ -1,20 +1,38 @@
 <template>
-      <div class="modal">
+      <div class="model">
         <div class="modal-content">
             <div class="linkText">
                 <p class="share">Change Username</p>
-                <input type="url" name="invite-link" class="inviteInput" placeholder="Username"/>
-                <button class="btnTab">DONATE HEARTS</button>
+                <input type="url" name="invite-link" class="inviteInput" placeholder="Username" v-model="newUsername"/>
+                <button class="btnTab" @click="updateUsername">Update Username</button>
             </div>
         </div>
       </div>
   </template>
 
-  <script>
-  export default{
-    name:'UserName',
-  }
-  </script>
+<script>
+
+export default {
+  name: 'UserName',
+  data() {
+    return {
+      newUsername: '', // Store the new username entered by the user
+    };
+  },
+  methods: {
+    updateUsername() {
+      // Update the username in the local storage
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      if (loginRequest) {
+        loginRequest.username = this.newUsername;
+        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+      }
+      //Refresh the page
+      window.location.reload();
+    },
+  },
+};
+</script>
 
 <style>
  .inviteInput {
@@ -60,10 +78,10 @@
 .btnTab:hover {
   background-color: #14c3d6;
 }
-.modal{
+.model{
     width: 25%;
     height: 20vh;
-    margin-left: 40%;
+    margin-left: 50%;
     margin-top: -10%;
     padding-top: 10px;
     border-radius: 10px;

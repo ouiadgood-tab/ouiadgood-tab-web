@@ -6,7 +6,7 @@
         <div class="head">
             <div class="grayOutMain">
                 <h3 class="mainText">Username</h3>
-                <p class="userE">user Name</p>
+                <p class="userE">{{ username }}</p>
                 <div class="btnCha" @click="showUserNamePopup"> CHANGE</div>
             </div>
         </div>
@@ -41,17 +41,26 @@ export default {
   data() {
     return {
       showDeleteAcct: false,
-      isUserNamePopupVisible: false, // Track the visibility of the UserName popup
+      isUserNamePopupVisible: false,
+      username: '', // Store the retrieved username
     };
+  },
+  mounted() {
+    this.fetchUsernameFromLocalStorage() // Fetch the username when the component is mounted
   },
   methods: {
     toggleDeleteAcct() {
       this.showDeleteAcct = !this.showDeleteAcct;
     },
     showUserNamePopup() {
-      this.isUserNamePopupVisible = true; // Show the UserName popup
+      this.isUserNamePopupVisible = !this.isUserNamePopupVisible;
     },
-    
+    fetchUsernameFromLocalStorage() {
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      if (loginRequest && loginRequest.username) {
+        this.username = loginRequest.username;
+      }
+    },
   },
 };
 </script>

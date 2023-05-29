@@ -60,11 +60,6 @@ export default {
         },
     },
     methods: {
-        // showLoginModal() {
-        //   this.email = localStorage.getItem('email') || '';
-        //   this.password = localStorage.getItem('password') || '';
-        //   this.showModal = true;
-        // },
         togglePasswordVisibility() {
             this.passwordVisible = !this.passwordVisible;
         },
