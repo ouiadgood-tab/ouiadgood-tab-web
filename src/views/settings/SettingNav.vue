@@ -37,6 +37,7 @@ export default {
     margin-top: -4%;
     padding-bottom: 4%;
     margin-bottom: 0%;
+    background-repeat: no-repeat;
   }
   .vertical-nav {
     background: #f2d70f;

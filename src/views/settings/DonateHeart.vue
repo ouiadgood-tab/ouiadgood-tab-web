@@ -1,0 +1,139 @@
+<template>
+<div>
+        <div class="head">
+            <div class="grayHead">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>When you donate Hearts, you're telling us to give more of the money we raise to that charity.</span>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="./image/acfusa-201804.png" class="imgDonate"/>
+                <h1>Action Against Hunger</h1>
+                <p>A global humanitarian organization committed to ending world hunger</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/conservation-international-201804.png" class="imgDonate"/>
+                <h1>Conservation International</h1>
+                <p>Because saving nature is the only way to save ourselves</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/educate-201807.jpg" class="imgDonate"/>
+                <h1>Educate!</h1>
+                <p>Preparing youth in Africa with the skills to succeed in today's economy</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="./image/ftdws.jpg" class="imgDonate"/>
+                <h1>The Foundation to Decrease Worldsuck</h1>
+                <p>Distributes 100% of donations to non-profits selected by Nerdfighteria and the Project for Awesome</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/givedirectly.png" class="imgDonate"/>
+                <h1>GiveDirectly</h1>
+                <p>Offers a simple approach to addressing poverty: cut out intermediaries and allow poor families to decide for themselves what they need most</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/human-rights-watch.jpg" class="imgDonate"/>
+                <h1>Human Rights Watch</h1>
+                <p>An independent, international organization that defends the rights of people worldwide</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="./image/room-to-read-20210809.png" class="imgDonate"/>
+                <h1>Room to Read</h1>
+                <p>Creating a future in which all the world's children can pursue a quality education</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/save-the-children-201804.png" class="imgDonate"/>
+                <h1>Save the Children</h1>
+                <p>Giving the world's children a healthy start, an opportunity to learn, and protection from harm</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+            <div class="card">
+                <img src="./image/the-bail-project.jpg" class="imgDonate"/>
+                <h1>The Bail Project</h1>
+                <p>Combatting mass incarceration by disrupting the money bail system—one person at a time</p>
+                <button class="btnTab">DONATE 365 HEARTS</button>
+            </div>
+        </div>
+</div>
+</template>
+
+<script>
+export default{
+    name:'DonateHeart'
+}
+</script>
+
+<style scoped>
+.head {
+  background-color: #fff;
+  color: #333;
+  font-size: 15px;
+  padding: 10px 140px 10px 160px;
+  width: 70vh;
+  margin-left: 35%;
+  margin-bottom: 5%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.fa-solid{
+    float: left;
+}
+.grayHead{
+    margin-left: -6%;
+    margin-right: -6%;
+}
+p{
+    color: #000;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 30px;
+}
+h1{
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.card {
+  width: 30%;
+  height: 400px;
+ margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.cards {
+  display: flex;
+  margin-left: 30%;
+}
+.imgDonate{
+    width: 39.3vh;
+}
+.btnTab {
+  background-color: #13b0c0;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.btnTab:hover {
+  background-color: #14c3d6;
+}
+</style>
