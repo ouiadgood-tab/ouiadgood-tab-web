@@ -22,7 +22,6 @@ export default {
     fetchCount() {
       axios.get('https://ouiadgood.onrender.com/money')
         .then(response => {
-          console.log(response)
           this.count = Number(response.data[0].totalmoney).toFixed(2);
         })
         .catch(error => {

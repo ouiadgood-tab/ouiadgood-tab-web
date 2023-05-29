@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button class="btn btnEm" @click="showLoginModal">
+    <!--<button class="btn btnEm" @click="showLoginModal">
       <img class="loginLogo logoEm" src="./email.jpg">
       Login with Email
-    </button>
+    </button> -->
     <div class="modal" v-if="showModal">
       <div class="modal-background"></div>
       <div class="modal-content">
@@ -32,19 +32,19 @@
           </div>
         </form>
       </div>
-      <button class="btn-cancel" aria-label="close" @click="closeModal">X</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'EmailLogin',
   data() {
     return {
-      email: localStorage.getItem('email') || '',
-      password: localStorage.getItem('password') || '',
-      showModal: false,
+      email: '',
+      password: '',
+      showModal: true,
       passwordVisible: false, // added property for password visibility
     };
   },
@@ -60,16 +60,13 @@ export default {
     },
   },
   methods: {
-    showLoginModal() {
-      this.email = localStorage.getItem('email') || '';
-      this.password = localStorage.getItem('password') || '';
-      this.showModal = true;
-    },
+    // showLoginModal() {
+    //   this.email = localStorage.getItem('email') || '';
+    //   this.password = localStorage.getItem('password') || '';
+    //   this.showModal = true;
+    // },
     togglePasswordVisibility() {
       this.passwordVisible = !this.passwordVisible;
-    },
-    closeModal() {
-      this.showModal = false;
     },
     validateEmail() {
       if (this.email.length === 0 || this.validEmail) {
@@ -86,15 +83,27 @@ export default {
       }
     },
     submitLogin() {
-      if (this.validEmail && this.validPassword) {
-        // perform login with email and password
-        // Save email and password to local storage
-        localStorage.setItem('email', this.email);
-        localStorage.setItem('password', this.password);
+  if (this.validEmail && this.validPassword) {
+    // Create a user object with the login details
+    const user = {
+      email: this.email,
+      password: this.password,
+    };
+
+    // Make a POST request to the API endpoint
+    axios.post('https://ouiadgood.onrender.com/users/add', user)
+      .then(response => {
+        // Save the request in LocalStorage
+        localStorage.setItem('loginRequest', JSON.stringify(response.data));
+
         // Redirect to /home
         this.$router.push('/home');
-      }
-    },
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+}
   },
 };
 </script>
@@ -141,12 +150,13 @@ export default {
 .modal {
   position: absolute;
   top: 38%;
-  left: 50%;
+  left: 48%;
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 5px;
   padding: 20px;
   width: 400px;
+  border-radius: 10%;
 }
 
 .modal-header {
@@ -164,20 +174,6 @@ export default {
   transform: scale(1.1);
 }
 
-.btn-cancel {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  color: #fff;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  font-size: 15px;
-  line-height: 1;
-  padding: 0;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
 
 .field {
   margin-bottom: 10px;
@@ -206,10 +202,10 @@ export default {
 .btnSubmit {
   border: none;
   border-radius: 5px;
-  width: 70px;
-  height: 30px;
-  font-size: 15px;
-  background-color: green;
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #13b0c0;
   color: #fff;
   cursor: pointer;
 }

@@ -255,8 +255,7 @@ import MoneyCount from './MoneyCount.vue';
 
         logout() {
       // Delete local storage data
-      localStorage.removeItem('email');
-      localStorage.removeItem('password');
+      localStorage.removeItem('loginRequest');
       
       // Redirect to /login
       this.$router.push('/login');

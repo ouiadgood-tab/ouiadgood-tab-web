@@ -74,6 +74,7 @@ export default {
 
 .terms {
   color: #292828;
+  margin-top: 11%;
 }
 
 /* Include main.css styles */
