@@ -3,12 +3,13 @@ import App from './App.vue';
 import '@fortawesome/fontawesome-free/css/all.css';
 import router from './router';
 import store from '@/store';
+import posthogPlugin from './plugins/posthog';
  //import { createAuth0 } from '@auth0/auth0-vue';
 //import GAuth from 'vue3-google-oauth2';
 //import './assets/main.css';
 
 const app = createApp(App)
-app.use(
+app.use( posthogPlugin
     // createAuth0({
     //    domain: "dev-8fb7e5kg24azc51x.us.auth0.com",
     //    clientId: "geHen3fHpDG8MiXAKq4V7szvY0dqaKqx",
