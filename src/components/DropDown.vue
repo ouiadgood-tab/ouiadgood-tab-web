@@ -263,7 +263,8 @@ import axios from 'axios';
       axios
         .patch('https://ouiadgood.onrender.com/users/heart', {
           heart: this.heart,
-          email: loginRequest.email
+          email: loginRequest.email,
+          updateTotal: false,
         })
         .then(response => {
           // Handle the response if needed

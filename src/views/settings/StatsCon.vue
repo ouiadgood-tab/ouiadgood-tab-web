@@ -12,7 +12,7 @@
                 <p>days as a Tabber</p>
             </div>
             <div>
-                <span>84</span>
+                <span>{{totalTab}}</span>
                 <p>tabs all time</p>
             </div>
             <div>
@@ -42,11 +42,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default{
     name: 'StatsCon',
     data() {
     return {
       daysLogged: 1,
+      totalTab: '',
     };
   },
   created() {
@@ -57,6 +59,8 @@ export default{
      if (daysLogged) {
       this.daysLogged = parseInt(daysLogged);
     }
+    // Make the API GET request to retrieve user data
+    this.getTotalTab();
   },
   methods: {
     logIn() {
@@ -66,6 +70,22 @@ export default{
       // Update the value in the local storage
       localStorage.setItem('daysLogged', this.daysLogged.toString());
     },
+    getTotalTab(){
+      // Make the API GET request to retrieve user data
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      const userId = loginRequest._id;
+      axios
+       .get(`https://ouiadgood.onrender.com/users/${userId}`)
+        .then(response => {
+          // Handle the response and assign the data to userData
+          this.totalTab = response.data.totalheart;
+          console.log(response)
+        })
+        .catch(error => {
+          // Handle the error if needed
+          console.error(error);
+        });
+    }
   },
 }
 </script>

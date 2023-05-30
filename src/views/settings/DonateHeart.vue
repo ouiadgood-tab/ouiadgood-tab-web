@@ -11,19 +11,19 @@
                 <a href="https://www.actionagainsthunger.org/"><img src="./image/acfusa-201804.png" class="imgDonate"/></a>
                 <h1>Action Against Hunger</h1>
                 <p>A global humanitarian organization committed to ending world hunger</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://www.conservation.org/"><img src="./image/conservation-international-201804.png" class="imgDonate"/></a>
                 <h1>Conservation International</h1>
                 <p>Because saving nature is the only way to save ourselves</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://www.experienceeducate.org/"><img src="./image/educate-201807.jpg" class="imgDonate"/></a>
                 <h1>Educate!</h1>
                 <p>Preparing youth in Africa with the skills to succeed in today's economy</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
         </div>
         <div class="cards">
@@ -31,19 +31,19 @@
                 <a href="https://fightworldsuck.org/"><img src="./image/ftdws.jpg" class="imgDonate"/></a>
                 <h1 class="worldSuck">The Foundation to Decrease Worldsuck</h1>
                 <p>Distributes 100% of donations to non-profits selected by Nerdfighteria and the Project for Awesome</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://www.givedirectly.org/"><img src="./image/givedirectly.png" class="imgDonate"/></a>
                 <h1 class="gDir">GiveDirectly</h1>
                 <p>Offers a simple approach to addressing poverty: cut out intermediaries and allow poor families to decide for themselves what they need most</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://www.hrw.org/"><img src="./image/human-rights-watch.jpg" class="imgDonate"/></a>
                 <h1>Human Rights Watch</h1>
                 <p>An independent, international organization that defends the rights of people worldwide</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
         </div>
         <div class="cards">
@@ -51,19 +51,19 @@
                 <img src="./image/room-to-read-20210809.png" class="imgDonate"/>
                 <h1>Room to Read</h1>
                 <p>Creating a future in which all the world's children can pursue a quality education</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://www.savethechildren.org/"><img src="./image/save-the-children-201804.png" class="imgDonate"/></a>
                 <h1>Save the Children</h1>
                 <p>Giving the world's children a healthy start, an opportunity to learn, and protection from harm</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
             <div class="card">
                 <a href="https://bailproject.org/"><img src="./image/the-bail-project.jpg" class="imgDonate"/></a>
                 <h1>The Bail Project</h1>
                 <p>Combatting mass incarceration by disrupting the money bail system—one person at a time</p>
-                <button class="btnTab">DONATE 365 HEARTS</button>
+                <button class="btnTab">DONATE {{ heart }} HEARTS</button>
             </div>
         </div>
 </div>
@@ -71,7 +71,23 @@
 
 <script>
 export default{
-    name:'DonateHeart'
+    name:'DonateHeart',
+    data(){
+        return{
+            heart:0,
+        };
+    },
+
+    created() {
+    // Retrieve the stored value from the local storage
+    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+
+    // If the value exists, assign it to the heart data property
+    if (loginRequest && loginRequest.heart) {
+      this.heart = loginRequest.heart;
+    }
+  },
+
 }
 </script>
 
