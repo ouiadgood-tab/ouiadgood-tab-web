@@ -16,9 +16,9 @@
                 <p>tabs all time</p>
             </div>
             <div>
-                <span>12</span>
+                <span>{{ maxTab }}</span>
                 <p>max tab in one day</p>
-                <p class="grayOut">on April 19, 2023</p>
+                <p class="grayOut">{{maxHeartDate}}</p>
             </div>
             <div>
                 <span>12</span>
@@ -49,16 +49,28 @@ export default{
     return {
       daysLogged: 1,
       totalTab: '',
+      maxTab: '',
+      maxHeartDate: '',
     };
   },
   created() {
     // Retrieve the stored value from the local storage
     const daysLogged = localStorage.getItem('daysLogged');
+    const maxTab = localStorage.getItem('maxHeart');
+    const maxHeartDate = localStorage.getItem('maxHeartDate');
 
      // If the value exists, parse it to an integer and assign it to daysLogged
      if (daysLogged) {
       this.daysLogged = parseInt(daysLogged);
     }
+
+    if (maxTab) {
+    this.maxTab = maxTab;
+  }
+
+  if (maxHeartDate) {
+    this.maxHeartDate = maxHeartDate;
+  }
     // Make the API GET request to retrieve user data
     this.getTotalTab();
   },

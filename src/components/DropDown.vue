@@ -221,7 +221,7 @@ ul{
 }
   </style>
 
-  <script >
+<script >
 import MoneyCount from './MoneyCount.vue';
 import axios from 'axios';
 //import { useAuth0 } from '@auth0/auth0-vue';
@@ -234,15 +234,37 @@ import axios from 'axios';
             activeDropdown: null,
             heart: 0,
             totalheart: 0,
+            maxHeart:0,
+            todayHeart:0,
+            maxHeartDate: '',
         };
     },
 
     created() {
     // Retrieve the stored value from the local storage
     const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+    const savedDate = localStorage.getItem('date');
     if (loginRequest) {
       this.heart = loginRequest.heart || 0;
       this.totalheart = loginRequest.totalheart || 0;
+    }
+
+    this.todayHeart = parseInt(localStorage.getItem('todayHeart')) || 0;
+    this.maxHeart =parseInt(localStorage.getItem('maxHeart')) || 0;
+
+    const currentDate = new Date().toLocaleDateString();
+    if (currentDate != savedDate){
+      if (this.maxHeart > this.todayHeart) {
+    const maxHeartDate = new Date().toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: '2-digit'
+    }).replace(/,/g, ''); // Remove comma after the month abbreviation
+    localStorage.setItem('maxHeartDate', maxHeartDate);
+  }
+      this.maxHeart = Math.max(this.todayHeart, this.maxHeart); // Update maxHeart with the current day's heart count if it's greater
+      this.todayHeart = 0;
+      localStorage.setItem('date', currentDate);
     }
     // Increment the heart value when the page loads or refreshes
     this.incrementHeart();
@@ -253,14 +275,20 @@ import axios from 'axios';
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       this.heart++; // Increment the heart count
       this.totalheart++; // Increment the heart count
+      this.todayHeart++; // Increment the todayHeart count
+
+      if(this.todayHeart > this.maxHeart){
+        this.maxHeart = this.todayHeart;
+      }
+
       if (loginRequest) {
         loginRequest.heart = this.heart;
         loginRequest.totalheart = this.totalheart;
         localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
       }
-      // Update the value in the local storage
-      //localStorage.setItem('heart', this.heart.toString());
-      //localStorage.setItem('heart', this.heart.toString());
+      //Update the value in the local storage
+      localStorage.setItem('todayHeart', this.todayHeart.toString());
+      localStorage.setItem('maxHeart', this.maxHeart.toString());
 
       // Make the HTTP request to update the heart count in the database
       axios
@@ -297,4 +325,4 @@ import axios from 'axios';
     },
     components: { MoneyCount }
 };
-  </script>
+</script>
