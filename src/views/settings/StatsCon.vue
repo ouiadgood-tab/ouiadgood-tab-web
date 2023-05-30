@@ -8,7 +8,7 @@
         </div>
         <div class="tabInfo">
             <div>
-                <span>30</span>
+                <span>{{daysLogged}}</span>
                 <p>days as a Tabber</p>
             </div>
             <div>
@@ -44,6 +44,29 @@
 <script>
 export default{
     name: 'StatsCon',
+    data() {
+    return {
+      daysLogged: 1,
+    };
+  },
+  created() {
+    // Retrieve the stored value from the local storage
+    const daysLogged = localStorage.getItem('daysLogged');
+
+     // If the value exists, parse it to an integer and assign it to daysLogged
+     if (daysLogged) {
+      this.daysLogged = parseInt(daysLogged);
+    }
+  },
+  methods: {
+    logIn() {
+      // Increment the number of days logged
+      this.daysLogged++;
+
+      // Update the value in the local storage
+      localStorage.setItem('daysLogged', this.daysLogged.toString());
+    },
+  },
 }
 </script>
 

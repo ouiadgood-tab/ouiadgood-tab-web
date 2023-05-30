@@ -11,7 +11,7 @@
   </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   name: 'UserName',
   data() {
@@ -27,6 +27,20 @@ export default {
         loginRequest.username = this.newUsername;
         localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
       }
+
+      axios.patch('https://ouiadgood.onrender.com/users', { 
+        username: this.newUsername ,
+        email: loginRequest.email
+      })
+        .then(response => {
+          // Handle the response if needed
+          console.log(response);
+        })
+        .catch(error => {
+          // Handle the error if needed
+          console.error(error);
+        });
+
       //Refresh the page
       window.location.reload();
     },

@@ -3,7 +3,7 @@
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">Share this link</p>
-                <input type="url" name="invite-link" class="inviteInput" value="https://ouiadgood.com/?u=worldsech"/>
+                <input type="url" name="invite-link" class="inviteInput" :value="inviteLink"/>
                 <p class="msg">and you'll get 350 Hearts for every person who joins!</p>
             </div>
             <div class="fNum">
@@ -25,9 +25,17 @@
 </template>
 
 <script>
-export default{
-    name: 'InviteFriends',
-}
+export default {
+  name: 'InviteFriends',
+  computed: {
+    inviteLink() {
+      const baseUrl = 'https://ouiadgood.com/';
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      const username = loginRequest ? loginRequest.username : '';
+      return `${baseUrl}?u=${username}`;
+    },
+  },
+};
 </script>
 
 <style scoped>

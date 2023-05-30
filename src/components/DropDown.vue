@@ -22,7 +22,7 @@
         </ul>
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
-        <i class="fa-sharp fa-regular fa-heart icon"></i>
+        {{ heart }}<i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
           <div class="heartDrop">
           <h2>82 <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
@@ -220,9 +220,10 @@ ul{
   background-color: #f2d70f;
 }
   </style>
-  
+
   <script >
 import MoneyCount from './MoneyCount.vue';
+import axios from 'axios';
 //import { useAuth0 } from '@auth0/auth0-vue';
 
 
@@ -231,13 +232,48 @@ import MoneyCount from './MoneyCount.vue';
     data() {
         return {
             activeDropdown: null,
+            heart: 0,
         };
     },
 
-    
-    
+    created() {
+    // Retrieve the stored value from the local storage
+    const heart = localStorage.getItem('heart');
+
+    // If the value exists, parse it to an integer and assign it to heart
+    if (heart) {
+      this.heart = parseInt(heart);
+    }
+    // Increment the heart value when the page loads or refreshes
+    this.incrementHeart();
+  },
 
     methods: {
+      incrementHeart() {
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      this.heart++; // Increment the heart count
+      if (loginRequest) {
+        loginRequest.heart = this.heart;
+        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+      }
+      // Update the value in the local storage
+      localStorage.setItem('heart', this.heart.toString());
+
+      // Make the HTTP request to update the heart count in the database
+      axios
+        .patch('https://ouiadgood.onrender.com/users', {
+          heart: this.heart,
+          email: loginRequest.email
+        })
+        .then(response => {
+          // Handle the response if needed
+          console.log(response);
+        })
+        .catch(error => {
+          // Handle the error if needed
+          console.error(error);
+        });
+    },
         toggleDropdown(dropdown) {
             if (this.activeDropdown === dropdown) {
                 this.activeDropdown = null;
