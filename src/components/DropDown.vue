@@ -25,7 +25,7 @@
         {{ heart }}<i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
           <div class="heartDrop">
-          <h2>82 <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+          <h2>{{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>donated</P>
           <button class="btnInvite"><router-link class="router" to="/setting/Donate">DONATE HEARTS</router-link></button>
          </div>
@@ -237,13 +237,18 @@ import axios from 'axios';
             maxHeart:0,
             todayHeart:0,
             maxHeartDate: '',
+            heartDonated: '',
         };
     },
 
     created() {
     // Retrieve the stored value from the local storage
+    const heartDonated = localStorage.getItem('heartDonated');
     const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
     const savedDate = localStorage.getItem('date');
+    if (heartDonated){
+    this.heartDonated = heartDonated;
+  }
     if (loginRequest) {
       this.heart = loginRequest.heart || 0;
       this.totalheart = loginRequest.totalheart || 0;

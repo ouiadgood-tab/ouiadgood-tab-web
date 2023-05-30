@@ -2,7 +2,7 @@
   <div class="search-container">
     <form class="search-form" @submit.prevent="submitForm">
       <div class="input-container">
-        <input type="text" v-model="searchQuery" placeholder="Search">
+        <input type="text" v-model="searchQuery" placeholder="Select your favorite Search Engine and type your search query">
         <button type="submit" class="search-icon">
           <i class="fa fa-search"></i>
        </button>
@@ -20,8 +20,10 @@
             <a href="#" @click="changeSearchEngine('duckduckgo')">
               <img src="../assets/duckDuckGo.png" alt="DuckDuckGo">
             </a>
+            <a href="#" @click="changeSearchEngine('ecosia')">
+              <img src="../assets/Ecosia.png" alt="Ecosia">
+            </a>
           </div>
-          
         </div>
       </div>
     </form>
@@ -64,6 +66,10 @@ export default {
           searchEngineImage =require('../assets/duckDuckGo.png');
           searchEngineAlt = 'DuckDuckGo';
           break;
+          case 'ecosia':
+          searchEngineImage =require('../assets/Ecosia.png');
+          searchEngineAlt = 'Ecosia';
+          break;
         default:
           searchEngineImage = require('../assets/google.png'); // Default to Google image if image value is unknown
           searchEngineAlt = 'Google';
@@ -85,6 +91,8 @@ export default {
           return 'https://www.bing.com/search?q=';
         case require('../assets/duckDuckGo.png'):
           return 'https://duckduckgo.com/?q=';
+          case require('../assets/Ecosia.png'):
+          return 'https://www.ecosia.org/search?q=';
         default: // Google as default search engine
           return 'https://www.google.com/search?q=';
       }

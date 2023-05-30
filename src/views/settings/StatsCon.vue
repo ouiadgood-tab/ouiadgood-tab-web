@@ -33,7 +33,7 @@
                 <button class="btnTab"> <router-link class="router" to="/setting/Invite">INVITE FRIENDS</router-link></button>
             </div>
             <div>
-                <span>84</span>
+                <span>{{ heartDonated }}</span>
                 <p>Heart donated</p>
                 <button class="btnTab"><router-link class="router" to="/setting/Donate">DONATE HEARTS </router-link></button>
             </div>
@@ -51,6 +51,7 @@ export default{
       totalTab: '',
       maxTab: '',
       maxHeartDate: '',
+      heartDonated: '',
     };
   },
   created() {
@@ -58,6 +59,7 @@ export default{
     const daysLogged = localStorage.getItem('daysLogged');
     const maxTab = localStorage.getItem('maxHeart');
     const maxHeartDate = localStorage.getItem('maxHeartDate');
+    const heartDonated = localStorage.getItem('heartDonated');
 
      // If the value exists, parse it to an integer and assign it to daysLogged
      if (daysLogged) {
@@ -70,6 +72,10 @@ export default{
 
   if (maxHeartDate) {
     this.maxHeartDate = maxHeartDate;
+  }
+
+  if (heartDonated){
+    this.heartDonated = heartDonated;
   }
     // Make the API GET request to retrieve user data
     this.getTotalTab();

@@ -23,7 +23,7 @@
                 <a href="https://www.experienceeducate.org/"><img src="./image/educate-201807.jpg" class="imgDonate"/></a>
                 <h1>Educate!</h1>
                 <p>Preparing youth in Africa with the skills to succeed in today's economy</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <button class="btnTab" :class="{ grayBtn: heart === 1 }" :disabled="heart === 1" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
             </div>
         </div>
         <div class="cards">
@@ -89,14 +89,18 @@ export default{
   },
   methods: {
     resetHeart() {
+    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+
+    if (loginRequest && loginRequest.heart) {
+      const heartDonated = loginRequest.heart; // Store the current value of heart in heartDonated
       this.heart = 0; // Set the heart value to 0
 
-      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
-      if (loginRequest) {
-        loginRequest.heart = this.heart;
-        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
-      }
-    },
+      loginRequest.heart = this.heart;
+      localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+
+      localStorage.setItem('heartDonated', heartDonated) || 0; // Save the heartDonated value in local storage
+    }
+  },
   },
 
 }
