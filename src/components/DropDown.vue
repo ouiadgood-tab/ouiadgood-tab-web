@@ -261,7 +261,7 @@ import axios from 'axios';
 
       // Make the HTTP request to update the heart count in the database
       axios
-        .patch('https://ouiadgood.onrender.com/users', {
+        .patch('https://ouiadgood.onrender.com/users/heart', {
           heart: this.heart,
           email: loginRequest.email
         })
