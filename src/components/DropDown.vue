@@ -233,16 +233,16 @@ import axios from 'axios';
         return {
             activeDropdown: null,
             heart: 0,
+            totalheart: 0,
         };
     },
 
     created() {
     // Retrieve the stored value from the local storage
-    const heart = localStorage.getItem('heart');
-
-    // If the value exists, parse it to an integer and assign it to heart
-    if (heart) {
-      this.heart = parseInt(heart);
+    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+    if (loginRequest) {
+      this.heart = loginRequest.heart || 0;
+      this.totalheart = loginRequest.totalheart || 0;
     }
     // Increment the heart value when the page loads or refreshes
     this.incrementHeart();
@@ -252,23 +252,26 @@ import axios from 'axios';
       incrementHeart() {
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       this.heart++; // Increment the heart count
+      this.totalheart++; // Increment the heart count
       if (loginRequest) {
         loginRequest.heart = this.heart;
+        loginRequest.totalheart = this.totalheart;
         localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
       }
       // Update the value in the local storage
-      localStorage.setItem('heart', this.heart.toString());
+      //localStorage.setItem('heart', this.heart.toString());
+      //localStorage.setItem('heart', this.heart.toString());
 
       // Make the HTTP request to update the heart count in the database
       axios
         .patch('https://ouiadgood.onrender.com/users/heart', {
           heart: this.heart,
           email: loginRequest.email,
-          updateTotal: false,
+          totalheart: this.totalheart,
         })
-        .then(response => {
+        .then(() => {
           // Handle the response if needed
-          console.log(response);
+          //console.log(response);
         })
         .catch(error => {
           // Handle the error if needed

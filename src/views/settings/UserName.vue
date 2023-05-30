@@ -32,9 +32,9 @@ export default {
         username: this.newUsername ,
         email: loginRequest.email
       })
-        .then(response => {
+        .then(() => {
           // Handle the response if needed
-          console.log(response);
+          //console.log(response);
         })
         .catch(error => {
           // Handle the error if needed

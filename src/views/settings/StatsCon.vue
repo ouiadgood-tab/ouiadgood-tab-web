@@ -79,7 +79,7 @@ export default{
         .then(response => {
           // Handle the response and assign the data to userData
           this.totalTab = response.data.totalheart;
-          console.log(response)
+          //console.log(response)
         })
         .catch(error => {
           // Handle the error if needed
