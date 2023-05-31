@@ -1,0 +1,122 @@
+<template>
+    <div class="container">
+        <div class="moveDiv">
+                    <h3>Set Custom Background Image</h3>
+            <form>
+                <div class="input-group">
+                    <input type="text" v-model="imageUrl" placeholder="Enter Image URL" @input="loadImage">
+                <button type="button" @click="clearImage">Clear</button>
+                </div>
+            </form>
+        </div>
+      <canvas ref="canvas" width="300" height="200"></canvas>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'CustomImageInput',
+    data() {
+      return {
+        imageUrl: '',
+        canvasImage: null
+      };
+    },
+    mounted() {
+    this.imageUrl = localStorage.getItem('customImage') || ''; // Retrieve the custom image URL from local storage
+    if (this.imageUrl) {
+      this.loadImage();
+    }
+  },
+    methods: {
+      loadImage() {
+        this.canvasImage = new Image();
+        this.canvasImage.onload = () => {
+          const canvas = this.$refs.canvas;
+          const context = canvas.getContext('2d');
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(this.canvasImage, 0, 0, canvas.width, canvas.height);
+        };
+        this.canvasImage.src = this.imageUrl;
+        this.$emit('custom-image', this.imageUrl); // Emit event with custom image URL
+        localStorage.setItem('customImage', this.imageUrl); // Save the custom image URL in local storage
+      },
+      clearImage() {
+        this.imageUrl = '';
+        const canvas = this.$refs.canvas;
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        localStorage.removeItem('customImage'); // Remove the custom image URL from local storage
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .container{
+    background-color: #fff;
+  padding: 20px 150px;
+  color: #333;
+  width: 122.5vh;
+  height: 48vh;
+  margin-left: 18.59%;
+  border-top: none;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  .moveDiv{
+    margin-left: -40em;
+  }
+  h3{
+    color:#333;
+    font-size: 15px;
+    margin-left:-10em ;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+  
+
+  input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 5px;
+  width: 30%;
+  box-sizing: border-box;
+}
+
+input:focus{
+    outline: none;
+  border-bottom-color: #ccc;
+  font-size: 19px;
+}
+ 
+  
+  button {
+    background-color: #13b0c0;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+  }
+  
+  canvas {
+    background-image: url(./apply.jpg); /* Replace 'default-image.jpg' with your desired default image */
+    background-size: cover;
+    width: 500px;
+    height: 300px;
+    float: right;
+    margin-top: -6%;
+  }
+
+
+  </style>
+  
+  

@@ -20,6 +20,7 @@ img{
     margin-bottom: 5%;
     margin-right: 7.5%;
     margin-top: 4%;
+    position: relative;
 }
 
 .centerDiv{
@@ -29,5 +30,6 @@ img{
     align-items: center;
     height: 50vh;
     margin-left: 4%;
+    z-index: -10;
 }
 </style>

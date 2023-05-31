@@ -47,6 +47,7 @@ h1{
 }
 .TimeDate{
   margin-top: -2%;
+  position: relative;
 }
 
 </style>

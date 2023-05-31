@@ -7,7 +7,8 @@ import StatsView from '@/views/settings/StatsView.vue'
 import DonateView from '@/views/settings/DonateView.vue'
 import InviteView from '@/views/settings/InviteView.vue'
 import AccountView from '@/views/settings/AccountView.vue'
-
+import WidgetView from  '@/views/settings/WidgetView.vue'
+import BackgroundImageView from '@/views/settings/BackgroundImageView.vue'
 
 
 const routes = [
@@ -23,6 +24,19 @@ const routes = [
       path: '/setting/Stats',
       name: 'Stats',
       component: StatsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/setting/Background',
+      name: 'Background',
+      component: BackgroundImageView,
+      meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/setting/Widget',
+      name: 'Widget',
+      component: WidgetView,
       meta: { requiresAuth: true },
     },
 

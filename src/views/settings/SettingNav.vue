@@ -5,6 +5,9 @@
       <span class="close-icon" @click="closeNav">X</span>
     </div>
     <nav class="horizontal-nav">
+      <p>SETTING</p>
+    <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">Widgets</router-link>
+    <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">background</router-link>
         <p>YOUR PROFILE</p>
     <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">Your Stats</router-link>
     <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">Donate Hearts</router-link>
@@ -30,7 +33,7 @@ export default {
   
   <style scoped>
   .background{
-    background-color: rgb(231, 229, 229);
+    background-color: #fff;
     height: 100vh;
     margin-left: -4%;
     margin-right: -0.6%;

@@ -1,5 +1,6 @@
 <template>
   <div id="backgroundImage">
+    <DisplayImages :image-url="backgroundImageUrl"/>
    <drop-down/>
   <note-widget/>
   <image-logo/>
@@ -14,9 +15,10 @@ import DropDown from '@/components/DropDown.vue';
 import ImageLogo from '@/components/ImageLogo.vue';
 import NoteWidget from '@/components/NoteWidget.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
+
 //import TheBookMark from '@/components/TheBookMark.vue';
 //import BookMark from '@/components/BookMark.vue';
-import '@/assets/main.css'
+import DisplayImages from './settings/Background/DisplayImages.vue';
 
 
 // @ is an alias to /src
@@ -30,12 +32,18 @@ export default {
     ImageLogo,
     DateTime,
     CookieBanner,
+    DisplayImages
 },
 data(){
   return{
     showBanner: !(this.$posthog.has_opted_in_capturing() || this.$posthog.has_opted_out_capturing())
   }
-}
+},
+methods: {
+    updateBackgroundImage(imageUrl) {
+      this.backgroundImageUrl = imageUrl;
+    }
+  }
 
 }
 </script>
