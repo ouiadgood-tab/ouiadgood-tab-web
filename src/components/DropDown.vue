@@ -66,7 +66,7 @@
               </div>
               <div>
                 <i class="fa-solid fa-user drop-icon"></i>
-                <router-link class="router" to="/setting/Account">Account</router-link>
+                <router-link class="router" to="/setting/Widget">Setting</router-link>
               </div>
               <div @click="logout" class="router" >
                 <i class="fa-solid fa-right-from-bracket drop-icon"></i>
