@@ -3,6 +3,7 @@
     <DisplayImages :image-url="backgroundImageUrl" />
     <drop-down />
     <note-widget />
+    <TodoList/>
     <image-logo />
     <date-time />
     <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
@@ -16,6 +17,7 @@ import ImageLogo from '@/components/ImageLogo.vue';
 import NoteWidget from '@/components/NoteWidget.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 import DisplayImages from './settings/Background/DisplayImages.vue';
+import TodoList from '@/components/TodoList.vue';
 
 export default {
   name: 'HomeView',
@@ -26,7 +28,8 @@ export default {
     DateTime,
     CookieBanner,
     DisplayImages,
-  },
+    TodoList
+},
   data() {
     return {
       backgroundImageUrl: '',

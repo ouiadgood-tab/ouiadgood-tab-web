@@ -125,8 +125,11 @@ export default {
 }
 
 .notes.show-scrollbar::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #f2d80f88;
   border-radius: 5px;
+}
+.notes::-webkit-scrollbar-thumb:hover {
+  background-color: #f2d70f;
 }
 
 .note {
