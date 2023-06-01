@@ -9,8 +9,8 @@
             <i class="fa-sharp fa-regular fa-note-sticky icon-wid"></i>
             <div class="switchFlex">
                     <label class="switch" >
-                    <input type="checkbox"> 
-                    <span class="slider"></span>
+                    <input type="checkbox" v-model="notesEnabled" @change="saveNotesState"> 
+                    <span class="slider" :class="{ checked: notesEnabled }"></span>
                     </label>
                 </div>
         </div>
@@ -19,8 +19,8 @@
             <i class="fa-solid fa-list icon-wid"></i>
             <div class="switchFlex">
                     <label class="switch" >
-                    <input type="checkbox" > 
-                    <span class="slider"></span>
+                    <input type="checkbox" v-model="todoListEnabled" @change="saveTodoListState"> 
+                    <span class="slider" :class="{ checked: todoListEnabled }"></span>
                     </label>
                 </div>
         </div>
@@ -31,8 +31,19 @@
 
 export default {
   name: 'WidgetSet',
-  components: {
-
+    data() {
+    return {
+      notesEnabled: localStorage.getItem('notesEnabled') === 'true',
+      todoListEnabled: localStorage.getItem('todoListEnabled') === 'true',
+    };
+  },
+  methods: {
+    saveNotesState() {
+      localStorage.setItem('notesEnabled', this.notesEnabled);
+    },
+    saveTodoListState() {
+      localStorage.setItem('todoListEnabled', this.todoListEnabled);
+    },
   },
 
 };
@@ -60,7 +71,6 @@ export default {
 .fa-note-sticky{
     margin-left: -11%;
     margin-top: 5%;
-   
 }
 .mainText{
     margin-left: -13%;
