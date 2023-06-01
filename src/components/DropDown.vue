@@ -52,22 +52,26 @@
         <i class="fa-solid fa-ellipsis icon"></i>
           <div>
             <div class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
-              <div>
+              
+              <router-link class="router" to="/setting/Donate"><div>
                 <i class="fa-solid fa-heart drop-icon"></i>
-                <router-link class="router" to="/setting/Donate">Donate Hearts</router-link>
-              </div>
+               Donate Hearts
+              </div></router-link>
+              <router-link class="router" to="/setting/Stats">
               <div>
-                <i class="fa-solid fa-chart-simple drop-icon"></i>
-                <router-link class="router" to="/setting/Stats">Your Stats</router-link>
-              </div>
+                  <i class="fa-solid fa-chart-simple drop-icon"></i>
+                Your Stats
+              </div></router-link>
+              <router-link class="router" to="/setting/Invite">
               <div>
                 <i class="fa-solid fa-user-plus drop-icon"></i>
-                <router-link class="router" to="/setting/Invite">Invite Friends</router-link>
+                Invite Friends
               </div>
-              <div>
-                <i class="fa-solid fa-user drop-icon"></i>
-                <router-link class="router" to="/setting/Widget">Setting</router-link>
-              </div>
+            </router-link>
+              <router-link class="router" to="/setting/Widget"> <div>
+                <i class="fa-solid fa-gear drop-icon"></i>
+                Setting
+              </div></router-link>
               <div @click="logout" class="router" >
                 <i class="fa-solid fa-right-from-bracket drop-icon"></i>
                 Logout

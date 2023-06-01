@@ -5,15 +5,15 @@
             <div class="container">
                 <form>
                     <label>
-                        <input type="radio" name="radio" checked="" @click="showImageSelection = false; showCustomImageInput = false">
+                        <input type="radio" name="radio" :checked="selectedOption === 'newPhoto'" @click="handleRadioClick('newPhoto'); showImageSelection = false; showCustomImageInput = false ">
                         <span>New Photo daily</span>
                     </label>
                     <label>
-                        <input type="radio" name="radio" @click="showImageSelection = true; showCustomImageInput = false">
+                        <input type="radio" name="radio" :checked="selectedOption === 'selectedPhoto'" @click="handleRadioClick('selectedPhoto'); showImageSelection = true; showCustomImageInput = false">
                         <span>Selected Photo</span>
                     </label>
                     <label>
-                        <input type="radio" name="radio" @click="showImageSelection = false; showCustomImageInput = true">
+                        <input type="radio" name="radio" :checked="selectedOption === 'customPhoto'" @click="handleRadioClick('customPhoto'); showImageSelection = false; showCustomImageInput = true">
                         <span>Custom photo</span>
                     </label>
                 </form>
@@ -39,9 +39,58 @@ data(){
   return{
     showImageSelection: false,
     showCustomImageInput: false,
+    selectedOption: null,
   }
-}
- 
+},
+
+created() {
+    this.restoreSelectedOption();
+    this.restoreComponentVisibility();
+  },
+  methods: {
+    handleRadioClick(option) {
+      if (option === 'newPhoto') {
+        localStorage.removeItem('selectedImage');
+        localStorage.removeItem('customImage');
+      } else if (option === 'customPhoto') {
+        localStorage.removeItem('selectedImage');
+      }
+      
+      this.selectedOption = option;
+      localStorage.setItem('selectedOption', option);
+    },
+    restoreSelectedOption() {
+      const selectedOption = localStorage.getItem('selectedOption');
+      if (selectedOption) {
+        this.selectedOption = selectedOption;
+      }
+    },
+    restoreComponentVisibility() {
+      const showImageSelection = localStorage.getItem('showImageSelection');
+      const showCustomImageInput = localStorage.getItem('showCustomImageInput');
+      this.showImageSelection = showImageSelection === 'true';
+      this.showCustomImageInput = showCustomImageInput === 'true';
+    },
+    saveComponentVisibility() {
+      localStorage.setItem(
+        'showImageSelection',
+        this.showImageSelection.toString()
+      );
+      localStorage.setItem(
+        'showCustomImageInput',
+        this.showCustomImageInput.toString()
+      );
+    },
+  },
+  watch: {
+    showImageSelection() {
+      this.saveComponentVisibility();
+    },
+    showCustomImageInput() {
+      this.saveComponentVisibility();
+    },
+  },
+
 };
 </script>
 

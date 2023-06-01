@@ -10,14 +10,34 @@
       };
     },
     created() {
-      this.setRandomImage();
-      setInterval(this.setRandomImage, 1440000); // Change image every 30 seconds
+      this.setImageUrl();
+      setInterval(this.setRandomImage, 1440000); // Change image every 24h or at every reload
+
     },
     methods: {
+      setImageUrl() {
+      const customImageUrl = localStorage.getItem('customImage');
+      const selectedImage = localStorage.getItem('selectedImage');
+      if (selectedImage) {
+      // Remove customImage if selectedImage is present
+      localStorage.removeItem('customImage');
+      this.imageUrl = selectedImage;
+    } else if (customImageUrl) {
+      this.imageUrl = customImageUrl;
+    } else {
+      this.setRandomImage();
+    }
+    },
       setRandomImage() {
         const randomIndex = Math.floor(Math.random() * this.imageUrls.length);
         this.imageUrl = this.imageUrls[randomIndex];
+      },
+      checkCustomImage() {
+      const customImageUrl = localStorage.getItem('customImage');
+      if (customImageUrl) {
+        this.imageUrl = customImageUrl;
       }
+    }
     },
     computed: {
       imageUrls() {

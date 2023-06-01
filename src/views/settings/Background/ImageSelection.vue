@@ -30,17 +30,18 @@
         selectedImages: []
       };
     },
-    methods: {
-      selectImage(imageUrl) {
-        const index = this.selectedImages.indexOf(imageUrl);
-        if (index !== -1) {
-          this.selectedImages.splice(index, 1);
-        } else {
-          this.selectedImages.push(imageUrl);
-        }
-        this.$emit('image-selected', this.selectedImages); // Emit event with selected image URLs
-      }
-    },
+    created() {
+    this.selectedImage = localStorage.getItem('selectedImage');
+  },
+  methods: {
+    selectImage(imageUrl) {
+      this.selectedImage = imageUrl;
+      localStorage.setItem('selectedImage', imageUrl);
+      this.$root.$emit('background-image-updated', imageUrl);
+      //this.$emit('image-selected', this.selectedImage); // Emit event with selected image URL
+    }
+  },
+
     computed: {
       images() {
         // Return your list of image URLs and names here

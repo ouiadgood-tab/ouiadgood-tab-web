@@ -36,9 +36,9 @@
           const context = canvas.getContext('2d');
           context.clearRect(0, 0, canvas.width, canvas.height);
           context.drawImage(this.canvasImage, 0, 0, canvas.width, canvas.height);
+          this.$emit('CustomImageInput', this.imageUrl);
         };
         this.canvasImage.src = this.imageUrl;
-        this.$emit('custom-image', this.imageUrl); // Emit event with custom image URL
         localStorage.setItem('customImage', this.imageUrl); // Save the custom image URL in local storage
       },
       clearImage() {
@@ -47,7 +47,12 @@
         const context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
         localStorage.removeItem('customImage'); // Remove the custom image URL from local storage
-      }
+        //eventBus.emit('CustomImageSelected', ''); // Emit event to clear the background image
+        this.$emit('CustomImageInput', '');
+      },
+      emitImageUrl(imageUrl) {
+        this.$emit('CustomImageInput', imageUrl); // Emit an empty URL to revert to default images
+    },
     }
   };
   </script>

@@ -145,7 +145,7 @@ export default {
 .modal {
   position: absolute;
   top: 38%;
-  left: 47%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;

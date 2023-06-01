@@ -26,6 +26,7 @@ export default{
 
 <style scoped>
 .banner{
+    position:relative;
     background-color:rgb(255, 255, 255);
     padding: 20px;
     width: 40%;

@@ -33,21 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-.with-background-color {
-  background-color: rgb(231, 229, 229);
-    height: 100vh;
-    margin-left: -6%;
-    margin-right: -0.5%;
-    margin-top: -3.8%;
-    padding-bottom: 5%;
-}
-
 .logo {
   float: left;
   width: 200px;
