@@ -8,6 +8,7 @@
         <a :href="bookmark.url" target="_blank">
           <img :src="generateFaviconUrl(bookmark.url)" :alt="bookmark.name" class="favicon" />
         </a>
+        <p class="bookmark-name">{{ bookmark.name }}</p>
        <!--<div class="bookmark-info">
           <a :href="bookmark.url" target="_blank" class="bookmark-name">{{ bookmark.name }}</a>
           <div class="bookmark-url">{{ bookmark.url }}</div>
@@ -60,46 +61,49 @@ export default {
 </script>
 
 <style scoped>
-div {
-  position: relative;
-  margin-top: -1.5%;
-  margin-left: 30px;
-  font-size: 30px;
-}
 
 .bookmark-icon {
+  position: relative;
   width: 20px;
   height: 20px;
+  margin-top: -1.5%;
+  margin-left: 5%;
+  font-size: 30px;
   color: rgba(255, 255, 255, 0.795);
   transition: background-color 0.3s ease;
 }
 
 .bookmark-icon:hover {
   color: white;
+  cursor: pointer;
 }
 
 .bookmark-container {
   position: fixed;
-  top: 50%;
+  display: flex;
+  top: 52%;
   left: 50%;
+  height: 12vh;
+  width: 100vh;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
   z-index: 9999;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .bookmark-item {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  padding-left: 10%;
+
 }
 
 .favicon {
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
+  width: 35px;
+  height: 30px;
+  background-color: #19c5d1;
+  border-radius: 10px;
 }
 
 .bookmark-info {
@@ -107,15 +111,21 @@ div {
 }
 
 .bookmark-name {
-  font-weight: bold;
+  margin-left: -50%;
+  margin-top: 80%;
+  font-weight: 100;
+  font-size: 15px;
+  color: #fff;
 }
 
 .bookmark-url {
-  font-size: 12px;
+  font-size: 15px;
   color: #888888;
 }
 
 .fa-trash-alt {
+  display: inline-flex;
+  font-size: 18px;
   cursor: pointer;
   color: #888888;
   transition: color 0.3s ease;

@@ -37,9 +37,9 @@ export default {
     return {
       backgroundImageUrl: '',
       showBanner: !(this.$posthog.has_opted_in_capturing() || this.$posthog.has_opted_out_capturing()),
-      notesEnabled: false,
+      notesEnabled: true,
       todoListEnabled: false,
-      clockEnabled: false,
+      clockEnabled: true,
       bookmarkEnabled: false,
     };
   },
