@@ -61,7 +61,7 @@ h1{
   color: #fff;
 }
 .TimeDate{
-  margin-top: -2%;
+  margin-top: 4%;
   position: relative;
 }
 

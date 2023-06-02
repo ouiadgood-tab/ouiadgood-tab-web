@@ -25,6 +25,7 @@ img{
 
 .centerDiv{
     display: flex;
+    margin-top: -5%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

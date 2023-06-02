@@ -4,6 +4,7 @@
     <drop-down />
     <note-widget v-if="notesEnabled" />
     <TodoList v-if="todoListEnabled"/>
+    <BookMark v-if="bookmarkEnabled"/>
     <image-logo />
     <date-time v-if="clockEnabled"/>
     <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
@@ -18,6 +19,7 @@ import NoteWidget from '@/components/NoteWidget.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 import DisplayImages from './settings/Background/DisplayImages.vue';
 import TodoList from '@/components/TodoList.vue';
+import BookMark from '@/components/BookMark.vue';
 
 export default {
   name: 'HomeView',
@@ -28,7 +30,8 @@ export default {
     DateTime,
     CookieBanner,
     DisplayImages,
-    TodoList
+    TodoList,
+    BookMark
 },
   data() {
     return {
@@ -37,6 +40,7 @@ export default {
       notesEnabled: false,
       todoListEnabled: false,
       clockEnabled: false,
+      bookmarkEnabled: false,
     };
   },
     mounted() {
@@ -46,6 +50,7 @@ export default {
     this.notesEnabled = localStorage.getItem('notesEnabled') === 'true';
     this.todoListEnabled = localStorage.getItem('todoListEnabled') === 'true';
     this.clockEnabled = localStorage.getItem('ClockEnabled') === 'true';
+    this.bookmarkEnabled = localStorage.getItem('bookmarkEnabled') === 'true';
   },
 };
 </script>

@@ -1,28 +1,17 @@
 <template>
     <div class="bookMark-container">
-      <div v-if="!showForm" class="pink-div" @click="showForm = true">
-        BookMark 
-        <div class="lockIcon">
-          <i class="fa-solid fa-lock"></i>
-          <i class="fa-solid fa-unlock"></i>
-        </div>
-        <i class="fa-sharp fa-solid fa-circle-plus"></i>
-      </div>
-      <div v-else class="form-div">
-        <div class="closeIcon" @click="showForm = false">
-          <i class="fa-solid fa-times"></i>
+      <div class="form-div">
+        <div class="closeIcon">
+          <i class="fa-solid fa-check" @click="addBookmark"></i>
+          <i class="fa-solid fa-times" @click="clearInputs"></i>
         </div>
         <div class="input-wrapper">
-          <label for="name">Website Name:</label>
+          <label for="name">Website Name</label>
           <input type="text" id="name" v-model="name" />
         </div>
         <div class="input-wrapper">
-          <label for="url">Website URL:</label>
+          <label for="url">Website URL</label>
           <input type="text" id="url" v-model="url" />
-        </div>
-        <div class="btn-wrapper">
-          <button class="save-btn">Save</button>
-          <button class="cancel-btn" @click="showForm = false">Cancel</button>
         </div>
       </div>
     </div>
@@ -38,6 +27,26 @@
         url: "",
       };
     },
+    methods: {
+    addBookmark() {
+      if (this.name && this.url) {
+        const bookmark = {
+          name: this.name,
+          url: this.url,
+        };
+        let bookmarks = localStorage.getItem("bookmarks");
+        bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+        bookmarks.push(bookmark);
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      }
+      this.name = "";
+      this.url = "";
+    },
+    clearInputs() {
+      this.name = "";
+      this.url = "";
+    },
+  },
   };
   </script>
   
@@ -60,9 +69,9 @@
     z-index: 2;
   }
   .form-div {
-    background-color: #fff;
-    width: 250px;
-    height: 180px;
+    background-color: #13afc02f;
+    width: 200px;
+    height: 160px;
     position: absolute;
     top: 40px;
     left: -30px;
@@ -85,7 +94,10 @@
   label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    margin-left: -25%;
+    font-weight: 100;
+    font-size: 20px;
+    color: #fff;
   }
   input {
     width: 100%;

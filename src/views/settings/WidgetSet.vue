@@ -1,9 +1,15 @@
 <template>
     <div>
-        <!--<div class="head">
+        <div class="head">
             <h2 class="mainText">Bookmark</h2>
             <i class="fa-sharp fa-regular fa-bookmark icon-wid"></i>
-        </div> -->
+            <div class="switchFlex">
+                    <label class="switch" >
+                    <input type="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState"> 
+                    <span class="slider" :class="{ checked: bookmarkEnabled }"></span>
+                    </label>
+                </div>
+        </div> 
         <div class="head">
             <h3 class="mainText">Notes</h3>
             <i class="fa-sharp fa-regular fa-note-sticky"></i>
@@ -68,9 +74,13 @@ export default {
       clockEnabled: localStorage.getItem('ClockEnabled') === 'true',
       use24HourFormat: localStorage.getItem('use24HourFormat') === 'true',
       showSeconds: localStorage.getItem('showSeconds') === 'true',
+      bookmarkEnabled: localStorage.getItem('bookmarkEnabled') === 'true',
     };
   },
   methods: {
+    saveBookmarkState() {
+      localStorage.setItem('bookmarkEnabled', this.bookmarkEnabled);
+    },
     saveNotesState() {
       localStorage.setItem('notesEnabled', this.notesEnabled);
     },
