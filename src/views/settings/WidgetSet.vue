@@ -6,7 +6,7 @@
         </div> -->
         <div class="head">
             <h3 class="mainText">Notes</h3>
-            <i class="fa-sharp fa-regular fa-note-sticky icon-wid"></i>
+            <i class="fa-sharp fa-regular fa-note-sticky"></i>
             <div class="switchFlex">
                     <label class="switch" >
                     <input type="checkbox" v-model="notesEnabled" @change="saveNotesState"> 
@@ -16,12 +16,42 @@
         </div>
         <div class="head">
             <h3 class="mainText">Todo List</h3>
-            <i class="fa-solid fa-list icon-wid"></i>
+            <i class="fa-solid fa-list"></i>
             <div class="switchFlex">
                     <label class="switch" >
                     <input type="checkbox" v-model="todoListEnabled" @change="saveTodoListState"> 
                     <span class="slider" :class="{ checked: todoListEnabled }"></span>
                     </label>
+                </div>
+        </div>
+        <div class="extraHead">
+            <h3 class="mainText">Clock</h3>
+            <i class="fa-regular fa-clock icon-wid"></i>
+            <div class="switchFlex">
+                    <label class="switch" >
+                    <input type="checkbox" v-model="clockEnabled" @change="saveClockState"> 
+                    <span class="slider" :class="{ checked: clockEnabled }"></span>
+                    </label>
+                </div>
+                <div >
+                    <div class="extra">
+                        <h3 class="extraText textFlex">Use 24 hours format</h3>
+                        <div class="switchFlex2">
+                            <label class="switch2" >
+                                <input type="checkbox" v-model="use24HourFormat" @change="saveUse24HourFormat">
+                                <span class="slider" :class="{ checked: use24HourFormat }"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="extra2">
+                        <h3 class="extraText2 textFlex2">Show Seconds</h3>
+                        <div class="switchFlex2 extraSwitch">
+                            <label class="switch2" >
+                                <input type="checkbox" v-model="showSeconds" @change="saveShowSeconds">
+                                <span class="slider" :class="{ checked: showSeconds }"></span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
         </div>
     </div>
@@ -35,6 +65,9 @@ export default {
     return {
       notesEnabled: localStorage.getItem('notesEnabled') === 'true',
       todoListEnabled: localStorage.getItem('todoListEnabled') === 'true',
+      clockEnabled: localStorage.getItem('ClockEnabled') === 'true',
+      use24HourFormat: localStorage.getItem('use24HourFormat') === 'true',
+      showSeconds: localStorage.getItem('showSeconds') === 'true',
     };
   },
   methods: {
@@ -43,6 +76,15 @@ export default {
     },
     saveTodoListState() {
       localStorage.setItem('todoListEnabled', this.todoListEnabled);
+    },
+    saveClockState() {
+      localStorage.setItem('ClockEnabled', this.clockEnabled);
+    },
+    saveUse24HourFormat() {
+      localStorage.setItem('use24HourFormat', this.use24HourFormat);
+    },
+    saveShowSeconds() {
+      localStorage.setItem('showSeconds', this.showSeconds);
     },
   },
 
@@ -61,6 +103,17 @@ export default {
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
+.extraHead {
+    display: flex;
+    background-color: #fff;
+  padding: 20px 150px;
+  color: rgb(5, 169, 219);
+  width: 80vh;
+  height: 2-vh;
+  margin-left: 28%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
 .fa-list{
     margin-left: -16%;
@@ -72,16 +125,42 @@ export default {
     margin-left: -11%;
     margin-top: 5%;
 }
+.icon-wid{
+    margin-left: -11%;
+    margin-top:5%;
+}
 .mainText{
     margin-left: -13%;
     margin-top: 4.5%;
    padding-left: 10px;
 
 }
+.extra{
+    margin-left: -120vh !important;
+    margin-top: 10vh !important;
+}
+.extra2{
+    margin-left: -120vh !important;
+    margin-top: 10vh !important;
+}
+.extraText{
+    margin-bottom: -12vh;
+    z-index: -3;
+    display:block;
+}
+.extraText2{
+    margin-bottom: -12vh;
+    margin-top: 3vh !important;
+}
 
 .switchFlex{
     margin-left: 100%;
     margin-top: 4%;
+}
+.switchFlex2{
+    margin-left: 100%;
+    margin-top: -14%;
+    display:block;
 }
 
 /* The switch - the box around the slider */
@@ -134,4 +213,31 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(2.8em) rotate(360deg);
 }
+
+/* Switch 2 styling*/
+.switchFlex2{
+    position: relative;
+    margin-left: 35%;
+    margin-top: 7%;
+    margin-bottom: 19px !important;
+}
+
+
+
+/* The switch - the box around the slider */
+.switch2 {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 1.8em;
+}
+
+/* Hide default HTML checkbox */
+.switch2 input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 </style>

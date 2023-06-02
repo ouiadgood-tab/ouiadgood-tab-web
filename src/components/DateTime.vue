@@ -25,10 +25,25 @@ export default {
       const day = days[now.getDay()];
       const date = now.getDate();
       const year = now.getFullYear();
-      const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      const options = {
+        hour12: !this.$store.state.use24HourFormat, // Use 24 hours format if use24HourFormat is true
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+      if (this.showSeconds) {
+        options.second = "2-digit"; // Include seconds if showSeconds is true
+      }
+      const time = now.toLocaleTimeString([], options);
       this.formattedDate = `${day} ${date}, ${year}`;
       this.currentTime = time;
-      //this.currentDate = now.toLocaleDateString(day, date, year);
+    }
+  },
+  computed: {
+    use24HourFormat() {
+      return localStorage.getItem('use24HourFormat') === 'true';
+    },
+    showSeconds() {
+      return localStorage.getItem('showSeconds') === 'true';
     }
   }
 };

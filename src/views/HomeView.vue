@@ -5,7 +5,7 @@
     <note-widget v-if="notesEnabled" />
     <TodoList v-if="todoListEnabled"/>
     <image-logo />
-    <date-time />
+    <date-time v-if="clockEnabled"/>
     <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
   </div>
 </template>
@@ -36,6 +36,7 @@ export default {
       showBanner: !(this.$posthog.has_opted_in_capturing() || this.$posthog.has_opted_out_capturing()),
       notesEnabled: false,
       todoListEnabled: false,
+      clockEnabled: false,
     };
   },
     mounted() {
@@ -44,6 +45,7 @@ export default {
   created() {
     this.notesEnabled = localStorage.getItem('notesEnabled') === 'true';
     this.todoListEnabled = localStorage.getItem('todoListEnabled') === 'true';
+    this.clockEnabled = localStorage.getItem('ClockEnabled') === 'true';
   },
 };
 </script>
