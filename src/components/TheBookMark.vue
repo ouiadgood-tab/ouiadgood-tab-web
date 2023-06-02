@@ -11,7 +11,7 @@
         </div>
         <div class="input-wrapper">
           <label for="url">Website URL</label>
-          <input type="text" id="url" v-model="url" />
+          <input type="text" id="url" v-model="url" :style="{ borderColor: isUrlValid ? '' : 'red' }" />
         </div>
       </div>
     </div>
@@ -27,20 +27,33 @@
         url: "",
       };
     },
+    computed: {
+    isUrlValid() {
+      // Simple URL validation regex pattern
+      const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)*[a-z0-9-]+(\.[a-z]{2,6})(\/.*)?$/i;
+      return urlPattern.test(this.url);
+    },
+  },
     methods: {
     addBookmark() {
-      if (this.name && this.url) {
-        const bookmark = {
-          name: this.name,
-          url: this.url,
-        };
-        let bookmarks = localStorage.getItem("bookmarks");
-        bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
-        bookmarks.push(bookmark);
-        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-      }
-      this.name = "";
-      this.url = "";
+      if (this.name && this.url && this.isUrlValid) {
+    let url = this.url;
+    if (!/^https?:\/\//i.test(url)) {
+      // Prepend "https://" if it's not already present
+      url = `https://${url}`;
+    }
+    const bookmark = {
+      name: this.name,
+      url: url,
+    };
+    let bookmarks = localStorage.getItem("bookmarks");
+    bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+    bookmarks.push(bookmark);
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+    this.clearInputs();
+    window.location.reload(); // Reload the page
+  }
     },
     clearInputs() {
       this.name = "";
@@ -74,7 +87,7 @@
     height: 160px;
     position: absolute;
     top: 40px;
-    left: -30px;
+    left: 20px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -87,6 +100,17 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+    color: #fff;
+    margin-right: 5px;
+  }
+  .fa-check{
+    padding-right: 5px;
+  }
+  .fa-check:hover{
+    color:#19c5d1;
+  }
+  .fa-times:hover{
+    color:rgb(231, 5, 5);
   }
   .input-wrapper {
     margin-bottom: 20px;
@@ -123,7 +147,7 @@
     color: #fff;
   }
   .cancel-btn {
-    background-color: #ddd;
+    background-color: #ffffff;
   }
   </style>
   

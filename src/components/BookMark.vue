@@ -13,7 +13,7 @@
           <a :href="bookmark.url" target="_blank" class="bookmark-name">{{ bookmark.name }}</a>
           <div class="bookmark-url">{{ bookmark.url }}</div>
         </div>-->
-        <i class="fas fa-trash-alt" @click="deleteBookmark(bookmark.id)"></i>
+        <i class="fas fa-trash-alt" @click="deleteBookmark(bookmark)"></i>
       </div>
     </div>
     <TheBookMark v-if="showBookmarkContainer" @addBookmark="addBookmark" />
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import TheBookMark from '@/components/TheBookMark.vue'
+import TheBookMark from '@/components/TheBookMark.vue';
 
 export default {
   name: "BookMark",
@@ -49,9 +49,12 @@ export default {
       this.bookmarks.push(bookmark);
       localStorage.setItem("bookmarks", JSON.stringify(this.bookmarks));
     },
-    deleteBookmark(id) {
-      this.bookmarks = this.bookmarks.filter((bookmark) => bookmark.id !== id);
-      localStorage.setItem("bookmarks", JSON.stringify(this.bookmarks));
+    deleteBookmark(bookmark) {
+      const index = this.bookmarks.indexOf(bookmark);
+      if (index !== 1) {
+        this.bookmarks.splice(index, 1);
+        localStorage.setItem("bookmarks", JSON.stringify(this.bookmarks));
+      }
     },
     generateFaviconUrl(url) {
       return `https://www.google.com/s2/favicons?sz=64&domain=${url}`;
@@ -95,7 +98,8 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  padding-left: 10%;
+  padding-left: 5%;
+  margin-right: -5%;
 
 }
 
