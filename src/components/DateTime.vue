@@ -26,7 +26,7 @@ export default {
       const date = now.getDate();
       const year = now.getFullYear();
       const options = {
-        hour12: !this.$store.state.use24HourFormat, // Use 24 hours format if use24HourFormat is true
+        hour12: !this.use24HourFormat, // Use 24 hours format if use24HourFormat is true
         hour: "2-digit",
         minute: "2-digit",
       };
