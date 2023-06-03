@@ -80,4 +80,10 @@ export default{
   
 }
 }
+@media(max-width: 345px){
+  .container{
+  margin-left: 35%;
+  margin-top: -6%;
+}
+}
 </style>

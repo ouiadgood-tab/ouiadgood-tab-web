@@ -160,4 +160,9 @@ export default {
   margin-top: -3%;
 }
 }
+@media(max-width: 345px){
+  .bookmark-icon {
+  margin-top: -5%;
+}
+}
 </style>

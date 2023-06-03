@@ -78,4 +78,11 @@ div{
   z-index: 2;
 }
 }
+@media (max-width: 365px){
+  div{
+  margin-left: 10%;
+  margin-top: -8%;
+  z-index: 2;
+}
+}
 </style>
