@@ -20,13 +20,22 @@ export default {
   },
   methods: {
     fetchCount() {
+      const savedCount = localStorage.getItem('money');
+      this.count = savedCount ? parseFloat(savedCount).toFixed(2) : 0;
       axios.get('https://ouiadgood.onrender.com/money')
         .then(response => {
-          this.count = Number(response.data[0].totalmoney).toFixed(2);
+          const apiCount = Number(response.data[0].totalmoney).toFixed(2);
+          localStorage.setItem('money', apiCount);
+          this.startCounter(); // Start the counter after setting the initial count
         })
         .catch(error => {
           console.error(error);
         });
+    },
+    startCounter() {
+      setInterval(() => {
+        this.count = (parseFloat(this.count) + 0.01).toFixed(2);
+      }, 10000); // 10 seconds interval
     }
   }
 };
