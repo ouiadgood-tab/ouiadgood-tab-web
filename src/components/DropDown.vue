@@ -22,7 +22,7 @@
       </ul>
       <ul class="dropdown" @click="toggleDropdown('dropdown2+')" :class="{ active: activeDropdown === 'dropdown2+' }">
         {{ heart }}<i class="fa-sharp fa-regular fa-heart icon"></i>
-        <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
+        <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
           <div class="heartDrop">
           <h2>{{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>{{ translatedDropDownContainer.donate }}</P>
@@ -379,4 +379,26 @@ ul{
 .btnInvite:hover{
   background-color: #f2d70f;
 }
+@media  (max-width: 600px) {
+  .dropdowns {
+    margin-right: 10%; /* Reduce the right margin */
+  }
+  .dropdown {
+    font-size: 20px; /* Decrease the font size */
+    margin-right: 5px; /* Reduce the right margin */
+  }
+  .dropdown-items,
+  .dropdown-items1,
+  .dropdown-items2 {
+    width: 100%; /* Set the width to 100% */
+    left: initial; /* Reset the left position */
+  }
+  .dropdown-items2 {
+    width: 100vw; /* Set the width to full viewport width */
+  }
+  .leftSide1 {
+    margin-left: -25%; /* Adjust the margin for smaller screens */
+  }
+}
+
   </style>

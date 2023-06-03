@@ -33,4 +33,11 @@ img{
     margin-left: 4%;
     z-index: -10;
 }
+
+@media(max-width:600px){
+    img{
+        width: 100%;
+        margin-left: 10%;
+    }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
     <div class="note-icon" @click="showDropdown = !showDropdown">
         <i class="fa-solid fa-list"></i>
     </div>
@@ -21,11 +21,28 @@ export default{
       showDropdown: false,
     };
   },
+  mounted() {
+    window.addEventListener("click", this.handleOutsideClick);
+  },
+  beforeUnmount() {
+    window.removeEventListener("click", this.handleOutsideClick);
+  },
+  methods: {
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    },
+    handleOutsideClick(event) {
+      // Check if the clicked element is outside the dropdown
+      if (!this.$el.contains(event.target)) {
+        this.showDropdown = false;
+      }
+    },
+  },
 }
 </script>
 
 <style scoped>
-div{
+.container{
   margin-top: -1%;
   margin-left: 8%;
   cursor: pointer;
@@ -50,5 +67,17 @@ div{
   left: 40px;
   z-index: 2;
   
+}
+
+@media(max-width: 600px){
+  .container{
+  margin-left: 25%;
+  margin-top: -4%;
+}
+.dropdown {
+  top: 80px;
+  left: 40px;
+  
+}
 }
 </style>

@@ -34,6 +34,10 @@ export default {
   },
   mounted() {
     this.loadBookmarks();
+    window.addEventListener("click", this.handleOutsideClick);
+  },
+  beforeUnmount() {
+    window.removeEventListener("click", this.handleOutsideClick);
   },
   methods: {
     toggleBookmarkContainer() {
@@ -58,6 +62,19 @@ export default {
     },
     generateFaviconUrl(url) {
       return `https://www.google.com/s2/favicons?sz=64&domain=${url}`;
+    },
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    },
+    handleOutsideClick(event) {
+      // Check if the clicked element is outside the bookmark container or the dropdown
+      if (
+        !this.$el.contains(event.target) &&
+        event.target !== this.$refs.dropdownToggle
+      ) {
+        this.showBookmarkContainer = false;
+        this.showDropdown = false;
+      }
     },
   },
 };
@@ -137,5 +154,10 @@ export default {
 
 .fa-trash-alt:hover {
   color: #ff0000;
+}
+@media(max-width: 600px){
+  .bookmark-icon {
+  margin-top: -3%;
+}
 }
 </style>

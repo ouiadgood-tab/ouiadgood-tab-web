@@ -274,4 +274,14 @@ img{
   position: absolute;
 }
 
+@media(max-width: 600px){
+  .search-container {
+  margin-top: -5%;
+  margin-right:40%;
+  font-size: 30px;
+}
+.search-form {
+  width: 150%;
+}
+}
 </style>

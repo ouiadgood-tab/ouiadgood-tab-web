@@ -22,6 +22,24 @@ export default {
       showDropdown: false,
     };
   },
+  mounted() {
+    window.addEventListener("click", this.handleOutsideClick);
+  },
+  beforeUnmount() {
+    window.removeEventListener("click", this.handleOutsideClick);
+  },
+  methods: {
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    },
+    handleOutsideClick(event) {
+      // Check if the clicked element is outside the dropdown
+      if (!this.$el.contains(event.target)) {
+        this.showDropdown = false;
+      }
+    },
+  },
+  
 };
 
 </script>
@@ -51,5 +69,13 @@ div{
   left: 40px;
   z-index: 2;
   
+}
+
+@media (max-width: 600px){
+  div{
+  margin-left: 8%;
+  margin-top: -12%;
+  z-index: 2;
+}
 }
 </style>
