@@ -44,7 +44,7 @@ export default{
 <style scoped>
 .container{
   margin-top: -1%;
-  margin-left: 8%;
+  margin-left: 15%;
   cursor: pointer;
 }
 .note-icon {

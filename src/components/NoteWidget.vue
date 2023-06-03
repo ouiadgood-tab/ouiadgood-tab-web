@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 div{
-  margin-top: -5%;
+  margin-top: -6%;
   margin-left: 5%;
 }
 .note-icon {
