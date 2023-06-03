@@ -2,23 +2,23 @@
     <div>
         <div class="tabInfo2">
             <div class="linkText">
-                <p class="share">Share this link</p>
+                <p class="share">{{ translatedInviteContainer.share }}</p>
                 <input type="url" name="invite-link" class="inviteInput" :value="inviteLink"/>
-                <p class="msg">and you'll get 350 Hearts for every person who joins!</p>
+                <p class="msg">{{ translatedInviteContainer.shareInfo }}</p>
             </div>
             <div class="fNum">
                 <span>0</span>
-                <p>Friends recruited</p>
+                <p>{{ translatedInviteContainer.invite }}</p>
             </div>
             <div class="heart">
                 <span>350</span>
-                <p>extra Hearts when you recruit a new friend</p>
+                <p>{{ translatedInviteContainer.extra }}</p>
             </div>
         </div>
         <div class="head">
             <div class="grayOutMain">
                 <i class="fa-regular fa-face-smile"></i>
-                Many thanks! We rely on people like you to spread the news since every new person raises more money for charity.
+                {{ translatedInviteContainer.title }}
             </div>
         </div>
     </div>
@@ -27,12 +27,44 @@
 <script>
 export default {
   name: 'InviteFriends',
+  data(){
+    return{
+      locale: localStorage.getItem('locale') || 'en',
+    }
+  },
   computed: {
     inviteLink() {
       const baseUrl = 'https://ouiadgood.com/';
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       const username = loginRequest ? loginRequest.username : '';
       return `${baseUrl}?u=${username}`;
+    },
+
+    translatedInviteContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title:"Many thanks! We rely on people like you to spread the news since every new person raises more money for charity.",
+          share: "Share this link",
+          shareInfo:"and you'll get 350 Hearts for every person who joins!",
+          invite: "Friends recruited",
+          extra: "extra Hearts when you recruit a new friend",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title:"Merci beaucoup! Nous comptons sur des gens comme vous pour diffuser la nouvelle, car chaque nouvelle personne recueille plus d'argent pour des œuvres caritatives.",
+          share: "Partagez ce lien",
+          shareInfo:"et vous obtiendrez 350 cœurs pour chaque personne qui se joint !",
+          invite: "Amis recrutés",
+          extra: "Cœurs supplémentaires lorsque vous recrutez un nouvel ami",
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
     },
   },
 };

@@ -98,14 +98,14 @@ import axios from 'axios';
             todayHeart:0,
             maxHeartDate: '',
             heartDonated: '',
-            local:'fr'
+            locale: localStorage.getItem('locale') || 'en',
         };
     },
 
     computed: {
     translatedDropDownContainer() {
       let translations;
-      if (this.local === 'en') {
+      if (this.locale === 'en') {
         translations = {
           moneyTitle: 'This is how much money our community has raised for charity. Recruit your friends to raise more!',
           moneyButton:'Invite a friend',
@@ -121,7 +121,7 @@ import axios from 'axios';
           Setting:'Setting',
           logout:'Logout',
         };
-      } else if (this.local === 'fr') {
+      } else if (this.locale === 'fr') {
         translations = {
           moneyTitle: "C'est combien d'argent notre communauté a collecté pour la charité. Recrutez vos amis pour récolter plus !",
           moneyButton:'Invite un ami',

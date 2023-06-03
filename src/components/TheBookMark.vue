@@ -25,7 +25,7 @@
         showForm: false,
         name: "",
         url: "",
-        locale: "fr", // Default locale value
+        locale: localStorage.getItem('locale') || 'en', // Default locale value
       };
     },
     computed: {

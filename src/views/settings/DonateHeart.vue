@@ -9,61 +9,61 @@
         <div class="cards">
             <div class="card">
                 <a href="https://www.actionagainsthunger.org/"><img src="./image/acfusa-201804.png" class="imgDonate"/></a>
-                <h1>Action Against Hunger</h1>
-                <p>A global humanitarian organization committed to ending world hunger</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{  translatedDonateContainer.image1 }}</h1>
+                <p>{{ translatedDonateContainer.text1 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://www.conservation.org/"><img src="./image/conservation-international-201804.png" class="imgDonate"/></a>
-                <h1>Conservation International</h1>
-                <p>Because saving nature is the only way to save ourselves</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.image2 }}</h1>
+                <p>{{ translatedDonateContainer.text2 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://www.experienceeducate.org/"><img src="./image/educate-201807.jpg" class="imgDonate"/></a>
-                <h1>Educate!</h1>
-                <p>Preparing youth in Africa with the skills to succeed in today's economy</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 1 }" :disabled="heart === 1" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.image3 }}</h1>
+                <p>P{{ translatedDonateContainer.text3 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 1 }" :disabled="heart === 1" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
         </div>
         <div class="cards">
             <div class="card">
                 <a href="https://fightworldsuck.org/"><img src="./image/ftdws.jpg" class="imgDonate"/></a>
-                <h1 class="worldSuck">The Foundation to Decrease Worldsuck</h1>
-                <p>Distributes 100% of donations to non-profits selected by Nerdfighteria and the Project for Awesome</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1 class="worldSuck">T{{ translatedDonateContainer.image4 }}</h1>
+                <p>{{ translatedDonateContainer.text4 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://www.givedirectly.org/"><img src="./image/givedirectly.png" class="imgDonate"/></a>
-                <h1 class="gDir">GiveDirectly</h1>
-                <p>Offers a simple approach to addressing poverty: cut out intermediaries and allow poor families to decide for themselves what they need most</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1 class="gDir">{{ translatedDonateContainer.image5 }}</h1>
+                <p>{{ translatedDonateContainer.text5 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://www.hrw.org/"><img src="./image/human-rights-watch.jpg" class="imgDonate"/></a>
-                <h1>Human Rights Watch</h1>
-                <p>An independent, international organization that defends the rights of people worldwide</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.image6 }}</h1>
+                <p>{{ translatedDonateContainer.text6 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
         </div>
         <div class="cards">
             <div class="card">
                 <img src="./image/room-to-read-20210809.png" class="imgDonate"/>
-                <h1>Room to Read</h1>
-                <p>Creating a future in which all the world's children can pursue a quality education</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.text7 }}</h1>
+                <p>{{ translatedDonateContainer.text7 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://www.savethechildren.org/"><img src="./image/save-the-children-201804.png" class="imgDonate"/></a>
-                <h1>Save the Children</h1>
-                <p>Giving the world's children a healthy start, an opportunity to learn, and protection from harm</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.image8 }}</h1>
+                <p>{{ translatedDonateContainer.image8 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
             <div class="card">
                 <a href="https://bailproject.org/"><img src="./image/the-bail-project.jpg" class="imgDonate"/></a>
-                <h1>The Bail Project</h1>
-                <p>Combatting mass incarceration by disrupting the money bail system—one person at a time</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">DONATE {{ heart }} HEARTS</button>
+                <h1>{{ translatedDonateContainer.image9 }}</h1>
+                <p>{{ translatedDonateContainer.image9 }}</p>
+                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
             </div>
         </div>
 </div>
@@ -75,8 +75,68 @@ export default{
     data(){
         return{
             heart:0,
+            locale: localStorage.getItem('locale') || 'en',
         };
     },
+
+    computed: {
+    translatedDonateContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+            title:"When you donate Hearts, you're telling us to give more of the money we raise to that charity.",
+            image1: 'Action Against Hunger',
+            text1:"A global humanitarian organization committed to ending world hunger",
+            image2: "Conservation International",
+            text2: "Because saving nature is the only way to save ourselves",
+            image3: "Educate!",
+            text3: "Preparing youth in Africa with the skills to succeed in today's economy",
+            image4: 'The Foundation to Decrease Worldsuck',
+            text4:"Distributes 100% of donations to non-profits selected by Nerdfighteria and the Project for Awesome",
+            image5: "GiveDirectly",
+            text5: "Offers a simple approach to addressing poverty: cut out intermediaries and allow poor families to decide for themselves what they need most",
+            image6: "Human Rights Watch",
+            text6: "An independent, international organization that defends the rights of people worldwide",
+            image7: 'Room to Read',
+            text7: "Creating a future in which all the world's children can pursue a quality education",
+            image8: "Save the Children",
+            text8: "Giving the world's children a healthy start, an opportunity to learn, and protection from harm",
+            image9: "The Bail Project",
+            text9: "Combatting mass incarceration by disrupting the money bail system—one person at a time",
+            donated:`DONATE ${ this.heart } HEARTS`
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+            title:"Lorsque vous donnez des cœurs, vous nous dites de donner plus d'argent que nous collectons à cet organisme de bienfaisance.",
+            image1: "Action contre la faim",
+            text1:"Une organisation humanitaire mondiale engagée à éradiquer la faim dans le monde",
+            image2: "Conservation internationale",
+            text2: "Parce que sauver la nature est le seul moyen de nous sauver",
+            image3: "Éduquer!",
+            text3: "Préparer les jeunes en Afrique avec les compétences nécessaires pour réussir dans l'économie d'aujourd'hui",
+            image4: "La Fondation pour diminuer le Worldsuck",
+            text4:"Distribue 100% des dons à des organisations à but non lucratif sélectionnées par Nerdfighteria et le Project for Awesome",
+            image5: "Donnerdirectement",
+            text5: "Propose une approche simple pour lutter contre la pauvreté : éliminer les intermédiaires et permettre aux familles pauvres de décider elles-mêmes de ce dont elles ont le plus besoin",
+            image6: "Human Rights Watch",
+            text6: "Une organisation internationale indépendante qui défend les droits des personnes dans le monde",
+            image7: 'Chambre à lire',
+            text7: "Créer un avenir dans lequel tous les enfants du monde pourront suivre une éducation de qualité",
+            image8: "Sauver les enfants",
+            text8: "Donner aux enfants du monde un bon départ, une opportunité d'apprendre et une protection contre le mal",
+            image9: "Le projet de cautionnement",
+            text9: "Lutter contre l'incarcération de masse en perturbant le système de libération sous caution, une personne à la fois",
+            donated:`DONNER ${ this.heart } CŒURS`
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+  },
 
     created() {
     // Retrieve the stored value from the local storage

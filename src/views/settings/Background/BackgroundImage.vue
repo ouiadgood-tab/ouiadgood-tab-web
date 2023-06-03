@@ -40,7 +40,7 @@ data(){
     showImageSelection: false,
     showCustomImageInput: false,
     selectedOption: null,
-    locale: 'fr'
+    locale: localStorage.getItem('locale') || 'en',
   }
 },
 
@@ -97,12 +97,16 @@ created() {
       let translations;
       if (this.locale === 'en') {
         translations = {
+          title:"Background",
+          title2: "Select a Background Image",
           daily: 'New Photo daily',
           selected: "Selected Photo",
           custom: "Custom Photo",
         };
       } else if (this.locale === 'fr') {
         translations = {
+          title:"Arrière-plan",
+          title2: "Sélectionnez une image d'arrière-plan",
           daily: 'Nouvelle photo tous les jours',
           selected: "Photo sélectionnée",
           custom: "Photo personnalisée",

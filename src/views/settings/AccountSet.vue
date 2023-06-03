@@ -1,18 +1,27 @@
 <template>
     <div>
         <div class="head">
-            <h2 class="mainText">Account</h2>
+            <h2 class="mainText">{{ translatedAccountContainer.account }}</h2>
+            <h4 class="mainText2">{{ translatedAccountContainer.lan }}</h4>
+            <div class="lanFlex switchFlex">
+              <span class="en">English</span>
+            <label class="switch lan">
+                <input type="checkbox" :checked="locale === 'fr'" @change="toggleLanguage">
+                <span class="slider frColor"></span>
+            </label>
+            <span class="fr">French</span>
+          </div>
         </div>
         <div class="head">
             <div class="grayOutMain">
-                <h3 class="mainText">Username</h3>
+                <h3 class="mainText">{{ translatedAccountContainer.username}}</h3>
                 <p class="userE">{{ username }}</p>
-                <div class="btnCha" @click="showUserNamePopup"> CHANGE</div>
+                <div class="btnCha" @click="showUserNamePopup">{{ translatedAccountContainer.change }}</div>
             </div>
         </div>
         <div class="head">
             <div class="grayOutMain">
-                <p class="mainText">Advanced</p>
+                <p class="mainText">{{ translatedAccountContainer.advance }}</p>
                 <div class="switchFlex">
                     <label class="switch" >
                     <input type="checkbox" @click="toggleDeleteAcct"> 
@@ -20,8 +29,8 @@
                     </label>
                 </div>
                 <div class="deleteAcct" :class="{ 'show': showDeleteAcct }">
-                    <h2 class="mainText delete">Delete Account</h2>
-                    <button class="btnDel">DELETE ACCOUNT</button>
+                    <h2 class="mainText delete">{{ translatedAccountContainer.delete }}</h2>
+                    <button class="btnDel">{{ translatedAccountContainer.deleteBtn }}</button>
                 </div>
             </div>
         </div>
@@ -43,12 +52,51 @@ export default {
       showDeleteAcct: false,
       isUserNamePopupVisible: false,
       username: '', // Store the retrieved username
+      locale: localStorage.getItem('locale') || 'en',
     };
+  },
+
+  computed: {
+    translatedAccountContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          account: "Account",
+          username:"Username",
+          change: "CHANGE",
+          advance: "Advance",
+          delete: "Delete Account",
+          deleteBtn: "DELETE ACCOUNT",
+          lan: 'change language'
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          account: "Compte",
+          username:"Nom d'utilisateur",
+          change: "CHANGEMENT",
+          advance: "Avance",
+          delete: "Supprimer le compte",
+          deleteBtn: "SUPPRIMER LE COMPTE",
+          lan: "changer de langue"
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
   },
   mounted() {
     this.fetchUsernameFromLocalStorage() // Fetch the username when the component is mounted
   },
   methods: {
+    toggleLanguage(event) {
+      const isChecked = event.target.checked;
+      this.locale = isChecked ? 'fr' : 'en';
+      localStorage.setItem('locale', this.locale);
+    },
     toggleDeleteAcct() {
       this.showDeleteAcct = !this.showDeleteAcct;
     },
@@ -62,6 +110,7 @@ export default {
       }
     },
   },
+  
 };
 </script>
 
@@ -82,6 +131,10 @@ export default {
     margin-left: -14%;
     margin-top: 5%;
 
+}
+.mainText2{
+  margin-left:50%;
+  margin-top: -5%;
 }
 .btnDel{
     margin-left: 15%;
@@ -135,6 +188,17 @@ export default {
     float: right;
     margin-top: -4%;
 }
+.lanFlex {
+  display: flex;
+  align-items: center;
+  margin-right: -5%;
+  margin-top: -5%;
+}
+
+.lanFlex span {
+  margin-right: 10px;
+  font-size: 15px;
+}
 
 /* The switch - the box around the slider */
 .switch {
@@ -144,6 +208,7 @@ export default {
   width: 3.5em;
   height: 2em;
 }
+
 
 /* Hide default HTML checkbox */
 .switch input {
@@ -182,6 +247,9 @@ input:checked + .slider {
   background-color: #a10903;
   box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
 }
+input:checked + .frColor {
+  background-color: #03833d;
+}
 
 input:checked + .slider:before {
   transform: translateX(2.8em) rotate(360deg);
@@ -191,7 +259,6 @@ input:checked + .slider:before {
   
  
 }
-
 .deleteAcct.show {
   display: flex;
   background-color: #fff;
@@ -202,6 +269,7 @@ input:checked + .slider:before {
   margin-left: -16.5%;
   margin-top: 6%;
   border: none;
-
 }
+
+
 </style>

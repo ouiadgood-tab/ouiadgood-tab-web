@@ -13,7 +13,7 @@ export default{
     name:'CookieBanner.vue',
     data(){
         return{
-            locale:'fr',
+          locale: localStorage.getItem('locale') || 'en',
         }
     },
     methods:{

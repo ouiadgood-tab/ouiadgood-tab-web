@@ -3,7 +3,7 @@
         <div class="head">
             <h2 class="mainText">{{ translatedWidgetContainer.bookmark }}</h2>
             <i class="fa-sharp fa-regular fa-bookmark icon-wid"></i>
-            <div class="switchFlex">
+            <div class="switchFlex book-flex">
                     <label class="switch" >
                     <input type="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState"> 
                     <span class="slider" :class="{ checked: bookmarkEnabled }"></span>
@@ -75,7 +75,7 @@ export default {
       use24HourFormat: localStorage.getItem('use24HourFormat') === 'true',
       showSeconds: localStorage.getItem('showSeconds') === 'true',
       bookmarkEnabled: localStorage.getItem('bookmarkEnabled') === 'true',
-      locale:'fr',
+      locale: localStorage.getItem('locale') || 'en',
     };
   },
   methods: {
@@ -166,6 +166,10 @@ export default {
     margin-left: -11%;
     margin-top: 5%;
 }
+.fa-bookmark{
+  margin-left: -20%  !important;
+  margin-top: 5.5% !important;
+}
 .icon-wid{
     margin-left: -11%;
     margin-top:5%;
@@ -202,6 +206,9 @@ export default {
     margin-left: 100%;
     margin-top: -14%;
     display:block;
+}
+.book-flex{
+  margin-left: 100%;
 }
 
 /* The switch - the box around the slider */

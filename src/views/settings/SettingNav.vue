@@ -5,14 +5,14 @@
       <span class="close-icon" @click="closeNav">X</span>
     </div>
     <nav class="horizontal-nav">
-      <p>SETTING</p>
-    <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">Widgets</router-link>
-    <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">background</router-link>
-        <p>YOUR PROFILE</p>
-    <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">Your Stats</router-link>
-    <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">Donate Hearts</router-link>
-    <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">Invite Friends</router-link>
-    <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">Account</router-link>
+      <p>{{ translatedSettingContainer.title1 }}</p>
+    <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
+    <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
+        <p>{{ translatedSettingContainer.title2 }}</p>
+    <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">{{ translatedSettingContainer.stat }}</router-link>
+    <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">{{ translatedSettingContainer.donate }}</router-link>
+    <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
+    <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
   </nav>
     </div>
   </template>
@@ -20,6 +20,45 @@
 <script>
 export default {
     name: 'SettingNav',
+    data(){
+      return{
+        locale: localStorage.getItem('locale') || 'en',
+      }
+    },
+    computed:{
+      translatedSettingContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title1:"SETTING",
+          title2: "YOUR PROFILE",
+          widgets: "Widgets",
+          background:"Background",
+          stat: "Your Stats",
+          donate:"Donate Hearts",
+          invite: "Invite Friends",
+          account:"Account"
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title1:"PARAMÈTRE",
+          title2: "VOTRE PROFIL",
+          widgets: "Widget",
+          background:"Arrière-plan",
+          stat: "Vos statistiques",
+          donate:"Faire un don de coeurs",
+          invite: "Inviter des amis",
+          account:"Compte"
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+    },
   methods: {
     closeNav() {
       this.$router.push('/');

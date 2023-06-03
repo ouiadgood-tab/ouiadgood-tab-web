@@ -3,7 +3,7 @@
         <div class="head">
             <div class="grayOutMain">
                 <i class="fa-solid fa-chart-simple"></i>
-                Hi, Wonderful User ! Here's all your great work Tabbing, by the numbers.
+                {{ translatedStatsContainer.title }}
             </div>
         </div>
         <div class="tabInfo">
@@ -56,7 +56,7 @@ export default{
       maxTab: '',
       maxHeartDate: '',
       heartDonated: '',
-      locale:'fr'
+      locale: localStorage.getItem('locale') || 'en',
     };
   },
   created() {
@@ -115,6 +115,7 @@ export default{
       let translations;
       if (this.locale === 'en') {
         translations = {
+          title:"Hi, Wonderful User ! Here's all your great work Tabbing, by the numbers.",
           tabber: 'days as a Tabber',
            totalTab:"tabs all time",
           maxTab: "max tab in one day",
@@ -125,6 +126,7 @@ export default{
         };
       } else if (this.locale === 'fr') {
         translations = {
+          title:"Salut, merveilleux utilisateur ! Voici tout votre excellent travail Tabbing, en chiffres.",
           tabber: 'jours comme Tabber',
            totalTab:"onglets tout le temps",
           maxTab: "onglet max en un jour",

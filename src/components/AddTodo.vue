@@ -24,7 +24,7 @@
       return {
         newTodoText: '',
         todos: [],
-        locale: 'fr', // Default locale is English
+        locale: localStorage.getItem('locale') || 'en', // Default locale is English
       };
     },
     created() {

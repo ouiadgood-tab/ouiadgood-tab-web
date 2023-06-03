@@ -42,7 +42,7 @@ export default {
       searchEngine: require('../assets/google.png'), // set the default search engine image URL
       searchEngineAlt: 'Google', // set the default search engine alt text
       showDropdown: false, // keep track of dropdown visibility
-      locale:'fr',
+      locale: localStorage.getItem('locale') || 'en',
     }
   },
   methods: {
