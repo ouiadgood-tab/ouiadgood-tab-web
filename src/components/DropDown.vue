@@ -5,10 +5,9 @@
         <ul class="dropdown-items1" v-if="activeDropdown === 'dropdown1'">
             <div>
               <p class="info">
-                This is how much money our community has raised for charity.
-                Recruit your friends to raise more!
+                {{translatedDropDownContainer.moneyTitle}}
               </p>
-              <button class="btnInvite"><router-link class="router" to="/setting/Invite">Invite a friend</router-link></button>
+              <button class="btnInvite"><router-link class="router" to="/setting/Invite">{{ translatedDropDownContainer.moneyButton }}</router-link></button>
             </div>
         </ul>
       </ul>
@@ -16,8 +15,8 @@
         <i class="fa-solid fa-display icon"></i>
         <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
           <div>
-            <h3 class="info">Watch a video, earn 100 hearts!</h3>
-            <p class="info">No videos available right now, but we’ll let you know when one is.</p>
+            <h3 class="info">{{ translatedDropDownContainer.videoTitle }}</h3>
+            <p class="info">{{ translatedDropDownContainer.videSub }}</p>
           </div>
         </ul>
       </ul>
@@ -26,23 +25,23 @@
         <ul class="dropdown-items2" v-if="activeDropdown === 'dropdown2+'">
           <div class="heartDrop">
           <h2>{{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i></h2>
-          <P>donated</P>
-          <button class="btnInvite"><router-link class="router" to="/setting/Donate">DONATE HEARTS</router-link></button>
+          <P>{{ translatedDropDownContainer.donate }}</P>
+          <button class="btnInvite"><router-link class="router" to="/setting/Donate">{{ translatedDropDownContainer.donateButton }}</router-link></button>
          </div>
          <hr/>
          <div class="heartDrop">
           <h2>0<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
-          <P>recruited friends</P>
-          <button class="btnInvite"><router-link class="router" to="/setting/Invite">INVITE FRIEND</router-link></button>
+          <P>{{ translatedDropDownContainer.invite }}</P>
+          <button class="btnInvite"><router-link class="router" to="/setting/Invite">{{ translatedDropDownContainer.inviteButton }}</router-link></button>
          </div>
          <hr/>
          <div >
           <div class="heartDrop openSpace">
-            <p class="leftSide">Open a tab</p>
+            <p class="leftSide">{{ translatedDropDownContainer.openTab }}</p>
             <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
           <div class="heartDrop">
-            <p class="leftSide1">Recruit friend</p>
+            <p class="leftSide1">{{ translatedDropDownContainer.recruit }}</p>
             <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
          </div>
@@ -55,34 +54,191 @@
               
               <router-link class="router" to="/setting/Donate"><div>
                 <i class="fa-solid fa-heart drop-icon"></i>
-               Donate Hearts
+               {{ translatedDropDownContainer.donateButton }}
               </div></router-link>
               <router-link class="router" to="/setting/Stats">
               <div>
                   <i class="fa-solid fa-chart-simple drop-icon"></i>
-                Your Stats
+                  {{ translatedDropDownContainer.stats }}
               </div></router-link>
               <router-link class="router" to="/setting/Invite">
               <div>
                 <i class="fa-solid fa-user-plus drop-icon"></i>
-                Invite Friends
+                {{ translatedDropDownContainer.inviteButton }}
               </div>
             </router-link>
               <router-link class="router" to="/setting/Widget"> <div>
                 <i class="fa-solid fa-gear drop-icon"></i>
-                Setting
+                {{translatedDropDownContainer.Setting}}
               </div></router-link>
               <div @click="logout" class="router" >
                 <i class="fa-solid fa-right-from-bracket drop-icon"></i>
-                Logout
+                {{translatedDropDownContainer.logout}}
               </div>
             </div>
           </div>
       </ul>
     </div>
   </template>
-  
-  <style scoped>
+
+<script >
+import MoneyCount from './MoneyCount.vue';
+import axios from 'axios';
+//import { useAuth0 } from '@auth0/auth0-vue';
+
+
+  export default {
+    name: "DropDown",
+    data() {
+        return {
+            activeDropdown: null,
+            heart: 0,
+            totalheart: 0,
+            maxHeart:0,
+            todayHeart:0,
+            maxHeartDate: '',
+            heartDonated: '',
+            local:'fr'
+        };
+    },
+
+    computed: {
+    translatedDropDownContainer() {
+      let translations;
+      if (this.local === 'en') {
+        translations = {
+          moneyTitle: 'This is how much money our community has raised for charity. Recruit your friends to raise more!',
+          moneyButton:'Invite a friend',
+          videoTitle: 'Watch a video, earn 100 hearts!',
+          videSub:'No videos available right now, but we’ll let you know when one is.',
+          donate:'donated',
+          donateButton: "Donate Hearts",
+          invite: 'recruited friends',
+          inviteButton: "Invite Friends",
+          openTab:'Open a tab',
+          recruit:'Recruit friend',
+          stats:'Your Stats',
+          Setting:'Setting',
+          logout:'Logout',
+        };
+      } else if (this.local === 'fr') {
+        translations = {
+          moneyTitle: "C'est combien d'argent notre communauté a collecté pour la charité. Recrutez vos amis pour récolter plus !",
+          moneyButton:'Invite un ami',
+          videoTitle: 'Regardez une vidéo, gagnez 100 cœurs !',
+          videSub:"Aucune vidéo disponible pour le moment, mais nous vous informerons dès qu'elle le sera.",
+          donate:'fait un don',
+          donateButton: "Faire un don de coeurs",
+          invite: 'amis recrutés',
+          inviteButton: "Inviter des amis",
+          openTab:'Ouvrir un onglet',
+          recruit:'Recruter un ami',
+          stats:'Vos statistiques',
+          Setting:'Paramètre',
+          logout:'Se déconnecter',
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+  },
+
+    created() {
+    // Retrieve the stored value from the local storage
+    const heartDonated = localStorage.getItem('heartDonated');
+    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+    const savedDate = localStorage.getItem('date');
+    if (heartDonated){
+    this.heartDonated = heartDonated;
+  }
+    if (loginRequest) {
+      this.heart = loginRequest.heart || 0;
+      this.totalheart = loginRequest.totalheart || 0;
+    }
+
+    this.todayHeart = parseInt(localStorage.getItem('todayHeart')) || 0;
+    this.maxHeart =parseInt(localStorage.getItem('maxHeart')) || 0;
+
+    const currentDate = new Date().toLocaleDateString();
+    if (currentDate != savedDate){
+      if (this.maxHeart > this.todayHeart) {
+    const maxHeartDate = new Date().toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: '2-digit'
+    }).replace(/,/g, ''); // Remove comma after the month abbreviation
+    localStorage.setItem('maxHeartDate', maxHeartDate);
+  }
+      this.maxHeart = Math.max(this.todayHeart, this.maxHeart); // Update maxHeart with the current day's heart count if it's greater
+      this.todayHeart = 0;
+      localStorage.setItem('date', currentDate);
+    }
+    // Increment the heart value when the page loads or refreshes
+    this.incrementHeart();
+  },
+
+    methods: {
+      incrementHeart() {
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      this.heart++; // Increment the heart count
+      this.totalheart++; // Increment the heart count
+      this.todayHeart++; // Increment the todayHeart count
+
+      if(this.todayHeart > this.maxHeart){
+        this.maxHeart = this.todayHeart;
+      }
+
+      if (loginRequest) {
+        loginRequest.heart = this.heart;
+        loginRequest.totalheart = this.totalheart;
+        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+      }
+      //Update the value in the local storage
+      localStorage.setItem('todayHeart', this.todayHeart.toString());
+      localStorage.setItem('maxHeart', this.maxHeart.toString());
+
+      // Make the HTTP request to update the heart count in the database
+      axios
+        .patch('https://ouiadgood.onrender.com/users/heart', {
+          heart: this.heart,
+          email: loginRequest.email,
+          totalheart: this.totalheart,
+        })
+        .then(() => {
+          // Handle the response if needed
+          //console.log(response);
+        })
+        .catch(error => {
+          // Handle the error if needed
+          console.error(error);
+        });
+    },
+        toggleDropdown(dropdown) {
+            if (this.activeDropdown === dropdown) {
+                this.activeDropdown = null;
+            }
+            else {
+                this.activeDropdown = dropdown;
+            }
+        },
+
+        logout() {
+      // Delete local storage data
+      localStorage.removeItem('loginRequest');
+      
+      // Redirect to /login
+      this.$router.push('/login');
+    },
+    },
+    components: { MoneyCount }
+};
+</script>
+
+<style scoped>
   .dropdowns {
     display: flex;
     justify-content:right;
@@ -224,114 +380,3 @@ ul{
   background-color: #f2d70f;
 }
   </style>
-
-<script >
-import MoneyCount from './MoneyCount.vue';
-import axios from 'axios';
-//import { useAuth0 } from '@auth0/auth0-vue';
-
-
-  export default {
-    name: "DropDown",
-    data() {
-        return {
-            activeDropdown: null,
-            heart: 0,
-            totalheart: 0,
-            maxHeart:0,
-            todayHeart:0,
-            maxHeartDate: '',
-            heartDonated: '',
-        };
-    },
-
-    created() {
-    // Retrieve the stored value from the local storage
-    const heartDonated = localStorage.getItem('heartDonated');
-    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
-    const savedDate = localStorage.getItem('date');
-    if (heartDonated){
-    this.heartDonated = heartDonated;
-  }
-    if (loginRequest) {
-      this.heart = loginRequest.heart || 0;
-      this.totalheart = loginRequest.totalheart || 0;
-    }
-
-    this.todayHeart = parseInt(localStorage.getItem('todayHeart')) || 0;
-    this.maxHeart =parseInt(localStorage.getItem('maxHeart')) || 0;
-
-    const currentDate = new Date().toLocaleDateString();
-    if (currentDate != savedDate){
-      if (this.maxHeart > this.todayHeart) {
-    const maxHeartDate = new Date().toLocaleDateString('en-US', {
-      month: 'short',
-      day: '2-digit',
-      year: '2-digit'
-    }).replace(/,/g, ''); // Remove comma after the month abbreviation
-    localStorage.setItem('maxHeartDate', maxHeartDate);
-  }
-      this.maxHeart = Math.max(this.todayHeart, this.maxHeart); // Update maxHeart with the current day's heart count if it's greater
-      this.todayHeart = 0;
-      localStorage.setItem('date', currentDate);
-    }
-    // Increment the heart value when the page loads or refreshes
-    this.incrementHeart();
-  },
-
-    methods: {
-      incrementHeart() {
-      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
-      this.heart++; // Increment the heart count
-      this.totalheart++; // Increment the heart count
-      this.todayHeart++; // Increment the todayHeart count
-
-      if(this.todayHeart > this.maxHeart){
-        this.maxHeart = this.todayHeart;
-      }
-
-      if (loginRequest) {
-        loginRequest.heart = this.heart;
-        loginRequest.totalheart = this.totalheart;
-        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
-      }
-      //Update the value in the local storage
-      localStorage.setItem('todayHeart', this.todayHeart.toString());
-      localStorage.setItem('maxHeart', this.maxHeart.toString());
-
-      // Make the HTTP request to update the heart count in the database
-      axios
-        .patch('https://ouiadgood.onrender.com/users/heart', {
-          heart: this.heart,
-          email: loginRequest.email,
-          totalheart: this.totalheart,
-        })
-        .then(() => {
-          // Handle the response if needed
-          //console.log(response);
-        })
-        .catch(error => {
-          // Handle the error if needed
-          console.error(error);
-        });
-    },
-        toggleDropdown(dropdown) {
-            if (this.activeDropdown === dropdown) {
-                this.activeDropdown = null;
-            }
-            else {
-                this.activeDropdown = dropdown;
-            }
-        },
-
-        logout() {
-      // Delete local storage data
-      localStorage.removeItem('loginRequest');
-      
-      // Redirect to /login
-      this.$router.push('/login');
-    },
-    },
-    components: { MoneyCount }
-};
-</script>

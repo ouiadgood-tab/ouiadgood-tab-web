@@ -9,15 +9,15 @@
         <div class="tabInfo">
             <div>
                 <span>{{daysLogged}}</span>
-                <p>days as a Tabber</p>
+                <p>{{ translatedStatsContainer.tabber}}</p>
             </div>
             <div>
                 <span>{{totalTab}}</span>
-                <p>tabs all time</p>
+                <p>{{ translatedStatsContainer.totalTab }}</p>
             </div>
             <div>
                 <span>{{ maxTab }}</span>
-                <p>max tab in one day</p>
+                <p>{{ translatedStatsContainer.maxTab }}</p>
                 <p class="grayOut">{{maxHeartDate}}</p>
             </div>
             <div>
@@ -29,13 +29,17 @@
         <div class="tabInfo2">
             <div>
                 <span>0</span>
-                <p>Tabbers recruited</p>
-                <button class="btnTab"> <router-link class="router" to="/setting/Invite">INVITE FRIENDS</router-link></button>
+                <p>{{ translatedStatsContainer.recruit }}</p>
+                <button class="btnTab"> <router-link class="router" to="/setting/Invite">
+                  {{ translatedStatsContainer.invite }}
+                </router-link></button>
             </div>
             <div>
                 <span>{{ heartDonated }}</span>
-                <p>Heart donated</p>
-                <button class="btnTab"><router-link class="router" to="/setting/Donate">DONATE HEARTS </router-link></button>
+                <p>{{ translatedStatsContainer.donate }}</p>
+                <button class="btnTab"><router-link class="router" to="/setting/Donate">
+                  {{ translatedStatsContainer.donated }}
+                </router-link></button>
             </div>
         </div>
     </div>
@@ -47,16 +51,17 @@ export default{
     name: 'StatsCon',
     data() {
     return {
-      daysLogged: 1,
+      daysLogged: '',
       totalTab: '',
       maxTab: '',
       maxHeartDate: '',
       heartDonated: '',
+      locale:'fr'
     };
   },
   created() {
     // Retrieve the stored value from the local storage
-    const daysLogged = localStorage.getItem('daysLogged');
+    const daysLogged = localStorage.getItem('daysLogged') || 1;
     const maxTab = localStorage.getItem('maxHeart');
     const maxHeartDate = localStorage.getItem('maxHeartDate');
     const heartDonated = localStorage.getItem('heartDonated');
@@ -97,13 +102,45 @@ export default{
         .then(response => {
           // Handle the response and assign the data to userData
           this.totalTab = response.data.totalheart;
-          //console.log(response)
+          console.log(response)
         })
         .catch(error => {
           // Handle the error if needed
           console.error(error);
         });
     }
+  },
+  computed: {
+    translatedStatsContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          tabber: 'days as a Tabber',
+           totalTab:"tabs all time",
+          maxTab: "max tab in one day",
+          recruit: "Tabbers recruited",
+          donate: "Heart Donated",
+          invite: "INVITE FRIENDS",
+          donated:'DONATE HEARTS'
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          tabber: 'jours comme Tabber',
+           totalTab:"onglets tout le temps",
+          maxTab: "onglet max en un jour",
+          recruit: "Tabbers recrutés",
+          donate: "Coeur donné",
+          invite: "INVITER DES AMIS",
+          donated:'DONNER DES CŒURS'
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
   },
 }
 </script>

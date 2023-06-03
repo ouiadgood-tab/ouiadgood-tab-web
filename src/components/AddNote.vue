@@ -1,7 +1,8 @@
 <template>
   <div class="notes-container">
     <div class="pink-div">
-      Notes <i class="fa-sharp fa-solid fa-circle-plus" @click="addNote"></i>
+      {{ translatedNotesContainer.title }}
+      <i class="fa-sharp fa-solid fa-circle-plus" @click="addNote"></i>
     </div>
     <div class="notes show-scrollbar">
       <div v-for="(note, index) in notes" :key="index" class="note" :style="{ top: note.top + 'px', left: note.left + 'px', zIndex: note.zIndex }">
@@ -10,7 +11,7 @@
           <i class="fas fa-times" @click="deleteNote(index)"></i>
         </div>
         <div class="note-body">
-          <textarea v-model="note.text" placeholder="Enter note here"></textarea>
+          <textarea v-model="note.text" :placeholder="translatedNotesContainer.placeholder"></textarea>
         </div>
       </div>
     </div>
@@ -18,11 +19,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'AddNote',
   data() {
     return {
       notes: [],
+      locale: 'fr', // Default locale is English
     };
   },
 
@@ -59,6 +62,28 @@ export default {
       });
     },
     
+  },
+  computed: {
+    translatedNotesContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title: 'Notes',
+          placeholder: 'Enter note here',
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title: 'Notes',
+          placeholder: 'Saisissez votre note ici',
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="search-container">
     <form class="search-form" @submit.prevent="submitForm">
       <div class="input-container">
-        <input type="text" v-model="searchQuery" placeholder="Select your favorite Search Engine and type your search query">
+        <input type="text" v-model="searchQuery" :placeholder="translatedSearchContainer.placeholder">
         <button type="submit" class="search-icon">
           <i class="fa fa-search"></i>
        </button>
@@ -41,7 +41,8 @@ export default {
       searchQuery: '',
       searchEngine: require('../assets/google.png'), // set the default search engine image URL
       searchEngineAlt: 'Google', // set the default search engine alt text
-      showDropdown: false // keep track of dropdown visibility
+      showDropdown: false, // keep track of dropdown visibility
+      locale:'fr',
     }
   },
   methods: {
@@ -97,7 +98,26 @@ export default {
           return 'https://www.google.com/search?q=';
       }
     }
-  }
+  },
+  computed: {
+    translatedSearchContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          placeholder: "Select your favorite Search Engine and type your search query",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          placeholder: "Sélectionnez votre moteur de recherche préféré et tapez votre requête de recherche",
+        };
+      } else {
+        translations = {
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+  },
 }
 </script>
 
@@ -113,6 +133,9 @@ export default {
 
 .input-container {
   position: relative;
+}
+input::placeholder{
+  font-size: 15px;
 }
 
 input[type="text"] {

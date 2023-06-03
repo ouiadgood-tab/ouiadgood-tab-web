@@ -1,17 +1,17 @@
 <template>
     <div class="todo-container">
-      <h1>Todo List</h1>
+      <h1>{{ translatedTodoContainer.title }}</h1>
     
       <div class="todo-input">
-        <input type="text" v-model="newTodoText" placeholder="Enter a todo" />
-        <button @click="addTodo">Add</button>
+        <input type="text" v-model="newTodoText" :placeholder="translatedTodoContainer.placeholder" />
+        <button @click="addTodo">{{ translatedTodoContainer.addButton }}</button>
       </div>
     
       <ul class="todo-list show-scrollbar">
         <li v-for="(todo, index) in todos" :key="index" class="todo-item">
           <span class="todo-text">{{ todo.text }}</span>
           <span class="timestamp">{{ formatDate(todo.createdAt) }}</span>
-          <button class="delete-btn" @click="deleteTodo(index)">Delete</button>
+          <button class="delete-btn" @click="deleteTodo(index)">{{ translatedTodoContainer.deleteButton }}</button>
         </li>
       </ul>
     </div>
@@ -24,6 +24,7 @@
       return {
         newTodoText: '',
         todos: [],
+        locale: 'fr', // Default locale is English
       };
     },
     created() {
@@ -63,6 +64,32 @@
         return new Date(date).toLocaleDateString('en-US', options);
       },
     },
+    computed: {
+    translatedTodoContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title: 'TOdo List',
+          placeholder: "Enter a todo",
+          addButton: "Add",
+          deleteButton: "Delete",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title: "Liste de tâches",
+          placeholder: "Entrez une tâche",
+          addButton: "Ajouter",
+          deleteButton: "Supprimer"
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+  },
   };
   </script>
   

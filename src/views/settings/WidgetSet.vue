@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="head">
-            <h2 class="mainText">Bookmark</h2>
+            <h2 class="mainText">{{ translatedWidgetContainer.bookmark }}</h2>
             <i class="fa-sharp fa-regular fa-bookmark icon-wid"></i>
             <div class="switchFlex">
                     <label class="switch" >
@@ -11,7 +11,7 @@
                 </div>
         </div> 
         <div class="head">
-            <h3 class="mainText">Notes</h3>
+            <h3 class="mainText">{{ translatedWidgetContainer.note }}</h3>
             <i class="fa-sharp fa-regular fa-note-sticky"></i>
             <div class="switchFlex">
                     <label class="switch" >
@@ -21,7 +21,7 @@
                 </div>
         </div>
         <div class="head">
-            <h3 class="mainText">Todo List</h3>
+            <h3 class="mainText"> {{ translatedWidgetContainer.todoList }}</h3>
             <i class="fa-solid fa-list"></i>
             <div class="switchFlex">
                     <label class="switch" >
@@ -31,7 +31,7 @@
                 </div>
         </div>
         <div class="extraHead">
-            <h3 class="mainText">Clock</h3>
+            <h3 class="mainText">{{ translatedWidgetContainer.clock }}</h3>
             <i class="fa-regular fa-clock icon-wid"></i>
             <div class="switchFlex">
                     <label class="switch" >
@@ -41,7 +41,7 @@
                 </div>
                 <div >
                     <div class="extra">
-                        <h3 class="extraText textFlex">Use 24 hours format</h3>
+                        <h3 class="extraText textFlex">{{ translatedWidgetContainer.format }}</h3>
                         <div class="switchFlex2">
                             <label class="switch2" >
                                 <input type="checkbox" v-model="use24HourFormat" @change="saveUse24HourFormat">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="extra2">
-                        <h3 class="extraText2 textFlex2">Show Seconds</h3>
+                        <h3 class="extraText2 textFlex2">{{ translatedWidgetContainer.seconds }}</h3>
                         <div class="switchFlex2 extraSwitch">
                             <label class="switch2" >
                                 <input type="checkbox" v-model="showSeconds" @change="saveShowSeconds">
@@ -75,6 +75,7 @@ export default {
       use24HourFormat: localStorage.getItem('use24HourFormat') === 'true',
       showSeconds: localStorage.getItem('showSeconds') === 'true',
       bookmarkEnabled: localStorage.getItem('bookmarkEnabled') === 'true',
+      locale:'fr',
     };
   },
   methods: {
@@ -95,6 +96,36 @@ export default {
     },
     saveShowSeconds() {
       localStorage.setItem('showSeconds', this.showSeconds);
+    },
+  },
+  computed: {
+    translatedWidgetContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          bookmark: 'Bookmark',
+          note: "Notes",
+          todoList: "Todo List",
+          clock: "Clock",
+          format: "Use 24 hours format",
+          seconds: "Show seconds"
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          bookmark: 'Signet',
+          note: "Remarques",
+          todoList: "Liste de choses à faire",
+          clock: "Horloge",
+          format: "Utiliser le format 24 heures",
+          seconds: "Afficher les secondes"
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
     },
   },
 

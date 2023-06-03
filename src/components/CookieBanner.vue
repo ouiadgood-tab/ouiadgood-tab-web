@@ -1,16 +1,21 @@
 <template>
     <div class="banner">
         <p>
-            This site uses cookies to deliver our services.
+            {{translatedCookieContainer.title}}
         </p>
-        <button class="btnTab" @click="acceptCookies">Accept</button>
-        <button class="btnTab" @click="declineCookies">Decline</button>
+        <button class="btnTab" @click="acceptCookies">{{ translatedCookieContainer.addButton }}</button>
+        <button class="btnTab" @click="declineCookies">{{translatedCookieContainer.deleteButton}}</button>
     </div>
 </template>
 
 <script>
 export default{
     name:'CookieBanner.vue',
+    data(){
+        return{
+            locale:'fr',
+        }
+    },
     methods:{
         acceptCookies(){
             this.$posthog.opt_in_capturing();
@@ -20,7 +25,32 @@ export default{
             this.$posthog.opt_in_capturing();
             this.$emit('hideBanner');
         }
-    }
+    },
+
+    computed: {
+    translatedCookieContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title: 'This site uses cookies to deliver our services.',
+          addButton: "Accept",
+          deleteButton: "Decline",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title: "Ce site utilise des cookies pour fournir nos services.",
+          addButton: "Accepter",
+          deleteButton: "Déclin"
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
+  },
 }
 </script>
 

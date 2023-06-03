@@ -1,0 +1,52 @@
+{
+    "notesContainer": {
+      "title": "Notes",
+      "addNote": "Ajouter une note",
+      "placeholder": "Saisissez votre note ici"
+    },
+    "todoContainer": {
+      "title": "Liste de tâches",
+      "inputPlaceholder": "Entrez une tâche",
+      "addButton": "Ajouter",
+      "deleteButton": "Supprimer"
+    },
+    "bookmarkContainer": {
+      "icon": "Signet",
+      "deleteButton": "Supprimer"
+    },
+    "banner": {
+      "message": "Ce site utilise des cookies pour vous fournir nos services.",
+      "acceptButton": "Accepter",
+      "declineButton": "Refuser"
+    },
+    "timeDate": {
+      "currentTime": "Heure actuelle",
+      "formattedDate": "Date formatée"
+    },
+    "dropdowns": {
+      "dropdown1": {
+        "info": "Voici la somme d'argent que notre communauté a collectée pour les œuvres caritatives. Recrutez vos amis pour en collecter davantage !",
+        "inviteButton": "Inviter un ami"
+      },
+      "dropdown2": {
+        "info": "Regardez une vidéo, gagnez 100 cœurs !",
+        "noVideoAvailable": "Aucune vidéo disponible pour le moment, mais nous vous en informerons lorsqu'il y en aura une."
+      },
+      "dropdown2plus": {
+        "heartDonated": "Cœur Donné",
+        "recruitedFriends": "Amis Recrutés",
+        "openTab": "Ouvrir un onglet",
+        "recruitFriend": "Recruter un ami"
+      },
+      "dropdown3": {
+        "menuItems": {
+          "donateHearts": "Donner des cœurs",
+          "yourStats": "Vos statistiques",
+          "inviteFriends": "Inviter des amis",
+          "settings": "Réglages",
+          "logout": "Déconnexion"
+        }
+      }
+    }
+  }
+  

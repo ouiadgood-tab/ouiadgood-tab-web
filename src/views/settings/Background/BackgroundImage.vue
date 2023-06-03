@@ -6,15 +6,15 @@
                 <form>
                     <label>
                         <input type="radio" name="radio" :checked="selectedOption === 'newPhoto'" @click="handleRadioClick('newPhoto'); showImageSelection = false; showCustomImageInput = false ">
-                        <span>New Photo daily</span>
+                        <span>{{ translatedBackgroundContainer.daily }}</span>
                     </label>
                     <label>
                         <input type="radio" name="radio" :checked="selectedOption === 'selectedPhoto'" @click="handleRadioClick('selectedPhoto'); showImageSelection = true; showCustomImageInput = false">
-                        <span>Selected Photo</span>
+                        <span>{{ translatedBackgroundContainer.selected }}</span>
                     </label>
                     <label>
                         <input type="radio" name="radio" :checked="selectedOption === 'customPhoto'" @click="handleRadioClick('customPhoto'); showImageSelection = false; showCustomImageInput = true">
-                        <span>Custom photo</span>
+                        <span>{{ translatedBackgroundContainer.custom }}</span>
                     </label>
                 </form>
             </div>
@@ -40,6 +40,7 @@ data(){
     showImageSelection: false,
     showCustomImageInput: false,
     selectedOption: null,
+    locale: 'fr'
   }
 },
 
@@ -88,6 +89,31 @@ created() {
     },
     showCustomImageInput() {
       this.saveComponentVisibility();
+    },
+  },
+
+  computed: {
+    translatedBackgroundContainer() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          daily: 'New Photo daily',
+          selected: "Selected Photo",
+          custom: "Custom Photo",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          daily: 'Nouvelle photo tous les jours',
+          selected: "Photo sélectionnée",
+          custom: "Photo personnalisée",
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
     },
   },
 

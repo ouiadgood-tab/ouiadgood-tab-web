@@ -1,0 +1,51 @@
+{
+    "notesContainer": {
+      "title": "Notes",
+      "addNote": "Add Note",
+      "placeholder": "Enter note here"
+    },
+    "todoContainer": {
+      "title": "Todo List",
+      "inputPlaceholder": "Enter a todo",
+      "addButton": "Add",
+      "deleteButton": "Delete"
+    },
+    "bookmarkContainer": {
+      "icon": "Bookmark",
+      "deleteButton": "Delete"
+    },
+    "banner": {
+      "message": "This site uses cookies to deliver our services.",
+      "acceptButton": "Accept",
+      "declineButton": "Decline"
+    },
+    "timeDate": {
+      "currentTime": "Current Time",
+      "formattedDate": "Formatted Date"
+    },
+    "dropdowns": {
+      "dropdown1": {
+        "info": "This is how much money our community has raised for charity. Recruit your friends to raise more!",
+        "inviteButton": "Invite a friend"
+      },
+      "dropdown2": {
+        "info": "Watch a video, earn 100 hearts!",
+        "noVideoAvailable": "No videos available right now, but we’ll let you know when one is."
+      },
+      "dropdown2plus": {
+        "heartDonated": "Heart Donated",
+        "recruitedFriends": "Recruited Friends",
+        "openTab": "Open a tab",
+        "recruitFriend": "Recruit friend"
+      },
+      "dropdown3": {
+        "menuItems": {
+          "donateHearts": "Donate Hearts",
+          "yourStats": "Your Stats",
+          "inviteFriends": "Invite Friends",
+          "settings": "Setting",
+          "logout": "Logout"
+        }
+      }
+    }
+  }

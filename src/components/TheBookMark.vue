@@ -6,11 +6,11 @@
           <i class="fa-solid fa-times" @click="clearInputs"></i>
         </div>
         <div class="input-wrapper">
-          <label for="name">Website Name</label>
+          <label for="name">{{translatedBookmark.inputTitle}}</label>
           <input type="text" id="name" v-model="name" />
         </div>
         <div class="input-wrapper">
-          <label for="url">Website URL</label>
+          <label for="url">{{ translatedBookmark.inputUrl }}</label>
           <input type="text" id="url" v-model="url" :style="{ borderColor: isUrlValid ? '' : 'red' }" />
         </div>
       </div>
@@ -25,6 +25,7 @@
         showForm: false,
         name: "",
         url: "",
+        locale: "fr", // Default locale value
       };
     },
     computed: {
@@ -32,6 +33,26 @@
       // Simple URL validation regex pattern
       const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)*[a-z0-9-]+(\.[a-z]{2,6})(\/.*)?$/i;
       return urlPattern.test(this.url);
+    },
+    translatedBookmark() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          inputTitle: 'Website Name',
+          inputUrl: "Website URL",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          inputTitle: 'Nom du site Web',
+          inputUrl: "URL de site web",
+        };
+      } else {
+        translations = {
+          inputTitle: '',
+          inputUrl: '',
+        };
+      }
+      return translations;
     },
   },
     methods: {
