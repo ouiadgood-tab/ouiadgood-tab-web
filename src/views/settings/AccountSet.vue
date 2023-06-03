@@ -2,7 +2,7 @@
     <div>
         <div class="head">
             <h2 class="mainText">{{ translatedAccountContainer.account }}</h2>
-            <h4 class="mainText2">{{ translatedAccountContainer.lan }}</h4>
+            <h5 class="mainText2">{{ translatedAccountContainer.lan }}</h5>
             <div class="lanFlex switchFlex">
               <span class="en">English</span>
             <label class="switch lan">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="deleteAcct" :class="{ 'show': showDeleteAcct }">
                     <h2 class="mainText delete">{{ translatedAccountContainer.delete }}</h2>
-                    <button class="btnDel">{{ translatedAccountContainer.deleteBtn }}</button>
+                    <button class="btnDel" @click="deleteAccount">{{ translatedAccountContainer.deleteBtn }}</button>
                 </div>
             </div>
         </div>
@@ -42,6 +42,7 @@
 
 <script>
 import UserName from  './UserName.vue';
+import axios from 'axios';
 export default {
   name: 'AccountSet',
   components: {
@@ -109,6 +110,24 @@ export default {
         this.username = loginRequest.username;
       }
     },
+
+    deleteAccount() {
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      const userId = loginRequest._id;
+      axios
+        .delete(`https://ouiadgood.onrender.com/users/${userId}`)
+        .then(response => {
+          // Handle successful deletion
+          console.log(response);
+          console.log('Account deleted successfully');
+          localStorage.clear();
+          window.location.reload(); // Reload the page
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error deleting account:', error);
+        });
+    },
   },
   
 };
@@ -133,7 +152,7 @@ export default {
 
 }
 .mainText2{
-  margin-left:50%;
+  margin-left:45%;
   margin-top: -5%;
 }
 .btnDel{

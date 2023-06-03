@@ -3,7 +3,7 @@
         <div class="head">
             <div class="grayHead">
                 <i class="fa-solid fa-circle-exclamation"></i>
-                <span>When you donate Hearts, you're telling us to give more of the money we raise to that charity.</span>
+                <span>{{ translatedDonateContainer.title }}</span>
             </div>
         </div>
         <div class="cards">
