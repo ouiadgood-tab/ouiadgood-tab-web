@@ -38,7 +38,7 @@ export default {
       backgroundImageUrl: '',
       showBanner: !(this.$posthog.has_opted_in_capturing() || this.$posthog.has_opted_out_capturing()),
       notesEnabled: true,
-      todoListEnabled: false,
+      todoListEnabled: true,
       clockEnabled: true,
       bookmarkEnabled: false,
     };
