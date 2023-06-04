@@ -20,15 +20,15 @@
                 <p>{{ translatedStatsContainer.maxTab }}</p>
                 <p class="grayOut">{{maxHeartDate}}</p>
             </div>
-            <div>
+            <!--<div>
                 <span>12</span>
                 <p>your level</p>
                 <p class="grayOut">28 hearts until next level</p>
-            </div>
+            </div>-->
         </div>
         <div class="tabInfo2">
             <div>
-                <span>0</span>
+                <span>{{ inviteNumber }}</span>
                 <p>{{ translatedStatsContainer.recruit }}</p>
                 <button class="btnTab"> <router-link class="router" to="/setting/Invite">
                   {{ translatedStatsContainer.invite }}
@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios';
+
 export default{
     name: 'StatsCon',
     data() {
@@ -60,8 +61,24 @@ export default{
     };
   },
   created() {
+    const storedDate = localStorage.getItem('lastLogin');
+
+    // Check if the stored date exists and is not today's date
+    if (storedDate && !isToday(new Date(), storedDate)) {
+      // Increment the number of days logged
+      this.daysLogged++;
+    }
+
+    // Update the last login date in the local storage
+    localStorage.setItem('lastLogin', new Date().toISOString());
+
     // Retrieve the stored value from the local storage
-    const daysLogged = localStorage.getItem('daysLogged') || 1;
+    const daysLogged = localStorage.getItem('daysLogged') || 0;
+    this.daysLogged = parseInt(daysLogged);
+
+
+    // Retrieve the stored value from the local storage
+    this.totalTab = localStorage.getItem('totalTab') || 0;
     const maxTab = localStorage.getItem('maxHeart');
     const maxHeartDate = localStorage.getItem('maxHeartDate');
     const heartDonated = localStorage.getItem('heartDonated');
@@ -111,6 +128,10 @@ export default{
     }
   },
   computed: {
+    inviteNumber(){
+            const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
+            return loginRequest ? loginRequest.numberOfReferred : 0;
+        },
     translatedStatsContainer() {
       let translations;
       if (this.locale === 'en') {
@@ -144,6 +165,17 @@ export default{
       return translations;
     },
   },
+};
+
+function isToday(date1, date2) {
+  const d1 = new Date(date1);
+  const d2 = new Date(date2);
+
+  return (
+    d1.getDate() === d2.getDate() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getFullYear() === d2.getFullYear()
+  );
 }
 </script>
 

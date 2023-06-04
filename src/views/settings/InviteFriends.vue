@@ -7,7 +7,7 @@
                 <p class="msg">{{ translatedInviteContainer.shareInfo }}</p>
             </div>
             <div class="fNum">
-                <span>0</span>
+                <span>{{ inviteNumber }}</span>
                 <p>{{ translatedInviteContainer.invite }}</p>
             </div>
             <div class="heart">
@@ -41,6 +41,10 @@ export default {
             const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
             const username = loginRequest ? loginRequest.username : "";
             return `${baseUrl}?u=${username}`;
+        },
+        inviteNumber(){
+            const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
+            return loginRequest ? loginRequest.numberOfReferred : 0;
         },
         translatedInviteContainer() {
             let translations;
