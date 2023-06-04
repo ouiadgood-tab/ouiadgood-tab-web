@@ -3,19 +3,27 @@
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">{{ translatedFriendContainer.title }}</p>
-                <input type="url" name="invite-link" class="inviteInput"  :placeholder="translatedFriendContainer.placeholder"/>
-                <div class="referBtn">{{ translatedFriendContainer.enter }}</div>
+                <input type="url" name="invite-link" class="inviteInput" 
+                 :placeholder="translatedFriendContainer.placeholder"
+                  v-model="username"
+                  :disabled="isReferralDataExists"/>
+                <div class="referBtn" @click="sendReferral"
+                >
+                {{ translatedFriendContainer.enter }}
+              </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default{
     name:'ReferFriend',
     data(){
       return{
         locale: localStorage.getItem("locale") || "en",
+        username: '',
       }
     },
     computed:{
@@ -44,7 +52,32 @@ export default{
             }
             return translations;
         },
-    }
+        isReferralDataExists() {
+      const referral = localStorage.getItem('referral');
+      return referral !== null && referral !== '';
+    },
+    },
+    methods: {
+    sendReferral() {
+      const referral = 'referral';
+      localStorage.setItem(referral, this.username); // Set the value in local storage
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+      const url = 'https://ouiadgood.onrender.com/users/referral';
+      const data = {
+        username: this.username,
+        email: loginRequest.email, // Use the email address from loginRequest object
+      };
+      axios.patch(url, data)
+        .then(response => {
+          // Handle successful response
+          console.log(response);
+        })
+        .catch(error => {
+          // Handle error
+          console.error(error);
+        });
+    },
+  },
 }
 </script>
 
