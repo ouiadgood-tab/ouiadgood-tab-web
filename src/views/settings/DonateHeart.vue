@@ -17,10 +17,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown1')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown1'">
+                  <p>Fewer Heart</p>
                   <input type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -33,10 +35,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown2')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown2'">
+                  <p>Fewer Heart</p>
                   <input  type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -49,10 +53,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown3')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown3'">
+                  <p>Fewer Heart</p>
                   <input type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
         </div>
@@ -67,10 +73,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown4')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown4'">
+                  <p>Fewer Heart</p>
                   <input  type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -83,10 +91,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown5')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown5'">
+                  <p>Fewer Heart</p>
                   <input type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -99,10 +109,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown6')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown6'">
+                  <p>Fewer Heart</p>
                   <input  type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>more Heart</p>
                 </div>
             </div>
         </div>
@@ -117,10 +129,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown7')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown7'">
-                  <input type="range" id="heart-range" 
+                  <p>Fewer Heart</p>
+                  <input type="range" id="heart-range"
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -133,10 +147,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown8')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown8'">
+                  <p>Fewer Heart</p>
                   <input type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
             <div class="card">
@@ -149,10 +165,12 @@
                 </button>
                 <p class="rangeDrop" @click="toggleRangeInput('dropdown9')">Or, donate a specific amount</p>
                 <div class="range" v-if="activeRangInput === 'dropdown9'">
+                  <p>Fewer Heart</p>
                   <input type="range" id="heart-range" 
                 v-model.number="rangeValue" 
                 :min="0" :max="heart" 
                 @input="updateHeart" />
+                <p>More Heart</p>
                 </div>
             </div>
         </div>
@@ -373,6 +391,7 @@ h1{
 }
 
 .range{
+  display: flex;
   width: 100%;
   margin-top: -7%;
   background-color: #fdfdfd;
@@ -384,5 +403,8 @@ h1{
   align-content: center;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.range p{
+  font-size: 14px;
 }
 </style>
