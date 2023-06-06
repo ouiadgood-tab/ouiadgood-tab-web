@@ -11,19 +11,49 @@
                 <a href="https://www.actionagainsthunger.org/"><img src="./image/acfusa-201804.png" class="imgDonate"/></a>
                 <h1>{{  translatedDonateContainer.image1 }}</h1>
                 <p>{{ translatedDonateContainer.text1 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown1')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown1'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://www.conservation.org/"><img src="./image/conservation-international-201804.png" class="imgDonate"/></a>
                 <h1>{{ translatedDonateContainer.image2 }}</h1>
                 <p>{{ translatedDonateContainer.text2 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown2')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown2'">
+                  <input  type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://www.experienceeducate.org/"><img src="./image/educate-201807.jpg" class="imgDonate"/></a>
                 <h1>{{ translatedDonateContainer.image3 }}</h1>
                 <p>P{{ translatedDonateContainer.text3 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 1 }" :disabled="heart === 1" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown3')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown3'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
         </div>
         <div class="cards">
@@ -31,19 +61,49 @@
                 <a href="https://fightworldsuck.org/"><img src="./image/ftdws.jpg" class="imgDonate"/></a>
                 <h1 class="worldSuck">T{{ translatedDonateContainer.image4 }}</h1>
                 <p>{{ translatedDonateContainer.text4 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown4')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown4'">
+                  <input  type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://www.givedirectly.org/"><img src="./image/givedirectly.png" class="imgDonate"/></a>
                 <h1 class="gDir">{{ translatedDonateContainer.image5 }}</h1>
                 <p>{{ translatedDonateContainer.text5 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button  class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown5')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown5'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://www.hrw.org/"><img src="./image/human-rights-watch.jpg" class="imgDonate"/></a>
                 <h1>{{ translatedDonateContainer.image6 }}</h1>
                 <p>{{ translatedDonateContainer.text6 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown6')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown6'">
+                  <input  type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
         </div>
         <div class="cards">
@@ -51,19 +111,49 @@
                 <img src="./image/room-to-read-20210809.png" class="imgDonate"/>
                 <h1>{{ translatedDonateContainer.text7 }}</h1>
                 <p>{{ translatedDonateContainer.text7 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown7')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown7'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://www.savethechildren.org/"><img src="./image/save-the-children-201804.png" class="imgDonate"/></a>
                 <h1>{{ translatedDonateContainer.image8 }}</h1>
                 <p>{{ translatedDonateContainer.image8 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown8')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown8'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
             <div class="card">
                 <a href="https://bailproject.org/"><img src="./image/the-bail-project.jpg" class="imgDonate"/></a>
                 <h1>{{ translatedDonateContainer.image9 }}</h1>
                 <p>{{ translatedDonateContainer.image9 }}</p>
-                <button class="btnTab" :class="{ grayBtn: heart === 0 }" :disabled="heart === 0" @click="resetHeart">{{ translatedDonateContainer.donated }}</button>
+                <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" 
+                :disabled="rangeValue === 0" @click="donateHeart">
+                {{ getButtonLabel }}
+                </button>
+                <p class="rangeDrop" @click="toggleRangeInput('dropdown9')">Or, donate a specific amount</p>
+                <div class="range" v-if="activeRangInput === 'dropdown9'">
+                  <input type="range" id="heart-range" 
+                v-model.number="rangeValue" 
+                :min="0" :max="heart" 
+                @input="updateHeart" />
+                </div>
             </div>
         </div>
 </div>
@@ -75,6 +165,8 @@ export default{
     data(){
         return{
             heart:0,
+            rangeValue: 0,
+            activeRangInput: null,
             locale: localStorage.getItem('locale') || 'en',
         };
     },
@@ -103,7 +195,7 @@ export default{
             text8: "Giving the world's children a healthy start, an opportunity to learn, and protection from harm",
             image9: "The Bail Project",
             text9: "Combatting mass incarceration by disrupting the money bail system—one person at a time",
-            donated:`DONATE ${ this.heart } HEARTS`
+            donated:`DONATE ${ this.rangeValue } HEARTS`
         };
       } else if (this.locale === 'fr') {
         translations = {
@@ -126,7 +218,7 @@ export default{
             text8: "Donner aux enfants du monde un bon départ, une opportunité d'apprendre et une protection contre le mal",
             image9: "Le projet de cautionnement",
             text9: "Lutter contre l'incarcération de masse en perturbant le système de libération sous caution, une personne à la fois",
-            donated:`DONNER ${ this.heart } CŒURS`
+            donated:`DONNER ${ this.rangeValue } CŒURS`
         };
       } else {
         translations = {
@@ -135,6 +227,13 @@ export default{
         };
       }
       return translations;
+    },
+    getButtonLabel() {
+      if (this.rangeValue === 0) {
+        return this.translatedDonateContainer.donated.replace('${this.heart}', this.rangeValue);
+      } else {
+        return this.translatedDonateContainer.donated.replace('${this.heart}', this.rangeValue);
+      }
     },
   },
 
@@ -145,23 +244,47 @@ export default{
     // If the value exists, assign it to the heart data property
     if (loginRequest && loginRequest.heart) {
       this.heart = loginRequest.heart;
+      this.rangeValue = this.heart;
     }
   },
   methods: {
-    resetHeart() {
-    const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+    updateHeart() {
+      const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
 
-    if (loginRequest && loginRequest.heart) {
-      const heartDonated = loginRequest.heart; // Store the current value of heart in heartDonated
-      this.heart = 0; // Set the heart value to 0
+      if (loginRequest && loginRequest.heart) {
+        loginRequest.heart = this.heart;
+        localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+      }
+    },
+    donateHeart() {
+      const heartDonated = this.rangeValue; // Get the value from the range input
 
-      loginRequest.heart = this.heart;
-      localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+      if (heartDonated > 0) {
+        this.heart -= heartDonated; // Subtract the donated heart value from the total heart value
 
-      localStorage.setItem('heartDonated', heartDonated) || 0; // Save the heartDonated value in local storage
-    }
+        const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+        if (loginRequest && loginRequest.heart) {
+          loginRequest.heart = this.heart;
+          localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
+
+          let heartDonatedValue = JSON.parse(localStorage.getItem('heartDonated')) || 0;
+          heartDonatedValue += heartDonated;
+          localStorage.setItem('heartDonated', heartDonatedValue);
+        }
+      }
+
+      this.rangeValue = this.heart; // Reset the range value to heart after donation
+    },
+    toggleRangeInput(dropdown) {
+            if (this.activeRangInput === dropdown) {
+                this.activeRangInput = null;
+            }
+            else {
+                this.activeRangInput= dropdown;
+            }
+        },
   },
-  },
+
 
 }
 </script>
@@ -199,8 +322,8 @@ p{
     margin-bottom: 30px;
 }
 h1{
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 .worldSuck{
     margin-top: -1% !important;
@@ -211,6 +334,7 @@ h1{
 }
 
 .card {
+  display:grid;
   width: 35%;
   height: 400px;
  margin-left: 2%;
@@ -230,6 +354,8 @@ h1{
   background-color: #13b0c0;
   color: #fff;
   padding: 12px 24px;
+  width: 60%;
+  justify-self: center;
   font-size: 16px;
   border: none;
   border-radius: 4px;
@@ -240,5 +366,23 @@ h1{
 
 .btnTab:hover {
   background-color: #14c3d6;
+}
+.rangeDrop{
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.range{
+  width: 100%;
+  margin-top: -7%;
+  background-color: #fdfdfd;
+  z-index: 9999;
+  height: 50px;
+  justify-self: center;
+  align-self:center;
+  justify-content: center;
+  align-content: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 </style>

@@ -233,7 +233,7 @@ import axios from 'axios';
       // Redirect to /login
       this.$router.push('/login');
     },
-    },
+  },
     components: { MoneyCount }
 };
 </script>
