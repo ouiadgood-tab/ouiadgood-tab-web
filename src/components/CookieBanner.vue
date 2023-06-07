@@ -59,11 +59,13 @@ export default{
     position:relative;
     background-color:rgb(255, 255, 255);
     padding: 20px;
-    width: 40%;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
     margin: auto;
-    margin-top: -2%;
+    margin-top: 3.76%;
     color: #000;
-    font-size: 20px;
+    font-size: 1.3em;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
