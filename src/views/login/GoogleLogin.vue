@@ -1,31 +1,29 @@
 <template>
-    <button class="btn btnG">
-        <i class="fa-regular fa-user loginLogo logoG"></i>
-        Login
-      </button>
-</template>
+  <button @click="login">
+    <i class="fa fab-google logoG"></i>
+    Login with Google
+  </button>
+  </template>
+  
 
 <script>
+  import { useAuth0 } from '@auth0/auth0-vue';
 export default{
     name: 'GoogleLogin',
+       setup() {
+      const { loginWithRedirect,user, isAuthenticated } = useAuth0();
+      return {
+        login: () => {
+          loginWithRedirect();
+        },
+        user, isAuthenticated
+      }
+    },
 }
 
 </script>
 
 <style scoped>
-.btnG{
-  color: gray;
-  padding:5px;
-}
-
-.logoG{
-  margin-left: -12%;
-}
-.loginLogo{
-  width: 30px;
-  height: 30px;
-  margin-bottom: -5px;
-}
 
 .btn {
   text-align: center;

@@ -25,6 +25,9 @@
             </span>
            </div>
           </div>
+          
+          <GoogleLogin />
+
           <div class="field">
             <div class="button">
               <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Login</button>
@@ -38,8 +41,13 @@
 
 <script>
 import axios from 'axios';
+import GoogleLogin from './GoogleLogin.vue';
+
 export default {
     name: "EmailLogin",
+    components:{
+      GoogleLogin
+    },
     data() {
         return {
             email: "",
