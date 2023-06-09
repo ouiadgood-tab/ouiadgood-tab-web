@@ -46,19 +46,18 @@
       images() {
         // Return your list of image URLs that will be on selection and names here
         return [
-        {url: 'https://lh3.googleusercontent.com/yGGRVatT4RDnHTLRUrhsPROJm0l65JP2NmUmPXJ4PUywY_6GpUf-qjpfYdms5q8qjNd4-mK3Boq6AVA=w1200-h630', name: 'Flower Bed'},
-        {url: 'https://lh4.googleusercontent.com/9nQrA5EfiTc5qHiaoB1zUEcwym8bmWuusSBvdrI0DFT0lGECaG-fBD5pvMiCT6ocS8yJM7bEHAWPDlY=w1200-h630', name: 'Storms Brewing'},
-        {url: 'https://lh5.googleusercontent.com/ixhczlPkDGfeLhdA-fpMsY-fF8yWWCiWfBavJm7xVaCJMUKIK5TqRvx759zMJsEzBh7mLskCtefOWTw=w1200-h630', name: 'Take Root'},
-        {url: 'https://lh5.googleusercontent.com/18Bk6Jex_2g55qsK5iHcikoyzu5is_Sz6eKnKhlfGlrGchU1YoFFSqwItNZq9SjqfDzW_w7JuRHOELc=w1200-h630', name: 'Reef dive'},
-        {url: 'https://lh4.googleusercontent.com/Pw01kXEsYAZhB5XDqNUmSJdwae-KtYS5OnHdZvbBLxpv6fPjq4vMahTFgx3p2fT9DZE-6J-RHTNGrEs=w1200-h630', name: 'When the Duck Settles'},
-        {url: 'https://lh5.googleusercontent.com/NbkmBZTBVMv7G8YgpvIvJv_VPe13IyD496YSduNrssoCarpyo0ShpPGkDGKfL8TGK4pAh_n072uP8vo=w1200-h630', name: 'NYC Sunset'},
-        {url: 'https://lh5.googleusercontent.com/vaIwMl8f6UUtWll7ksfK140zDxFw4hHAXGAXCGwpJLN7sS1x5f3TmpbQUnfkkX3IlC87RDmxzZiIpLQ=w1200-h630', name: 'Sunrise'},
-        {url: 'https://lh5.googleusercontent.com/MvFvuCe2eQ6kGL6DCWz21nvxgzFk6yazqwFv8mviLAqZKHedQIoGL0LIYqYNHlj6VsBXWj76N--SbR4=w1200-h630', name: 'Kitty'},
-        {url: 'https://lh4.googleusercontent.com/jkVvBWUulZXsiYjfu6BI07m3ZfATxFBNt1Dol1u2ybTm1R4WxJFonmSmIUVMNBQFY5z3Zqi56aAEqGw=w1200-h630', name: 'Above the Lake'},
-        {url: 'https://lh3.googleusercontent.com/FO7d--IRph3syX_OnAakxchV87yVhxD6W8szcb7bdgvBmuy1pG5Cll1rzVNgBdz-ERhUNxEI4Lx08lg=w1200-h630', name: 'Settled'},
-        {url: 'https://lh5.googleusercontent.com/zvXB2JNgQdNM7M_Sej7MpC66CmpFhwMleEirwWWsThglZvCq_0X4XZ3MEUp8cU9n0tcXo8Sur6gOyDU=w1200-h630', name: 'Take a Peak'},
-        {url: 'https://lh5.googleusercontent.com/4SNDJ8Sq2HWUpFjbghMJxRFvXHT8i8f8Q_r0KbnjEALja3JtFLsc2pD7ajdsBRQ6EeDGaZd4wmqRo3A=w1200-h630', name: 'Evening Haze'},
-        {url: 'https://lh6.googleusercontent.com/p2Btzc8C4YYR8Gc2gG41WFiOlZZyO_WoGAPaiTU4rvtLxvKxI6vtsGArnZUHdrw10CGIQSBPi9CPbKs=w1200-h630', name: 'Pause for Reflection'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage1.jpeg?alt=media&token=548515cf-c4e4-421e-a5be-24c6960cd5a9&_gl=1*1t6stje*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTE2OS4wLjAuMA', name: 'Colorful sky'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage10.jpeg?alt=media&token=9fe20706-fcf1-4251-8d93-ab219bfd89dd&_gl=1*1a3zky0*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTE4MS4wLjAuMA', name: 'Storms Brewing'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage11.jpeg?alt=media&token=6364c6a8-c54f-4610-82a5-1441a30811dc&_gl=1*3deta5*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTE5NS4wLjAuMA', name: 'NYC Sunset'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage12.jpeg?alt=media&token=64d66acf-95d7-4201-b4e4-94b3a8ea1dda&_gl=1*1f11tq*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTIxMC4wLjAuMA', name: 'Sunrise'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage13.jpeg?alt=media&token=876055ce-5b80-4bab-ab40-d401240b5e56&_gl=1*ce23o7*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTI1NC4wLjAuMA', name: 'Wonder'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage2.jpeg?alt=media&token=faeb1f50-7510-418a-86e4-9ce8d9888eff&_gl=1*12r2suh*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTI4Ny4wLjAuMA', name: 'Kitty'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage3.jpeg?alt=media&token=067675f4-26c9-44e6-b7e5-e7960ae6d4c8&_gl=1*d2ioin*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTMwMC4wLjAuMA', name: 'Beautiful nature'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage4.jpeg?alt=media&token=51f496ed-13a5-4b10-a154-b09dc101dbe5&_gl=1*2c1y96*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTMxMC4wLjAuMA', name: 'Sunset'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage5.jpeg?alt=media&token=e5c66313-a7ea-48df-a58c-d2b364613964&_gl=1*y50c84*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTMyMS4wLjAuMA', name: 'grass land'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage6.jpeg?alt=media&token=5686f138-daf2-457a-b0d9-83ecb95cd865&_gl=1*197ocqh*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTMzMy4wLjAuMA', name: 'Reef dive'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage8.jpeg?alt=media&token=9244a751-a740-4fdb-a691-91b53478b9cb&_gl=1*1xzomyu*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTM0NC4wLjAuMA', name: 'Take a Peak'},
+        {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage9.jpeg?alt=media&token=9c52a949-fd17-4880-bd20-1daf76d4ce4e&_gl=1*je6sgg*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTM1Ni4wLjAuMA', name: 'When the Duck Settles'},
           // Add more images as needed
         ];
       }
