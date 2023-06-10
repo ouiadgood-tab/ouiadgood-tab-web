@@ -9,6 +9,7 @@ import InviteView from '@/views/settings/InviteView.vue'
 import AccountView from '@/views/settings/AccountView.vue'
 import WidgetView from  '@/views/settings/WidgetView.vue'
 import BackgroundImageView from '@/views/settings/BackgroundImageView.vue'
+import AdminView from '@/views/settings/Admin.vue'
 
 
 const routes = [
@@ -26,6 +27,7 @@ const routes = [
       component: StatsView,
       meta: { requiresAuth: true },
     },
+  
     {
       path: '/setting/Background',
       name: 'Background',
@@ -85,6 +87,18 @@ const routes = [
     redirect: '/home'
   }
 ]
+
+const getUser = JSON.parse(localStorage.getItem("loginRequest") || {})
+if(getUser.admin){
+  routes.push(
+    {
+      path: '/setting/Admin',
+      name: 'Admin',
+      component: AdminView,
+      meta: { requiresAuth: true },
+    }
+  )
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

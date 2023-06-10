@@ -10,6 +10,7 @@
     <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
         <p>{{ translatedSettingContainer.title2 }}</p>
     <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">{{ translatedSettingContainer.stat }}</router-link>
+    <router-link class="router" v-if="admin" to="/setting/Admin" :class="{ active: isActive('/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
     <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">{{ translatedSettingContainer.donate }}</router-link>
     <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
     <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
@@ -23,6 +24,7 @@ export default {
     data(){
       return{
         locale: localStorage.getItem('locale') || 'en',
+        admin:false
       }
     },
     computed:{
@@ -37,7 +39,8 @@ export default {
           stat: "Your Stats",
           donate:"Donate Hearts",
           invite: "Invite Friends",
-          account:"Account"
+          account:"Account",
+          admin:"Admin"
         };
       } else if (this.locale === 'fr') {
         translations = {
@@ -48,7 +51,8 @@ export default {
           stat: "Vos statistiques",
           donate:"Faire un don de coeurs",
           invite: "Inviter des amis",
-          account:"Compte"
+          account:"Compte",
+          admin:"Admin"
         };
       } else {
         translations = {
@@ -58,6 +62,14 @@ export default {
       }
       return translations;
     },
+    },
+    created(){
+     
+const getUser = JSON.parse(localStorage.getItem("loginRequest") || {})
+if(getUser.admin){
+  this.admin = getUser.admin
+}
+
     },
   methods: {
     closeNav() {
