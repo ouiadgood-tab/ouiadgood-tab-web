@@ -46,8 +46,9 @@ export default {
             this.about=""
            }
         })
-        .catch(() => {
-       alert("An Error Occurred")
+        .catch((err) => {
+         
+       alert(err.response.data)
         });
     },
   },

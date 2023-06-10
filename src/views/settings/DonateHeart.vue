@@ -13,11 +13,11 @@
         data-id="charity._id"
         class="card"
       >
-        <a href="https://www.actionagainsthunger.org/"
-          ><img src="./image/acfusa-201804.png" class="imgDonate"
+        <a href="#"
+          ><img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png" class="imgDonate"
         /></a>
-        <h1>{{ charity.name }}</h1>
-        <p>{{ charity.about }}</p>
+        <h1 class="ch-name"  :contenteditable="isEditing.id == charity._id" @input="updateCharity">{{ charity.name }}</h1>
+        <p  class="ch-about" :contenteditable="isEditing.id == charity._id" @input="updateCharity">{{ charity.about }}</p>
         <button
           class="btnTab"
           :class="{ grayBtn: rangeValue === 0 }"
@@ -29,6 +29,17 @@
         <button @click="deleteCharity(charity._id)" class="del-button">
           Delete
         </button>
+        <button v-show="!isEditing.edit" @click="editCharity(charity._id)" class="edit-button">
+          Edit
+        </button>
+       <div class="btn-group">
+        <button v-show="isEditing.id == charity._id" @click="saveCharity(charity._id)" class="save-button">
+          Save
+        </button>
+        <button v-show="isEditing.id == charity._id" @click="cancelEditing" class="edit-button">
+          Cancel
+        </button>
+       </div>
         <p class="rangeDrop" @click="toggleRangeInput('dropdown1')">
           Or, donate a specific amount
         </p>
@@ -58,6 +69,12 @@ export default {
     return {
       heart: 0,
       admin: false,
+      newName:"",
+      newAbout:"",
+      isEditing:{
+        id:null,
+        edit:false
+      },
       charitys: [],
       rangeValue: 0,
       activeRangInput: null,
@@ -178,6 +195,42 @@ export default {
     }
   },
   methods: {
+    editCharity(id){
+      this.isEditing.edit = true
+      this.isEditing.id = id
+    },
+    cancelEditing(){
+      this.newName=""
+            this.newAbout=""
+            this.isEditing.edit = false
+            this.isEditing.id = null
+    },
+    saveCharity(id){
+    const selectCha = this.charitys.find(cha=> cha._id == id)
+    !this.newName && (this.newName = selectCha.name)
+    !this.newAbout && (this.newAbout = selectCha.about)
+    axios
+          .patch(`https://ouiadgood.onrender.com/charity/${id}`,{
+            name:this.newName,
+            about:this.newAbout,
+          })
+          .then(() => {
+            alert("Updated Successfully");
+            this.newName=""
+            this.newAbout=""
+            this.isEditing.edit = false
+            this.isEditing.id = null
+          })
+          .catch((err) => console.log(err));
+    },
+    updateCharity(event){
+      if(event.target.className.includes("ch-name")){
+        this.newName = event.target.textContent
+      }
+      if(event.target.className.includes("ch-about")){
+        this.newAbout = event.target.textContent
+      }
+    },
     deleteCharity(id) {
       if (id != undefined) {
         axios
@@ -229,10 +282,28 @@ export default {
 </script>
 
 <style scoped>
+.btn-group{
+  display: flex;
+  gap:10px;
+  margin: 10px;
+}
+.ch-name[contenteditable=true],.ch-about[contenteditable=true]{
+  border:1px solid black;
+  margin: 10px;
+  position: relative;
+}
+
+.ch-name[contenteditable=true]::before{
+content: "Click to edit";
+font-size: 10px;
+opacity: .5;
+position: absolute;
+top: -20px;
+}
 .grayBtn {
   background-color: gray;
 }
-.del-button {
+.del-button,.edit-button,.save-button {
   padding: 14px;
   background: red;
   width: 80%;
@@ -241,6 +312,14 @@ export default {
   cursor: pointer;
   border: none;
   margin: 10px auto;
+}
+.save-button{
+  background-color: green;
+  color:#fff
+}
+.edit-button{
+  background-color: gray;
+  color: black;
 }
 .container {
   margin-right: 10vh;
