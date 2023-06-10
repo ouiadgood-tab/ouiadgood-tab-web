@@ -26,20 +26,22 @@
         >
           {{ getButtonLabel }}
         </button>
-        <button @click="deleteCharity(charity._id)" class="del-button">
-          Delete
-        </button>
-        <button v-show="!isEditing.edit" @click="editCharity(charity._id)" class="edit-button">
-          Edit
-        </button>
-       <div class="btn-group">
-        <button v-show="isEditing.id == charity._id" @click="saveCharity(charity._id)" class="save-button">
-          Save
-        </button>
-        <button v-show="isEditing.id == charity._id" @click="cancelEditing" class="edit-button">
-          Cancel
-        </button>
-       </div>
+        <div v-show="admin">
+          <button @click="deleteCharity(charity._id)" class="del-button">
+            Delete
+          </button>
+          <button v-show="!isEditing.edit" @click="editCharity(charity._id)" class="edit-button">
+            Edit
+          </button>
+         <div class="btn-group">
+          <button v-show="isEditing.id == charity._id" @click="saveCharity(charity._id)" class="save-button">
+            Save
+          </button>
+          <button v-show="isEditing.id == charity._id" @click="cancelEditing" class="edit-button">
+            Cancel
+          </button>
+         </div>
+        </div>
         <p class="rangeDrop" @click="toggleRangeInput('dropdown1')">
           Or, donate a specific amount
         </p>

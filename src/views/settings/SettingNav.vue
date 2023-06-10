@@ -65,7 +65,7 @@ export default {
     },
     created(){
      
-const getUser = JSON.parse(localStorage.getItem("loginRequest") || {})
+const getUser = JSON.parse(localStorage.getItem("loginRequest") || '{}')
 if(getUser.admin){
   this.admin = getUser.admin
 }
