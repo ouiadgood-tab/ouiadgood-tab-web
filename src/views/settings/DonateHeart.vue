@@ -209,6 +209,10 @@ export default {
     const selectCha = this.charitys.find(cha=> cha._id == id)
     !this.newName && (this.newName = selectCha.name)
     !this.newAbout && (this.newAbout = selectCha.about)
+    const pattern = /^$|^.{0,2}$/;
+    if(!pattern.test(this.newName) || !pattern.test(this.newAbout)){
+      return alert("Length too Short")
+    } 
     axios
           .patch(`https://ouiadgood.onrender.com/charity/${id}`,{
             name:this.newName,

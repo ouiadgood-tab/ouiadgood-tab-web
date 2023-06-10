@@ -29,26 +29,25 @@ export default {
   },
   methods: {
     create() {
-    //   const vals = this.name || this.about;
-    //   if (vals.match(/\s/g) || vals == "") {
-    //     return alert("Fields Cannot be Empty");
-    //   }
+      const pattern = /^$|^.{0,2}$/;
+      if (pattern.test(this.name) || pattern.test(this.about)) {
+        return alert("Length too Short");
+      }
       // Make a POST request to the API endpoint
       axios
         .post("https://ouiadgood.onrender.com/charity/add", {
-            name:this.name,
-            about:this.about
+          name: this.name,
+          about: this.about,
         })
         .then((response) => {
-           if(response.status == 200){
-            alert("Created Successfully")
+          if (response.status == 200) {
+            alert("Created Successfully");
             this.name = "";
-            this.about=""
-           }
+            this.about = "";
+          }
         })
         .catch((err) => {
-         
-       alert(err.response.data)
+          alert(err.response.data);
         });
     },
   },
