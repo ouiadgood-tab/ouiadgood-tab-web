@@ -1,32 +1,57 @@
 <template>
-    <button class="btn btnG">
-        <i class="fa-regular fa-user loginLogo logoG"></i>
-        Login
-      </button>
+  <!-- <button @click="login();">
+    <i class="fa fab-google logoG"></i>
+    Login with Google
+  </button> -->
+  <GoogleLogin  :callback="callback" />
 </template>
 
-<script>
-export default{
-    name: 'GoogleLogin',
-}
+<script setup>
+import { decodeCredential } from "vue3-google-login";
+import axios from "axios";
+
+import { onMounted } from "vue"
+import { googleOneTap } from "vue3-google-login"
+
+onMounted(() => {
+  googleOneTap()
+    .then((response) => {
+      // This promise is resolved when user selects an account from the the One Tap prompt
+     callback(response)
+    })
+    .catch((error) => {
+      console.log("Handle the error", error)
+    })
+})
+
+
+
+const callback = (response) => {
+  // This callback will be triggered when the user selects or login to
+  // his Google account from the popup
+  const userData = decodeCredential(response.credential);
+  const user = {
+    email: userData.email,
+    password: userData.given_name,
+  };
+  axios
+    .post("https://ouiadgood.onrender.com/users/add", user)
+    .then((response) => {
+      // Save the request in LocalStorage
+      localStorage.setItem("loginRequest", JSON.stringify(response.data));
+      // Redirect to /home
+      window.location.replace("/")
+      // this.$router.push("/home");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 
 </script>
 
 <style scoped>
-.btnG{
-  color: gray;
-  padding:5px;
-}
-
-.logoG{
-  margin-left: -12%;
-}
-.loginLogo{
-  width: 30px;
-  height: 30px;
-  margin-bottom: -5px;
-}
-
 .btn {
   text-align: center;
   border: none;
@@ -42,6 +67,4 @@ export default{
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   transform: scale(1.1);
 }
-
-
 </style>

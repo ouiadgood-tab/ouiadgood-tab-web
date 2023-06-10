@@ -25,6 +25,9 @@
             </span>
            </div>
           </div>
+          
+          <GoogleLogin />
+
           <div class="field">
             <div class="button">
               <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Login</button>
@@ -38,8 +41,13 @@
 
 <script>
 import axios from 'axios';
+import GoogleLogin from './GoogleLogin.vue';
+
 export default {
     name: "EmailLogin",
+    components:{
+      GoogleLogin
+    },
     data() {
         return {
             email: "",
@@ -90,6 +98,7 @@ export default {
                 axios.post("https://ouiadgood.onrender.com/users/add", user)
                     .then(response => {
                     // Save the request in LocalStorage
+                    console.log(response.data)
                     localStorage.setItem("loginRequest", JSON.stringify(response.data));
                     // Redirect to /home
                     this.$router.push("/home");
