@@ -87,17 +87,35 @@ export default {
     },
 
     getSearchEngineUrl() {
-      switch (this.searchEngine) {
-        case require('../assets/Bing.png'):
-          return 'https://www.bing.com/search?q=';
-        case require('../assets/duckDuckGo.png'):
-          return 'https://duckduckgo.com/?q=';
-          case require('../assets/Ecosia.webp'):
-          return 'https://www.ecosia.org/search?q=';
-        default: // Google as default search engine
-          return 'https://www.google.com/search?q=';
-      }
-    }
+  let searchEngineUrl;
+
+  switch (this.searchEngine) {
+    case require('../assets/Bing.png'):
+      searchEngineUrl = 'https://www.bing';
+      break;
+    case require('../assets/duckDuckGo.png'):
+      searchEngineUrl = 'https://duckduckgo.com/?q=';
+      break;
+    case require('../assets/Ecosia.webp'):
+      searchEngineUrl = 'https://www.ecosia';
+      break;
+    default: // Google as default search engine
+      searchEngineUrl = 'https://www.google';
+  }
+
+  if (this.locale === 'fr') {
+    searchEngineUrl += '.fr'; // Append .fr for French locale
+  } else if (this.locale === 'en' && this.searchEngine !== require('../assets/duckDuckGo.png')) {
+    searchEngineUrl += '.com'; // Append .com for English locale, except for DuckDuckGo
+  }
+
+  if( this.searchEngineUrl !== require('../assets/duckDuckGo.png') ){
+    searchEngineUrl += '/search?q=';
+  }
+
+  return searchEngineUrl;
+},
+
   },
   computed: {
     translatedSearchContainer() {
@@ -238,7 +256,7 @@ img{
 .dropdown-content {
   display: none;
   position: absolute;
-  z-index: 1;
+  z-index: 9999;
   background-color: #fff;
   min-width: 80px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
