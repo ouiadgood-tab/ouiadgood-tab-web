@@ -14,8 +14,8 @@
                 <span>350</span>
                 <p>{{ translatedInviteContainer.extra }}</p>
             </div>
+            <ReferFriend/>
         </div>
-        <ReferFriend/>
         <div class="head">
             <div class="grayOutMain">
                 <i class="fa-regular fa-face-smile"></i>

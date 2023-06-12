@@ -54,7 +54,7 @@
         </div>
         <hr />
         <div class="heartDrop">
-          <h2>0<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+          <h2>{{ inviteNumber }}<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
           <P>{{ translatedDropDownContainer.invite }}</P>
           <button class="btnInvite">
             <router-link class="router" to="/setting/Invite">{{
@@ -137,6 +137,10 @@ export default {
   },
 
   computed: {
+    inviteNumber(){
+            const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
+            return loginRequest ? loginRequest.numberOfReferred : 0;
+        },
     translatedDropDownContainer() {
       let translations;
       if (this.locale === "en") {
@@ -304,7 +308,7 @@ export default {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 130px;
+  width: 10rem;
   padding: 0;
   background-color: #13afc02f;
   border-top: none;
@@ -356,7 +360,7 @@ h2 {
   margin-bottom: -8%;
 }
 .openSpace {
-  margin-bottom: -6%;
+  margin-bottom: 1%;
 }
 .heartDrop {
   font-size: 15px;
@@ -385,7 +389,7 @@ h2 {
 }
 .leftSide1 {
   float: left;
-  margin-left: -40%;
+  margin-left: -5%;
 }
 
 .drop-icon {

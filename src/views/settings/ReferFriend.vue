@@ -99,7 +99,7 @@ export default{
 }
 
 .share{
-    margin-left: -47%;
+    margin-left: 1%;
 }
 
 .linkText > p {
@@ -130,21 +130,6 @@ export default{
   border-bottom-color: #ccc;
   font-size: 19px;
 }
-
-.tabInfo2 > div{
-    background-color: #fff;
-  color: #13b0c0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding:  40px 20px 5px 20px;
-  margin: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  
-}
-
 .linkText{
     color: #020202 !important ;
     width: 500px;

@@ -1,8 +1,10 @@
 <template>
-    <div class="background">
+  <div class="background">
     <div class="vertical-nav">
-        <img src="./OAG128.png">
-      <span class="close-icon" @click="closeNav">X</span>
+        <img src="./icon.png">
+      <span class="close-icon" @click="closeNav">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
     </div>
     <nav class="horizontal-nav">
       <p>{{ translatedSettingContainer.title1 }}</p>
@@ -99,7 +101,7 @@ if(getUser.admin){
     padding:5px 5px 25px 5px;
     margin-top: 0%;
     margin-left: 3%;
-    height: 5%;
+    height: 7%;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   }
@@ -111,28 +113,25 @@ if(getUser.admin){
   
   .close-icon {
     cursor: pointer;
-    margin-top: 10px;
-    font-size: 20px;
+    margin-top: 1rem;
+    font-size: 2rem;
     float: right;
     margin-right: 25px;
     color: #fff;
-
+    padding: 0.5%;
   }
 
   .close-icon:hover{
     display: inline-block;
-    background-color: #e0cd39;
+    background-color: #be270c93;
     border-radius: 50%;
-    color: red;
-    font-size: 30px;
-
   }
 
   img{
-    height: 10vh;
+    height: 6vh;
     float: left;
     margin-left: 5%;
-    margin-top: -5px;
+    margin-top: 1.5rem;
   }
 
   .horizontal-nav {
