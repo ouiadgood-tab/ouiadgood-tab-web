@@ -21,7 +21,7 @@
               <img src="../assets/duckDuckGo.png" alt="DuckDuckGo">
             </a>
             <a href="#" @click="changeSearchEngine('ecosia')">
-              <img src="../assets/Ecosia.png" alt="Ecosia">
+              <img src="../assets/Ecosia.webp" alt="Ecosia">
             </a>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default {
           searchEngineAlt = 'DuckDuckGo';
           break;
           case 'ecosia':
-          searchEngineImage =require('../assets/Ecosia.png');
+          searchEngineImage =require('../assets/Ecosia.webp');
           searchEngineAlt = 'Ecosia';
           break;
         default:
@@ -92,7 +92,7 @@ export default {
           return 'https://www.bing.com/search?q=';
         case require('../assets/duckDuckGo.png'):
           return 'https://duckduckgo.com/?q=';
-          case require('../assets/Ecosia.png'):
+          case require('../assets/Ecosia.webp'):
           return 'https://www.ecosia.org/search?q=';
         default: // Google as default search engine
           return 'https://www.google.com/search?q=';
