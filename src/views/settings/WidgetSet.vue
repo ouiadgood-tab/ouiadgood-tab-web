@@ -157,18 +157,21 @@ export default {
 }
 
 .fa-list{
-    margin-left: -16%;
+    margin-left: -18%;
     margin-top: 5%;
    
 }
 
 .fa-note-sticky{
-    margin-left: -11%;
+    margin-left: -13%;
     margin-top: 5%;
 }
 .fa-bookmark{
-  margin-left: -20%  !important;
+  margin-left: -23%  !important;
   margin-top: 5.5% !important;
+}
+.fa-clock{
+  margin-left: -14% !important;
 }
 .icon-wid{
     margin-left: -11%;
