@@ -98,10 +98,16 @@ export default {
                 axios.post("https://ouiadgood.onrender.com/users/add", user)
                     .then(response => {
                     // Save the request in LocalStorage
-                    console.log(response.data)
+                   
                     localStorage.setItem("loginRequest", JSON.stringify(response.data));
                     // Redirect to /home
-                    this.$router.push("/home");
+                    if(response.data.admin == true){
+                      console.log(response.data.admin, "asa")
+                      this.$router.push("/setting/Admin")
+                    }else{
+                      this.$router.push("/home");
+
+                    }
                 })
                     .catch(error => {
                     console.error(error);
