@@ -11,7 +11,15 @@ export default {
   data() {
     return {
       formattedDate: "",
-      currentTime: ""
+      currentTime: "",
+      days: {
+        en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        fr: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
+      },
+      months: {
+        en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        fr: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+      }
     };
   },
   mounted() {
@@ -20,9 +28,12 @@ export default {
   },
   methods: {
     updateTimeAndDate() {
-      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       const now = new Date();
-      const day = days[now.getDay()];
+      const dayIndex = now.getDay();
+      const monthIndex = now.getMonth();
+      const day = this.getTranslatedDay(dayIndex);
+      const month = this.getTranslatedMonth(monthIndex);
+
       const date = now.getDate();
       const year = now.getFullYear();
       const options = {
@@ -34,9 +45,17 @@ export default {
         options.second = "2-digit"; // Include seconds if showSeconds is true
       }
       const time = now.toLocaleTimeString([], options);
-      this.formattedDate = `${day} ${date}, ${year}`;
+      this.formattedDate = `${day}, ${month} ${date}, ${year}`;
       this.currentTime = time;
-    }
+    },
+    getTranslatedDay(dayIndex) {
+      const locale = this.locale === 'fr' ? 'fr' : 'en';
+      return this.days[locale][dayIndex];
+    },
+    getTranslatedMonth(monthIndex) {
+      const locale = this.locale === 'fr' ? 'fr' : 'en';
+      return this.months[locale][monthIndex];
+    },
   },
   computed: {
     use24HourFormat() {
@@ -44,6 +63,9 @@ export default {
     },
     showSeconds() {
       return localStorage.getItem('showSeconds') === 'true';
+    },
+    locale() {
+      return localStorage.getItem('locale') || 'en';
     }
   }
 };
