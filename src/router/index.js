@@ -85,20 +85,14 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/home'
+  },
+  {
+    path: '/setting/Admin',
+    name: 'Admin',
+    component: AdminView,
+    meta: { requiresAuth: true, requiresAdmin:true },
   }
 ]
-
-const getUser = JSON.parse(localStorage.getItem("loginRequest") || '{}')
-if(getUser.admin){
-  routes.push(
-    {
-      path: '/setting/Admin',
-      name: 'Admin',
-      component: AdminView,
-      meta: { requiresAuth: true },
-    }
-  )
-}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -110,10 +104,20 @@ const isAuthenticated = () =>{
   const storedLogin = localStorage.getItem('loginRequest');
   
   // Check if both email and password are present in local storage
-  return storedLogin;
+  return JSON.parse(storedLogin || '{}');
 }
 
 router.beforeEach((to, from, next) => {
+  console.log()
+    if(to.meta.requiresAdmin && isAuthenticated().admin == false){
+      return new Promise((resolve) => {
+        resolve(
+          next({
+            path: '/',
+          })
+        );
+      });
+    }
   if (to.meta.requiresAuth && !isAuthenticated()) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
