@@ -2,8 +2,10 @@
   <div class="container">
     <h1>Admin</h1>
     <div class="setPos">
-      <a class="router" href="/setting/Admin">Create Charity</a>
-      <a class="router" href="/setting/Donate">Edit Charity</a>
+      <div class="links">
+        <a class="router" href="/setting/Admin">Create Charity</a>
+      <a class="router me" id="me" href="/setting/Donate">Edit Charity</a>
+      </div> <br>
       <button @click="logoutUser">logout</button>
     </div>
     <div class="admin">
@@ -76,6 +78,23 @@ export default {
 </script>
 
 <style scoped>
+#me{
+  background: tomato;
+}
+.router{
+  color: #fff;
+  font-size: 20px;
+  background: #000;
+
+  padding: 10px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+}
+.links{
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
 input,
 button {
   display: inline-block;
