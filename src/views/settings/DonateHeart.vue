@@ -13,7 +13,9 @@
         data-id="charity._id"
         class="card"
       >
-        <a href="#"><img :src="charity.image" class="imgDonate" /></a>
+        <a :href="charity.url">
+          <img :src="charity.image" class="imgDonate" />
+        </a>
         <h1
           class="ch-name"
           :contenteditable="isEditing.id == charity._id"
@@ -220,6 +222,7 @@ export default {
             let base64 = 'data:image/jpeg;base64,';
             return {
               name: chh.name,
+              url:chh.url,
               about: chh.about,
               _id: chh._id,
               image: base64 + arrayBufferToBase64(chh.image.data.data),

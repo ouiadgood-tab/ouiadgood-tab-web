@@ -1,21 +1,16 @@
 <template>
   <div class="container">
     <h1>Admin</h1>
-    <div class="setPos">
-      <div class="links">
-        <a class="router" href="/setting/Admin">Create Charity</a>
-      <a class="router me" id="me" href="/setting/Donate">Edit Charity</a>
-      </div> <br>
-      <button @click="logoutUser">logout</button>
-    </div>
+    <AdminHeader />
     <div class="admin">
       <h1>Create Charity</h1>
-      <div class="">
+      <div class="inputs">
         <input v-model="name" req name="name" placeholder="Create Charity" />
         <input v-model="about" name="about" placeholder="About Charity" />
+        <input v-model="url" name="url" placeholder="Charity Link" />
         <input type="file" class="image-upload" name="image" placeholder="" />
         <br />
-        <button @click="create">Create</button>
+        <button class="create-button" @click="create">Create</button>
       </div>
     </div>
   </div>
@@ -23,57 +18,52 @@
 
 <script>
 // import SettingNav from "./SettingNav.vue";
+import AdminHeader from "@/components/AdminHeader.vue";
 import axios from "axios";
-import { googleLogout } from "vue3-google-login"
 export default {
-  name: "AdminView",
-  // components: { SettingNav },   
-  data() {
-    return {
-      name: "",
-      about: "",
-    };
-  },
-  methods: {
-    logoutUser() {
-      // Delete local storage data
-      localStorage.removeItem("loginRequest");
-    
-      // Redirect to /login
-      // this.$router.push('/login');
-      window.location.replace("/login");
-      googleLogout()
+    name: "AdminView",
+    // components: { SettingNav },   
+    data() {
+        return {
+            name: "",
+            about: "",
+            url: ""
+        };
     },
-    create() {
-      const imageFile = document.querySelector('.image-upload').files[0];
-      console.log(imageFile)
-      const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('about', this.about);
-    formData.append('image', imageFile || null);
-      const pattern = /^$|^.{0,2}$/;
-      if (pattern.test(this.name) || pattern.test(this.about)) {
-        return alert("Length too Short");
-      }
-      // Make a POST request to the API endpoint
-      axios
-        .post("https://ouiadgood.onrender.com/charity/add",formData,{
-          headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Created Successfully");
-            this.name = "";
-            this.about = "";
-          }
-        })
-        .catch((err) => {
-         console.log(err)
-        });
+    methods: {
+        create() {
+            const imageFile = document.querySelector(".image-upload").files[0];
+            console.log(imageFile);
+            const formData = new FormData();
+            formData.append("name", this.name);
+            formData.append("about", this.about);
+            formData.append("url", this.url);
+            formData.append("image", imageFile || null);
+            const pattern = /^$|^.{0,2}$/;
+            if (pattern.test(this.name) || pattern.test(this.url) || pattern.test(this.about)) {
+                return alert("Length too Short");
+            }
+            // Make a POST request to the API endpoint
+            axios
+                .post("https://ouiadgood.onrender.com/charity/add", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Accept": "application/json"
+                },
+            })
+                .then((response) => {
+                if (response.status == 200) {
+                    alert("Created Successfully");
+                    this.name = "";
+                    this.about = "";
+                }
+            })
+                .catch((err) => {
+                console.log(err);
+            });
+        },
     },
-  },
+    components: { AdminHeader }
 };
 </script>
 
@@ -81,9 +71,29 @@ export default {
 #me{
   background: tomato;
 }
+
+.create-button{
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logout-btn{
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+}
+
+.inputs{
+  display:flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+}
 .router{
   color: #fff;
-  font-size: 20px;
+  font-size: 17px;
   background: #000;
 
   padding: 10px 20px;
@@ -100,6 +110,8 @@ button {
   display: inline-block;
   margin: 10px;
   padding: 20px;
+  border: 1px solid #00000029;
+  border-radius: 10px;
 }
 
 </style>

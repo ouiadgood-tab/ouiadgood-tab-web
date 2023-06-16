@@ -7,7 +7,7 @@
     </div>
 
     <div v-show="admin">
-      <AdminNav />
+    <AdminHeader />
     </div>
 
     <DonateHeart :class="!admin?'statsDown': '' " />
@@ -15,13 +15,14 @@
 </template>
 
 <script>
+import AdminHeader from "@/components/AdminHeader.vue";
 import DonateHeart from "./DonateHeart.vue";
 import SettingNav from "./SettingNav.vue";
-import AdminNav from "@/components/AdminNav.vue";
+// import AdminNav from "@/components/AdminNav.vue";
 import { googleLogout } from "vue3-google-login"
 
 export default {
-  components: { SettingNav, DonateHeart, AdminNav },
+  components: { SettingNav, DonateHeart, AdminHeader },
   data() {
     return {
       admin: false,

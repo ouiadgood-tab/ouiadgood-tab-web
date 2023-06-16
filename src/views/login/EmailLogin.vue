@@ -130,6 +130,7 @@ export default {
   font-size: 2rem;
   transition: all 0.3s ease;
 }
+ 
 .loginLogo{
   width: 30px;
   height: 30px;
@@ -199,8 +200,8 @@ export default {
 .input {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 5px;
-  width: 100%;
+  padding: 15px 5px !important;
+  width: 90%;
 }
 
 .help {
