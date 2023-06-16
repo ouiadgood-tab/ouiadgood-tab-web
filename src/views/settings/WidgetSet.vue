@@ -4,20 +4,20 @@
             <h3 class="mainText">{{ translatedWidgetContainer.bookmark }}</h3>
             <i class="fa-sharp fa-regular fa-bookmark"></i>
             <div class="switchFlex book-flex">
-                    <label class="switch" >
-                    <input type="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState"> 
-                    <span class="slider" :class="{ checked: bookmarkEnabled }"></span>
-                    </label>
-                </div>
+              <label class="switch">
+              <input type="checkbox" class="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState">
+              <div class="slider" :class="{ checked: bookmarkEnabled }"></div>
+              </label>
+            </div>
         </div> 
         <div class="head">
             <h3 class="mainText">{{ translatedWidgetContainer.note }}</h3>
             <i class="fa-sharp fa-regular fa-note-sticky"></i>
             <div class="switchFlex">
-                    <label class="switch" >
-                    <input type="checkbox" v-model="notesEnabled" @change="saveNotesState"> 
-                    <span class="slider" :class="{ checked: notesEnabled }"></span>
-                    </label>
+              <label class="switch">
+              <input type="checkbox" class="checkbox" v-model="notesEnabled" @change="saveNotesState">
+              <div class="slider" :class="{ checked: notesEnabled }"></div>
+              </label>
                 </div>
         </div>
         <div class="head">
@@ -25,8 +25,8 @@
             <i class="fa-solid fa-list"></i>
             <div class="switchFlex">
                     <label class="switch" >
-                    <input type="checkbox" v-model="todoListEnabled" @change="saveTodoListState"> 
-                    <span class="slider" :class="{ checked: todoListEnabled }"></span>
+                    <input type="checkbox" class="checkbox" v-model="todoListEnabled" @change="saveTodoListState"> 
+                    <div class="slider" :class="{ checked: todoListEnabled }"></div>
                     </label>
                 </div>
         </div>
@@ -35,8 +35,8 @@
             <i class="fa-regular fa-clock icon-wid"></i>
             <div class="switchFlex">
                     <label class="switch" >
-                    <input type="checkbox" v-model="clockEnabled" @change="saveClockState"> 
-                    <span class="slider" :class="{ checked: clockEnabled }"></span>
+                    <input type="checkbox" class="checkbox" v-model="clockEnabled" @change="saveClockState"> 
+                    <div class="slider" :class="{ checked: clockEnabled }"></div>
                     </label>
                 </div>
                 <div >
@@ -44,8 +44,8 @@
                         <h3 class="extraText textFlex">{{ translatedWidgetContainer.format }}</h3>
                         <div class="switchFlex2">
                             <label class="switch2" >
-                                <input type="checkbox" v-model="use24HourFormat" @change="saveUse24HourFormat">
-                                <span class="slider" :class="{ checked: use24HourFormat }"></span>
+                                <input type="checkbox" class="checkbox" v-model="use24HourFormat" @change="saveUse24HourFormat">
+                                <div class="slider" :class="{ checked: use24HourFormat }"></div>
                             </label>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="switchFlex2 extraSwitch">
                             <label class="switch2" >
                                 <input type="checkbox" v-model="showSeconds" @change="saveShowSeconds">
-                                <span class="slider" :class="{ checked: showSeconds }"></span>
+                                <div class="slider" :class="{ checked: showSeconds }"></div>
                             </label>
                         </div>
                     </div>
@@ -210,54 +210,47 @@ export default {
 }
 
 /* The switch - the box around the slider */
-.switch {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 2em;
+.checkbox {
+  display: none;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
 .slider {
-  position: absolute;
+  width: 60px;
+  height: 30px;
+  background-color: lightgray;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 4px solid transparent;
+  transition: .3s;
+  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: .4s;
-  border-radius: 5px;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4em;
-  width: 0.1em;
-  border-radius: 0px;
-  left: 0.3em;
-  bottom: 0.3em;
-  background-color: white;
-  transition: .4s;
+.slider::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(-30px);
+  border-radius: 20px;
+  transition: .3s;
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-input:checked + .slider {
-  background-color: #03741f;
-  box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
+.checkbox:checked ~ .slider::before {
+  transform: translateX(30px);
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-input:checked + .slider:before {
-  transform: translateX(2.8em) rotate(360deg);
+.checkbox:checked ~ .slider {
+  background-color: #2196F3;
+}
+
+.checkbox:active ~ .slider::before {
+  transform: translate(0);
 }
 
 /* Switch 2 styling*/
