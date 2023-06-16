@@ -26,12 +26,12 @@
     >
       <i class="fa-solid fa-display icon"></i>
       <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
-       <!-- <a href="/new" target="_blank"> -->
+       <a href="/new" target="_blank">
         <div>
           <h3 class="info">{{ translatedDropDownContainer.videoTitle }}</h3>
           <p class="info">{{ translatedDropDownContainer.videSub }}</p>
         </div>
-       <!-- </a> -->
+       </a>
       </ul>
     </ul>
     <ul
@@ -290,6 +290,10 @@ export default {
 </script>
 
 <style scoped>
+
+a[href="/new"]{
+  text-decoration: none;
+}
 .dropdowns {
   display: flex;
   justify-content: right;
