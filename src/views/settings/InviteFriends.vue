@@ -14,7 +14,7 @@
                 <span>350</span>
                 <p>{{ translatedInviteContainer.extra }}</p>
             </div>
-             <ReferFriend/>
+            <!-- <ReferFriend/> -->
         </div>
         <div class="head">
             <div class="grayOutMain">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
- import ReferFriend from './ReferFriend.vue';
+// import ReferFriend from './ReferFriend.vue';
 
 export default {
     name: "InviteFriends",
@@ -75,7 +75,7 @@ export default {
             return translations;
         },
     },
-     components: { ReferFriend }
+    // components: { ReferFriend }
 };
 </script>
 
@@ -148,8 +148,8 @@ export default {
 
 .linkText{
     color: #020202 !important ;
-    width: 500px;
-  min-height: 150px;
+    width: 50vh;
+    min-height: 150px;
 }
 
 .linkText p{
