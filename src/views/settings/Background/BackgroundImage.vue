@@ -129,11 +129,11 @@ created() {
     background-color: #fff;
   padding: 20px 150px;
   color: #333;
-  width: 122.5vh;
-  height: 30vh;
+  width: 57.7%;
+  height: 30%;
   margin-left: 18.59%;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.3);
 }
 
 .mainText{

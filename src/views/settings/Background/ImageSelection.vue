@@ -107,21 +107,20 @@
     cursor: pointer;
   }
   .moveDiv{
-    margin-left: 18.2em;
-    margin-top: -4em;
+    margin-left: 18.6%;
+    margin-top: -1.5%;
     background-color:#fff;
     padding-right: -10%;
     border-top: none;
     border-left: 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    width: 77%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   .container form {
   margin-top: -3em;
   cursor: pointer;
   
 }
-
-
 
 .container  label input{
   width: 1.5em;
