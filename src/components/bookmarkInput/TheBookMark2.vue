@@ -2,16 +2,18 @@
     <div class="bookMark-container">
       <div class="form-div">
         <div class="closeIcon">
-          <i class="fa-solid fa-check" @click="addBookmark"></i>
-          <i class="fa-solid fa-times" @click="clearInputs"></i>
         </div>
         <div class="input-wrapper">
-          <label for="name">{{translatedBookmark.inputTitle}}</label>
+          <label for="name" class="title">{{translatedBookmark.inputTitle}}</label>
           <input type="text" id="name" v-model="name" />
         </div>
         <div class="input-wrapper">
-          <label for="url">{{ translatedBookmark.inputUrl }}</label>
+          <label for="url" class="title">{{ translatedBookmark.inputUrl }}</label>
           <input type="text" id="url" v-model="url" :style="{ borderColor: isUrlValid ? '' : 'red' }" />
+        </div>
+        <div class="btn">
+          <button @click="addBookmark">Enter</button>
+          <button @click="closeBookmark">Cancel</button>
         </div>
       </div>
     </div>
@@ -19,7 +21,7 @@
   
   <script>
   export default {
-    name: "TheBookMark",
+    name: "TheBookMark2",
     data() {
       return {
         showForm: false,
@@ -63,18 +65,21 @@
       // Prepend "https://" if it's not already present
       url = `https://${url}`;
     }
-    const bookmark = {
+    const bookmark2 = {
       name: this.name,
       url: url,
     };
-    let bookmarks = localStorage.getItem("bookmarks");
-    bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
-    bookmarks.push(bookmark);
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
+    // let bookmarks5 = localStorage.getItem("bookmarks5");
+    // bookmarks5 = bookmarks5 ? JSON.parse(bookmarks5) : [];
+    // bookmarks5.push(bookmark);
+    localStorage.setItem("bookmarks2", JSON.stringify(bookmark2));
+  
     this.clearInputs();
     window.location.reload(); // Reload the page
   }
+    },
+    closeBookmark() {
+      this.$emit('close-bookmark'); // Close TheBookMark component
     },
     clearInputs() {
       this.name = "";
@@ -88,27 +93,13 @@
   .bookMark-container {
     position: relative;
   }
-  .pink-div {
-    background-color: #19c5d1;
-    width: 130px;
-    height: 40px;
-    display: flex;
-    border-radius: 10px ;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    margin-top: 20px;
-    margin-left: 30px;
-    cursor: pointer;
-    z-index: 2;
-  }
   .form-div {
-    background-color: #13afc02f;
-    width: 200px;
-    height: 160px;
+    background-color: #13afc088;
+    width: 25rem;
+    height: 13rem;
     position: absolute;
-    top: 40px;
-    left: 20px;
+    margin-top: -7rem;
+    left: -2.5rem;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -136,6 +127,10 @@
   .input-wrapper {
     margin-bottom: 20px;
   }
+  .title{
+    font-size: 1rem;
+    margin-left: -18rem;
+  }
   label {
     display: block;
     margin-bottom: 5px;
@@ -157,11 +152,17 @@
   }
   button {
     height: 30px;
+    width: 10rem;
     border-radius: 5px;
     border: none;
     padding: 5px 10px;
     margin-left: 10px;
     cursor: pointer;
+  
+  }
+  .btn{
+    display: flex;
+    justify-content: center;
   }
   .save-btn {
     background-color: #19c5d1;

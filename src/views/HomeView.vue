@@ -4,8 +4,8 @@
     <drop-down />
     <note-widget v-if="notesEnabled" />
     <TodoList v-if="todoListEnabled"/>
-    <BookMark v-if="bookmarkEnabled"/>
     <image-logo />
+    <BookMark v-if="bookmarkEnabled"/>
     <date-time v-if="clockEnabled"/>
     <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
   </div>

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="head">
-            <h2 class="mainText">{{ translatedWidgetContainer.bookmark }}</h2>
-            <i class="fa-sharp fa-regular fa-bookmark icon-wid"></i>
+            <h3 class="mainText">{{ translatedWidgetContainer.bookmark }}</h3>
+            <i class="fa-sharp fa-regular fa-bookmark"></i>
             <div class="switchFlex book-flex">
                     <label class="switch" >
                     <input type="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState"> 
@@ -138,7 +138,7 @@ export default {
     background-color: #fff;
   padding: 20px 150px;
   color: rgb(5, 169, 219);
-  width: 80vh;
+  width: 90vh;
   height: 12vh;
   margin-left: 28%;
   border: 1px solid #ccc;
@@ -149,8 +149,8 @@ export default {
     background-color: #fff;
   padding: 20px 150px;
   color: rgb(5, 169, 219);
-  width: 80vh;
-  height: 2-vh;
+  width: 90vh;
+  height: 26vh;
   margin-left: 28%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -159,7 +159,6 @@ export default {
 .fa-list{
     margin-left: -18%;
     margin-top: 5%;
-   
 }
 
 .fa-note-sticky{
@@ -167,21 +166,17 @@ export default {
     margin-top: 5%;
 }
 .fa-bookmark{
-  margin-left: -23%  !important;
-  margin-top: 5.5% !important;
+  margin-left: -18%  !important;
+  margin-top: 5% !important;
 }
 .fa-clock{
-  margin-left: -14% !important;
-}
-.icon-wid{
-    margin-left: -11%;
-    margin-top:5%;
+  margin-left: -13% !important;
+  margin-top: 5%;
 }
 .mainText{
     margin-left: -13%;
     margin-top: 4.5%;
    padding-left: 10px;
-
 }
 .extra{
     margin-left: -120vh !important;

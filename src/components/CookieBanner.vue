@@ -63,7 +63,7 @@ export default{
     justify-self: center;
     align-self: center;
     margin: auto;
-    margin-top: 3.76%;
+    margin-top: -1%;
     color: #000;
     font-size: 1.3em;
     text-align: center;

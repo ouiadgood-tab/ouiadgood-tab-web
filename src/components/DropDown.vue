@@ -68,10 +68,10 @@
             <p class="leftSide">{{ translatedDropDownContainer.openTab }}</p>
             <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
           </div>
-          <div class="heartDrop">
+          <!--<div class="heartDrop">
             <p class="leftSide1">{{ translatedDropDownContainer.recruit }}</p>
             <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
-          </div>
+          </div>-->
         </div>
       </ul>
     </ul>

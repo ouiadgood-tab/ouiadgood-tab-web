@@ -2,7 +2,9 @@
   <div class="search-container">
     <form class="search-form" @submit.prevent="submitForm">
       <div class="input-container">
-        <input type="text" v-model="searchQuery" :placeholder="translatedSearchContainer.placeholder">
+        <input type="text" v-model="searchQuery"
+         :placeholder="translatedSearchContainer.placeholder"
+         @focus="clearPlaceholder">
         <button type="submit" class="search-icon">
           <i class="fa fa-search"></i>
        </button>
@@ -43,9 +45,13 @@ export default {
       searchEngineAlt: 'Google', // set the default search engine alt text
       showDropdown: false, // keep track of dropdown visibility
       locale: localStorage.getItem('locale') || 'en',
+      placeholderText: '',
     }
   },
   methods: {
+    clearPlaceholder() {
+      this.placeholderText = this.translatedSearchContainer.placeholder;
+    },
     submitForm() {
       const searchEngineUrl = this.getSearchEngineUrl();
       window.location.href = searchEngineUrl + encodeURIComponent(this.searchQuery);
@@ -119,21 +125,13 @@ export default {
   },
   computed: {
     translatedSearchContainer() {
-      let translations;
+      let placeholder = '';
       if (this.locale === 'en') {
-        translations = {
-          placeholder: "Select your favorite Search Engine and type your search query",
-        };
+        placeholder = "Select your favorite Search Engine and type your search query";
       } else if (this.locale === 'fr') {
-        translations = {
-          placeholder: "Sélectionnez votre moteur de recherche préféré et tapez votre requête de recherche",
-        };
-      } else {
-        translations = {
-          placeholder: '',
-        };
+        placeholder = "Sélectionnez votre moteur de recherche préféré et tapez votre requête de recherche";
       }
-      return translations;
+      return { placeholder };
     },
   },
 }
@@ -155,7 +153,13 @@ export default {
 input::placeholder{
   font-size: 15px;
 }
+search-input::placeholder {
+  color: transparent;
+}
 
+.search-input:focus::placeholder {
+  color: initial;
+}
 input[type="text"] {
   width: 100%;
   height: 100%;
