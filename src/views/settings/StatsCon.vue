@@ -52,7 +52,7 @@ export default{
     name: 'StatsCon',
     data() {
     return {
-      daysLogged: '',
+      daysLogged: 1,
       totalTab: '',
       maxTab: '',
       maxHeartDate: '',
@@ -74,7 +74,12 @@ export default{
 
     // Retrieve the stored value from the local storage
     const daysLogged = localStorage.getItem('daysLogged') || 0;
-    this.daysLogged = parseInt(daysLogged);
+    if (daysLogged) {
+      this.daysLogged = parseInt(daysLogged);
+    } else {
+      // Set initial value for 'daysLogged' in the local storage
+      localStorage.setItem('daysLogged', this.daysLogged.toString());
+    }
 
 
     // Retrieve the stored value from the local storage
