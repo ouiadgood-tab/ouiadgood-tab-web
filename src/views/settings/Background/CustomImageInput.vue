@@ -75,11 +75,12 @@
   h3{
     color:#333;
     font-size: 15px;
-    margin-left:-10em ;
+    margin-left:-12em ;
   }
   
   form {
     margin-top: 10px;
+    margin-left: 6%;
   }
   
 

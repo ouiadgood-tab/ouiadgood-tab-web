@@ -184,7 +184,7 @@ export default {
 }
 .extra2{
     margin-left: -120vh !important;
-    margin-top: 10vh !important;
+    margin-top: 6vh !important;
 }
 .extraText{
     margin-bottom: -12vh;
@@ -193,7 +193,7 @@ export default {
 }
 .extraText2{
     margin-bottom: -15vh;
-    margin-top: 3vh !important;
+    margin-top: 1vh !important;
 }
 
 .switchFlex{
