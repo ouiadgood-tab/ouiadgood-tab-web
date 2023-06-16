@@ -1,6 +1,6 @@
 <template>
 <div class="centerDiv">
-<img alt="OUI AD GOOD logo" src="../assets/oag.png"> 
+<img alt="OUI AD GOOD logo" src="../assets/oag1.png"> 
 <SearchWidget/>
 </div>
 </template>
