@@ -7,7 +7,6 @@
 </template>
 
 <script>
-if(window.location.pathname == "/new") document.body.style.background="#000"
 import DateTime from '@/components/DateTime.vue';
 import DropDown from '@/components/DropDown.vue';
 import NoteWidget from '@/components/NoteWidget.vue';

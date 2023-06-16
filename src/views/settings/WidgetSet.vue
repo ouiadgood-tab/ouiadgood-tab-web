@@ -1,72 +1,67 @@
 <template>
     <div>
+     
         <div class="head">
-            <h3 class="mainText">{{ translatedWidgetContainer.bookmark }}</h3>
-            <i class="fa-sharp fa-regular fa-bookmark"></i>
-            <div class="switchFlex book-flex">
-              <label class="switch">
-              <input type="checkbox" class="checkbox" v-model="bookmarkEnabled" @change="saveBookmarkState">
-              <div class="slider" :class="{ checked: bookmarkEnabled }"></div>
-              </label>
-            </div>
+        <div class="title">
+          <h2 class="mainText">{{ translatedWidgetContainer.bookmark }}</h2>
+          <i class="fa-sharp fa-regular fa-bookmark icon-wid"></i>
+        </div>
+          <ToggleSwitchVue :toggleCallback="saveBookmarkState" :initialState="bookmarkEnabled" />
         </div> 
         <div class="head">
-            <h3 class="mainText">{{ translatedWidgetContainer.note }}</h3>
-            <i class="fa-sharp fa-regular fa-note-sticky"></i>
-            <div class="switchFlex">
-              <label class="switch">
-              <input type="checkbox" class="checkbox" v-model="notesEnabled" @change="saveNotesState">
-              <div class="slider" :class="{ checked: notesEnabled }"></div>
-              </label>
-                </div>
+         <div class="title">
+          <h3 class="mainText">{{ translatedWidgetContainer.note }}</h3>
+          <i class="fa-sharp fa-regular fa-note-sticky"></i>
+         </div>
+            <ToggleSwitchVue :toggleCallback="saveNotesState" :initialState="notesEnabled" />
         </div>
         <div class="head">
-            <h3 class="mainText"> {{ translatedWidgetContainer.todoList }}</h3>
-            <i class="fa-solid fa-list"></i>
-            <div class="switchFlex">
-                    <label class="switch" >
-                    <input type="checkbox" class="checkbox" v-model="todoListEnabled" @change="saveTodoListState"> 
-                    <div class="slider" :class="{ checked: todoListEnabled }"></div>
-                    </label>
-                </div>
+         <div class="title">
+          <h3 class="mainText"> {{ translatedWidgetContainer.todoList }}</h3>
+          <i class="fa-solid fa-list"></i>
+         </div>
+            <ToggleSwitchVue :toggleCallback="saveTodoListState" :initialState="todoListEnabled" />
         </div>
-        <div class="extraHead">
+
+
+        <div class="head">
+          <div class="title">
             <h3 class="mainText">{{ translatedWidgetContainer.clock }}</h3>
-            <i class="fa-regular fa-clock icon-wid"></i>
-            <div class="switchFlex">
-                    <label class="switch" >
-                    <input type="checkbox" class="checkbox" v-model="clockEnabled" @change="saveClockState"> 
-                    <div class="slider" :class="{ checked: clockEnabled }"></div>
-                    </label>
-                </div>
-                <div >
-                    <div class="extra">
-                        <h3 class="extraText textFlex">{{ translatedWidgetContainer.format }}</h3>
-                        <div class="switchFlex2">
-                            <label class="switch2" >
-                                <input type="checkbox" class="checkbox" v-model="use24HourFormat" @change="saveUse24HourFormat">
-                                <div class="slider" :class="{ checked: use24HourFormat }"></div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="extra2">
-                        <h3 class="extraText2 textFlex2">{{ translatedWidgetContainer.seconds }}</h3>
-                        <div class="switchFlex2 extraSwitch">
-                            <label class="switch2" >
-                                <input type="checkbox" class="checkbox" v-model="showSeconds" @change="saveShowSeconds">
-                                <div class="slider" :class="{ checked: showSeconds }"></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+          <i class="fa-regular fa-clock icon-wid"></i>
+          </div>
+          <ToggleSwitchVue :toggleCallback="saveClockState" :initialState="clockEnabled" />
         </div>
+
+
+
+
+        <div class="head">
+          <div class="title">
+            <h3 class="mainText">{{ translatedWidgetContainer.format }}</h3>
+          <i class="fa-regular fa-clock icon-wid"></i>
+          </div>
+          <ToggleSwitchVue :toggleCallback="saveUse24HourFormat" :initialState="use24HourFormat" />
+        </div>
+
+
+        <div class="head">
+          <div class="title">
+            <h3 class="mainText">{{ translatedWidgetContainer.seconds }}</h3>
+          <i class="fa-regular fa-clock icon-wid"></i>
+          </div>
+          <ToggleSwitchVue :toggleCallback="saveShowSeconds" :initialState="showSeconds" />
+        </div>
+
     </div>
 </template>
 
 <script>
-
+import ToggleSwitchVue from '@/components/ToggleSwitch.vue';
 export default {
   name: 'WidgetSet',
+  components: {
+    ToggleSwitchVue
+  },
     data() {
     return {
       notesEnabled: localStorage.getItem('notesEnabled') === 'true',
@@ -79,22 +74,28 @@ export default {
     };
   },
   methods: {
-    saveBookmarkState() {
+    saveBookmarkState(active) {
+      this.bookmarkEnabled = active
       localStorage.setItem('bookmarkEnabled', this.bookmarkEnabled);
     },
-    saveNotesState() {
+    saveNotesState(active) {
+      this.notesEnabled = active
       localStorage.setItem('notesEnabled', this.notesEnabled);
     },
-    saveTodoListState() {
+    saveTodoListState(active) {
+      this.todoListEnabled = active
       localStorage.setItem('todoListEnabled', this.todoListEnabled);
     },
-    saveClockState() {
+    saveClockState(active) {
+      this.clockEnabled = active
       localStorage.setItem('ClockEnabled', this.clockEnabled);
     },
-    saveUse24HourFormat() {
+    saveUse24HourFormat(active) {
+      this.use24HourFormat = active
       localStorage.setItem('use24HourFormat', this.use24HourFormat);
     },
-    saveShowSeconds() {
+    saveShowSeconds(active) {
+      this.showSeconds = active
       localStorage.setItem('showSeconds', this.showSeconds);
     },
   },
@@ -135,151 +136,21 @@ export default {
 <style scoped>
 .head {
     display: flex;
-    background-color: #fff;
-  padding: 20px 150px;
-  color: rgb(5, 169, 219);
-  width: 90vh;
-  height: 12vh;
-  margin-left: 28%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-.extraHead {
-    display: flex;
-    background-color: #fff;
-  padding: 20px 150px;
-  color: rgb(5, 169, 219);
-  width: 90vh;
-  height: 26vh;
-  margin-left: 28%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    justify-content: space-between;
+    align-items: center ;
+    padding: 20px 150px;
+    color: rgb(5, 169, 219);
+    width: 80vh;
+    height: 12vh;
+    margin-left: 28%;
+    border: 1px solid #ccc;
 }
 
-.fa-list{
-    margin-left: -18%;
-    margin-top: 5%;
-}
-
-.fa-note-sticky{
-    margin-left: -13%;
-    margin-top: 5%;
-}
-.fa-bookmark{
-  margin-left: -18%  !important;
-  margin-top: 5% !important;
-}
-.fa-clock{
-  margin-left: -13% !important;
-  margin-top: 5%;
-}
-.mainText{
-    margin-left: -13%;
-    margin-top: 4.5%;
-   padding-left: 10px;
-}
-.extra{
-    margin-left: -120vh !important;
-    margin-top: 10vh !important;
-}
-.extra2{
-    margin-left: -120vh !important;
-    margin-top: 6vh !important;
-}
-.extraText{
-    margin-bottom: -12vh;
-    z-index: -3;
-    display:block;
-}
-.extraText2{
-    margin-bottom: -15vh;
-    margin-top: 1vh !important;
-}
-
-.switchFlex{
-    margin-left: 100%;
-    margin-top: 4%;
-}
-.switchFlex2{
-    margin-left: 100%;
-    margin-top: -12%;
-    display:block;
-}
-.book-flex{
-  margin-left: 100%;
-}
-
-/* The switch - the box around the slider */
-.checkbox {
-  display: none;
-}
-
-.slider {
-  width: 60px;
-  height: 30px;
-  background-color: lightgray;
-  border-radius: 20px;
-  overflow: hidden;
+.title{
   display: flex;
-  align-items: center;
-  border: 4px solid transparent;
-  transition: .3s;
-  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
-  cursor: pointer;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: inherit;
+  gap:10px
 }
-
-.slider::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  transform: translateX(-30px);
-  border-radius: 20px;
-  transition: .3s;
-  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
-}
-
-.checkbox:checked ~ .slider::before {
-  transform: translateX(30px);
-  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
-}
-
-.checkbox:checked ~ .slider {
-  background-color: #2196F3;
-}
-
-.checkbox:active ~ .slider::before {
-  transform: translate(0);
-}
-
-/* Switch 2 styling*/
-.switchFlex2{
-    position: relative;
-    margin-left: 35%;
-    margin-top: 7%;
-    margin-bottom: 19px !important;
-}
-
-.extraSwitch{
-  margin-top: 9.5%;
-}
-
-
-/* The switch - the box around the slider */
-.switch2 {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 1.8em;
-}
-
-/* Hide default HTML checkbox */
-.switch2 input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
 </style>

@@ -58,8 +58,8 @@ export default {
                     this.about = "";
                 }
             })
-                .catch((err) => {
-                console.log(err);
+                .catch(() => {
+               alert("Could Not Create Charity")
             });
         },
     },
