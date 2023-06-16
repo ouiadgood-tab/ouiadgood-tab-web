@@ -179,7 +179,7 @@ span{
   text-align: center;
   padding: 20px 150px 20px 150px;
   color: rgb(5, 169, 219);
-  width: 110vh;
+  width: 51%;
   margin-left: 21%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
