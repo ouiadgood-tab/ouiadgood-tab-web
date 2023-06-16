@@ -53,7 +53,7 @@
                         <h3 class="extraText2 textFlex2">{{ translatedWidgetContainer.seconds }}</h3>
                         <div class="switchFlex2 extraSwitch">
                             <label class="switch2" >
-                                <input type="checkbox" v-model="showSeconds" @change="saveShowSeconds">
+                                <input type="checkbox" class="checkbox" v-model="showSeconds" @change="saveShowSeconds">
                                 <div class="slider" :class="{ checked: showSeconds }"></div>
                             </label>
                         </div>
@@ -202,7 +202,7 @@ export default {
 }
 .switchFlex2{
     margin-left: 100%;
-    margin-top: -14%;
+    margin-top: -12%;
     display:block;
 }
 .book-flex{
@@ -261,6 +261,9 @@ export default {
     margin-bottom: 19px !important;
 }
 
+.extraSwitch{
+  margin-top: 9.5%;
+}
 
 
 /* The switch - the box around the slider */
