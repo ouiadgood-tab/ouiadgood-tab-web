@@ -53,6 +53,7 @@ div{
   position: relative;
   width: 20px;
   height: 20px;
+  cursor: pointer;
   color: rgba(255, 255, 255, 0.795);
   transition: background-color 0.3s ease;
   font-size: 30px;

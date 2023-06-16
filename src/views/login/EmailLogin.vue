@@ -98,10 +98,16 @@ export default {
                 axios.post("https://ouiadgood.onrender.com/users/add", user)
                     .then(response => {
                     // Save the request in LocalStorage
-                    console.log(response.data)
+                   
                     localStorage.setItem("loginRequest", JSON.stringify(response.data));
                     // Redirect to /home
-                    this.$router.push("/home");
+                    if(response.data.admin == true){
+                      console.log(response.data.admin, "asa")
+                      this.$router.push("/setting/Admin")
+                    }else{
+                      this.$router.push("/home");
+
+                    }
                 })
                     .catch(error => {
                     console.error(error);
@@ -124,6 +130,7 @@ export default {
   font-size: 2rem;
   transition: all 0.3s ease;
 }
+ 
 .loginLogo{
   width: 30px;
   height: 30px;
@@ -193,8 +200,8 @@ export default {
 .input {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 5px;
-  width: 100%;
+  padding: 15px 5px !important;
+  width: 90%;
 }
 
 .help {

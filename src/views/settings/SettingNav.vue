@@ -11,8 +11,10 @@
     <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
     <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
         <p>{{ translatedSettingContainer.title2 }}</p>
+        <p v-show="admin" >
+          <router-link class="router" to="/setting/Admin" :class="{ active: isActive('/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
+        </p>
     <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">{{ translatedSettingContainer.stat }}</router-link>
-    <router-link class="router" v-if="admin" to="/setting/Admin" :class="{ active: isActive('/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
     <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">{{ translatedSettingContainer.donate }}</router-link>
     <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
     <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
@@ -69,8 +71,9 @@ export default {
      
 const getUser = JSON.parse(localStorage.getItem("loginRequest") || '{}')
 if(getUser.admin){
-  this.admin = getUser.admin
+  this.admin = getUser.admin || false
 }
+
 
     },
   methods: {
@@ -114,15 +117,19 @@ if(getUser.admin){
   .close-icon {
     cursor: pointer;
     margin-top: 1rem;
-    font-size: 2rem;
+    width:40px;
+    height: 40px;
+    font-size: 1.4rem;
     float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 25px;
     color: #fff;
     padding: 0.5%;
   }
 
   .close-icon:hover{
-    display: inline-block;
     background-color: #be270c93;
     border-radius: 50%;
   }
