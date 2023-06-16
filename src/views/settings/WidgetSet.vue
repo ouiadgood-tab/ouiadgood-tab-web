@@ -192,7 +192,7 @@ export default {
     display:block;
 }
 .extraText2{
-    margin-bottom: -12vh;
+    margin-bottom: -15vh;
     margin-top: 3vh !important;
 }
 
