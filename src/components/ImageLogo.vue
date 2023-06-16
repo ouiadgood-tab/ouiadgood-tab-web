@@ -16,10 +16,11 @@ export default{
 
 <style scoped>
 img{
-    height: 150px;
+    height: 80%;
+    width: 50%;
     margin-bottom: 5%;
-    margin-right: 7.5%;
-    margin-top: 4%;
+    margin-right: 3%;
+    margin-top: -8%;
     position: relative;
 }
 
