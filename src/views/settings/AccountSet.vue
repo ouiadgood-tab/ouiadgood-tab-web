@@ -6,8 +6,8 @@
             <div class="lanFlex switchFlex">
               <span class="en">English</span>
             <label class="switch lan">
-                <input type="checkbox" :checked="locale === 'fr'" @change="toggleLanguage">
-                <span class="slider frColor"></span>
+                <input type="checkbox" class="checkbox" :checked="locale === 'fr'" @change="toggleLanguage">
+                <div class="slider frColor"></div>
             </label>
             <span class="fr">French</span>
           </div>
@@ -24,8 +24,8 @@
                 <p class="mainText">{{ translatedAccountContainer.advance }}</p>
                 <div class="switchFlex">
                     <label class="switch" >
-                    <input type="checkbox" @click="toggleDeleteAcct"> 
-                    <span class="slider"></span>
+                    <input type="checkbox" class="checkbox" @click="toggleDeleteAcct"> 
+                    <div class="slider"></div>
                     </label>
                 </div>
                 <div class="deleteAcct" :class="{ 'show': showDeleteAcct }">
@@ -220,63 +220,50 @@ export default {
 }
 
 /* The switch - the box around the slider */
-.switch {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 2em;
+.checkbox {
+  display: none;
 }
 
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
 .slider {
-  position: absolute;
+  width: 60px;
+  height: 30px;
+  background-color: lightgray;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 4px solid transparent;
+  transition: .3s;
+  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: .4s;
-  border-radius: 5px;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4em;
-  width: 0.1em;
-  border-radius: 0px;
-  left: 0.3em;
-  bottom: 0.3em;
-  background-color: white;
-  transition: .4s;
+.slider::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(-30px);
+  border-radius: 20px;
+  transition: .3s;
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-input:checked + .slider {
-  background-color: #a10903;
-  box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
-}
-input:checked + .frColor {
-  background-color: #03833d;
+.checkbox:checked ~ .slider::before {
+  transform: translateX(30px);
+  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
 }
 
-input:checked + .slider:before {
-  transform: translateX(2.8em) rotate(360deg);
+.checkbox:checked ~ .slider {
+  background-color: #2196F3;
+}
+
+.checkbox:active ~ .slider::before {
+  transform: translate(0);
 }
 .deleteAcct {
   display: none;
-  
- 
 }
 .deleteAcct.show {
   display: flex;
@@ -285,9 +272,10 @@ input:checked + .slider:before {
   color: rgb(5, 169, 219);
   width: 110vh;
   height: 5vh;
-  margin-left: -16.5%;
+  margin-left: -18.5%;
   margin-top: 6%;
   border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 
