@@ -10,6 +10,7 @@ import AccountView from '@/views/settings/AccountView.vue'
 import WidgetView from  '@/views/settings/WidgetView.vue'
 import BackgroundImageView from '@/views/settings/BackgroundImageView.vue'
 import AdminView from '@/views/settings/Admin.vue'
+import VideoViewVue from '@/views/VideoView.vue'
 
 
 const routes = [
@@ -54,6 +55,12 @@ const routes = [
       name: 'Account',
       component: AccountView,
       meta: { requiresAuth: true },
+    },
+
+    {
+      path: '/new',
+      name: 'New',
+      component: VideoViewVue,
     },
 
     {

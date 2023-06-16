@@ -26,10 +26,12 @@
     >
       <i class="fa-solid fa-display icon"></i>
       <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
+       <!-- <a href="/new" target="_blank"> -->
         <div>
           <h3 class="info">{{ translatedDropDownContainer.videoTitle }}</h3>
           <p class="info">{{ translatedDropDownContainer.videSub }}</p>
         </div>
+       <!-- </a> -->
       </ul>
     </ul>
     <ul

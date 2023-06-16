@@ -117,15 +117,19 @@ if(getUser.admin){
   .close-icon {
     cursor: pointer;
     margin-top: 1rem;
-    font-size: 2rem;
+    width:40px;
+    height: 40px;
+    font-size: 1.4rem;
     float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 25px;
     color: #fff;
     padding: 0.5%;
   }
 
   .close-icon:hover{
-    display: inline-block;
     background-color: #be270c93;
     border-radius: 50%;
   }
