@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="head">
-            <h2 class="mainText">Background</h2>
+            <h2 class="mainText">{{ translatedBackgroundContainer.title }}</h2>
             <div class="container">
                 <form>
                     <label>

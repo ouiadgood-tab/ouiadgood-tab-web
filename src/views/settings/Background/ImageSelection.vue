@@ -1,6 +1,6 @@
 <template>
     <div class="moveDiv">
-      <h2>Select a Background Image</h2>
+      <h2>{{ translatedImageSelection.title }}</h2>
       <ul>
         <li v-for="image in images" :key="image.url" @click="selectImage(image.url)" >
           <label >
@@ -27,7 +27,8 @@
     name:'ImageSelection',
     data() {
       return {
-        selectedImages: []
+        selectedImages: [],
+        locale: localStorage.getItem('locale') || 'en',
       };
     },
     created() {
@@ -60,7 +61,51 @@
         {url: 'https://firebasestorage.googleapis.com/v0/b/oui-ad-good.appspot.com/o/Oui%20ad%20Good%2Fimage9.jpeg?alt=media&token=9c52a949-fd17-4880-bd20-1daf76d4ce4e&_gl=1*je6sgg*_ga*MTQ1NTY3MDA4NS4xNjg2MjQyMzUw*_ga_CW55HF8NVT*MTY4NjI1MDE1NS4yLjEuMTY4NjI1MTM1Ni4wLjAuMA', name: 'When the Duck Settles'},
           // Add more images as needed
         ];
-      }
+      },
+      translatedImageSelection() {
+            let translations;
+            if (this.locale === "en") {
+                translations = {
+                    title: "Select a Background Image",
+                   'Colorful sky': 'Colorful sky',
+                    'Storms Brewing': 'Storms Brewing',
+                    'NYC Sunset': 'NYC Sunset',
+                    Sunrise: 'Sunrise',
+                    Wonder: 'Wonder',
+                    Kitty: 'Kitty',
+                    'Beautiful nature': 'Beautiful nature',
+                    Sunset: 'Sunset',
+                    'grass land': 'grass land',
+                    'Reef dive': 'Reef dive',
+                    'Take a Peak': 'Take a Peak',
+                    'When the Duck Settles': 'When the Duck Settles',
+                };
+            }
+            else if (this.locale === "fr") {
+                translations = {
+                  title: "Sélectionnez une image d'arrière-plan",
+                  'Colorful sky': 'Ciel coloré',
+                    'Storms Brewing': 'Tempêtes en préparation',
+                    'NYC Sunset': 'Coucher de soleil à NYC',
+                    Sunrise: 'Lever de soleil',
+                    Wonder: 'Merveille',
+                    Kitty: 'Chaton',
+                    'Beautiful nature': 'Belle nature',
+                    Sunset: 'Coucher de soleil',
+                    'grass land': 'Prairie',
+                    'Reef dive': 'Plongée dans le récif',
+                    'Take a Peak': 'Prendre un pic',
+                    'When the Duck Settles': 'Quand le canard se pose',
+                };
+            }
+            else {
+                translations = {
+                    title: "",
+                    placeholder: "",
+                };
+            }
+            return translations;
+      },
     }
   };
   </script>
@@ -89,8 +134,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30vh; 
-  width: 48vh; 
+  height: 25vh; 
+  width: 46vh; 
   margin: 0 auto;
 
   }

@@ -2,9 +2,9 @@
       <div class="model">
         <div class="modal-content">
             <div class="linkText">
-                <p class="share">Change Username</p>
-                <input type="url" name="invite-link" class="inviteInput" placeholder="Username" v-model="newUsername"/>
-                <button class="btnTab" @click="updateUsername">Update Username</button>
+                <p class="share">{{ translatedUserName.title }}</p>
+                <input type="url" name="invite-link" class="inviteInput" :placeholder="translatedUserName.placeholder" v-model="newUsername"/>
+                <button class="btnTab" @click="updateUsername">{{ translatedUserName.button }}</button>
             </div>
         </div>
       </div>
@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       newUsername: '', // Store the new username entered by the user
+      locale: localStorage.getItem('locale') || 'en',
     };
   },
   methods: {
@@ -45,6 +46,32 @@ export default {
       window.location.reload();
     },
   },
+  computed: {
+    translatedUserName() {
+            let translations;
+            if (this.locale === "en") {
+                translations = {
+                    title: "Change Username",
+                    button: "Update Username",
+                    placeholder: "username",
+                };
+            }
+            else if (this.locale === "fr") {
+                translations = {
+                  title: "Changer le nom d'utilisateur",
+                    button: "Mise à jour",
+                    placeholder:"nom d'utilisateur",
+                };
+            }
+            else {
+                translations = {
+                    title: "",
+                    placeholder: "",
+                };
+            }
+            return translations;
+      },
+  }
 };
 </script>
 
@@ -75,7 +102,7 @@ export default {
   font-size: 19px;
 }
 .share{
-    margin-left: -47%;
+    align-self: center;
 }
 .btnTab {
   background-color: #13b0c0;

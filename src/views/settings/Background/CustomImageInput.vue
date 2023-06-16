@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="moveDiv">
-                    <h3>Set Custom Background Image</h3>
+                    <h3>{{ translatedCustomImage.title}}</h3>
             <form>
                 <div class="input-group">
-                    <input type="text" v-model="imageUrl" placeholder="Enter Image URL" @input="loadImage">
-                <button type="button" @click="clearImage">Clear</button>
+                    <input type="text" v-model="imageUrl" :placeholder="translatedCustomImage.placeholder" @input="loadImage">
+                <button type="button" @click="clearImage">{{ translatedCustomImage.button }}</button>
                 </div>
             </form>
         </div>
@@ -19,7 +19,8 @@
     data() {
       return {
         imageUrl: '',
-        canvasImage: null
+        canvasImage: null,
+        locale: localStorage.getItem('locale') || 'en',
       };
     },
     mounted() {
@@ -27,6 +28,30 @@
     if (this.imageUrl) {
       this.loadImage();
     }
+  },
+  computed: {
+    translatedCustomImage() {
+      let translations;
+      if (this.locale === 'en') {
+        translations = {
+          title:"Set Custom Background Image",
+          placeholder: 'Enter Image URL',
+          button: "Clear",
+        };
+      } else if (this.locale === 'fr') {
+        translations = {
+          title:"Définir une image d'arrière-plan personnalisée",
+          placeholder: "Entrez l'URL de l'image",
+          button: 'Claire',
+        };
+      } else {
+        translations = {
+          title: '',
+          placeholder: '',
+        };
+      }
+      return translations;
+    },
   },
     methods: {
       loadImage() {
@@ -83,6 +108,9 @@
     margin-left: 6%;
   }
   
+  h3{
+    margin-left: -6%;
+  }
 
   input {
   border: none;
