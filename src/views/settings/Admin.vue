@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <h1>Admin</h1>
+<div class="title">
+  <h1>Admin</h1>
+  <h1>Create Charity</h1>
+</div>
     <AdminHeader />
     <div class="admin">
-      <h1>Create Charity</h1>
       <div class="inputs">
         <input v-model="name" req name="name" placeholder="Create Charity" />
         <input v-model="about" name="about" placeholder="About Charity" />
@@ -68,6 +70,10 @@ export default {
 </script>
 
 <style scoped>
+.title{
+  text-align: center;
+  padding: 20px;
+}
 #me{
   background: tomato;
 }

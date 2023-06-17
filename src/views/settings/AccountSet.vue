@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div class="container">
         <div class="head">
+           <div class="title">
             <h2 class="mainText">{{ translatedAccountContainer.account }}</h2>
             <h5 class="mainText2">{{ translatedAccountContainer.lan }}</h5>
+<<<<<<< HEAD
             <div class="lanFlex switchFlex">
               <span class="en">English</span>
             <label class="switch lan">
@@ -10,49 +12,66 @@
                 <div class="slider frColor"></div>
             </label>
             <span class="fr">French</span>
+=======
+           </div>
+          <div class="lang-cont">
+            <p>English</p>
+            <ToggleSwitch :initialState="localeBool" :toggleCallback="toggleLanguage" /> 
+            <p>French</p>
+>>>>>>> 4a6052f1 (fixing:redesign)
           </div>
         </div>
+
+
         <div class="head">
-            <div class="grayOutMain">
+            <div class="title">
                 <h3 class="mainText">{{ translatedAccountContainer.username}}</h3>
                 <p class="userE">{{ username }}</p>
+              </div>
                 <div class="btnCha" @click="showUserNamePopup">{{ translatedAccountContainer.change }}</div>
-            </div>
         </div>
+        <div v-if="isUserNamePopupVisible">
+            <UserName/>
+        </div>
+        
         <div class="head">
             <div class="grayOutMain">
                 <p class="mainText">{{ translatedAccountContainer.advance }}</p>
+<<<<<<< HEAD
                 <div class="switchFlex">
                     <label class="switch" >
                     <input type="checkbox" class="checkbox" @click="toggleDeleteAcct"> 
                     <div class="slider"></div>
                     </label>
                 </div>
+=======
+                <ToggleSwitch :initialState="showDeleteAcct" :toggleCallback="toggleDeleteAcct" /> 
+>>>>>>> 4a6052f1 (fixing:redesign)
                 <div class="deleteAcct" :class="{ 'show': showDeleteAcct }">
                     <h2 class="mainText delete">{{ translatedAccountContainer.delete }}</h2>
                     <button class="btnDel" @click="deleteAccount">{{ translatedAccountContainer.deleteBtn }}</button>
                 </div>
             </div>
         </div>
-        <div v-if="isUserNamePopupVisible">
-            <UserName/>
-        </div>
     </div>
 </template>
 
 <script>
+import ToggleSwitch from '@/components/ToggleSwitch.vue';
 import UserName from  './UserName.vue';
 import axios from 'axios';
 export default {
   name: 'AccountSet',
   components: {
     UserName,
-  },
+    ToggleSwitch
+},
   data() {
     return {
       showDeleteAcct: false,
       isUserNamePopupVisible: false,
       username: '', // Store the retrieved username
+      localeBool: localStorage.getItem('locale') == "fr" ? true :false,
       locale: localStorage.getItem('locale') || 'en',
     };
   },
@@ -93,9 +112,9 @@ export default {
     this.fetchUsernameFromLocalStorage() // Fetch the username when the component is mounted
   },
   methods: {
-    toggleLanguage(event) {
-      const isChecked = event.target.checked;
-      this.locale = isChecked ? 'fr' : 'en';
+    toggleLanguage(active) {
+      this.locale = active ? 'fr' : 'en';
+      this.localeBool =active
       localStorage.setItem('locale', this.locale);
     },
     toggleDeleteAcct() {
@@ -134,30 +153,37 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  position: relative;
+}
+.lang-cont{
+  display: flex;
+  justify-content: center;
+  gap:10px;
+  font-weight: bold;
+  font-size: 12px;
+  align-items: center;
+}
 .head {
-    background-color: #fff;
-  padding: 20px 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center ;
+  padding: 40px 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  width: 90%;
   color: rgb(5, 169, 219);
-  width: 110vh;
-  height: 12vh;
-  margin-left: 21%;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .mainText{
     display: flex;
-    margin-left: -14%;
-    margin-top: 5%;
+    font-weight: bold;
+    margin: 6px 0;
+}
 
-}
-.mainText2{
-  margin-left:45%;
-  margin-top: -5%;
-}
 .btnDel{
-    margin-left: 15%;
-    margin-bottom: -5%;
+  
     font-size: 18px;
     display: inline-block;
     outline: 0;
@@ -188,8 +214,6 @@ export default {
 }
 
 .btnCha{
-    float: right;
-    margin-top: -4%;
     padding: 5px 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -199,81 +223,31 @@ export default {
     background-color: #7070708c;
     color: #fff;
 }
-.userE{
-    margin-top: -4%;
-}
 
-.switchFlex{
-    float: right;
-    margin-top: -4%;
-}
+
 .lanFlex {
   display: flex;
   align-items: center;
-  margin-right: -5%;
-  margin-top: -5%;
+
 }
 
 .lanFlex span {
-  margin-right: 10px;
   font-size: 15px;
 }
 
-/* The switch - the box around the slider */
-.checkbox {
-  display: none;
-}
 
-.slider {
-  width: 60px;
-  height: 30px;
-  background-color: lightgray;
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  border: 4px solid transparent;
-  transition: .3s;
-  box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
-  cursor: pointer;
-}
 
-.slider::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  transform: translateX(-30px);
-  border-radius: 20px;
-  transition: .3s;
-  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
-}
-
-.checkbox:checked ~ .slider::before {
-  transform: translateX(30px);
-  box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
-}
-
-.checkbox:checked ~ .slider {
-  background-color: #2196F3;
-}
-
-.checkbox:active ~ .slider::before {
-  transform: translate(0);
-}
 .deleteAcct {
   display: none;
 }
 .deleteAcct.show {
   display: flex;
+  width: 100%;
+  gap:20px;
+  margin-top: 20px;
+  justify-content: space-between;
   background-color: #fff;
-  padding: 20px 150px;
   color: rgb(5, 169, 219);
-  width: 110vh;
-  height: 5vh;
-  margin-left: -18.5%;
-  margin-top: 6%;
   border: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }

@@ -83,71 +83,45 @@
   </script>
   
   <style scoped>
+
   .container{
     background-color: #fff;
-  padding: 20px 150px;
-  color: #333;
-  width: 122.5vh;
-  height: 48vh;
-  margin-left: 18.59%;
-  border-top: none;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 27px;
+    color: #333;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    margin: 20px;
+    position: relative;
+    border: 1px solid #ccc;
   }
   .moveDiv{
-    margin-left: -40em;
-  }
-  h3{
-    color:#333;
-    font-size: 15px;
-    margin-left:-12em ;
-  }
-  
-  form {
-    margin-top: 10px;
-    margin-left: 6%;
-  }
-  
-  h3{
-    margin-left: -6%;
+    padding: 10px 0;
   }
 
-  input {
-  border: none;
-  border-bottom: 1px solid #ccc;
-  font-size: 18px;
-  padding: 5px;
-  margin-top: 5px;
-  width: 30%;
-  box-sizing: border-box;
-}
-
-input:focus{
-    outline: none;
-  border-bottom-color: #ccc;
-  font-size: 19px;
-}
- 
-  
-  button {
-    background-color: #13b0c0;
-  color: #fff;
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  form{
+    margin: 10px 0;
   }
-  
+
+  input{
+    border: 1px solid #eee;
+    padding: 10px;
+    margin:0 10px
+  }
+  button{
+    padding: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
   canvas {
     background-image: url(./apply.jpg); /* Replace 'default-image.jpg' with your desired default image */
     background-size: cover;
     width: 500px;
     height: 300px;
-    float: right;
-    margin-top: -6%;
   }
 
 

@@ -1,27 +1,17 @@
 <template>
-    <div>
-        <div class="setPos"> 
-            <SettingNav/>
-        </div >
-        <AccountSet class="account"/>
-    </div>
+  <SettingNav>
+    <AccountSet class="account" />
+  </SettingNav>
 </template>
 
 <script>
-import AccountSet from './AccountSet.vue';
-import SettingNav from './SettingNav.vue';
+import AccountSet from "./AccountSet.vue";
+import SettingNav from "./SettingNav.vue";
 
-
-export default{
-    components: { SettingNav, AccountSet }
-}
+export default {
+  components: { SettingNav, AccountSet },
+};
 </script>
 
 <style scoped>
-.setPos{
-    position: static;
-}
-.account{
-    margin-top: -45%;
-}
 </style>

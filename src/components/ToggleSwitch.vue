@@ -1,5 +1,5 @@
 <template>
-    <div class="toggle-switch" @click="toggleSwitch">
+    <div :class="['toggle-switch',{'active': isActive }]" @click="toggleSwitch">
       <div :class="['toggle-handle', { 'active': isActive }]"></div>
     </div>
   </template>
@@ -39,6 +39,10 @@
     cursor: pointer;
     
     position: relative;
+  }
+
+  .toggle-switch.active{
+    background-color: rgb(5, 169, 219);;
   }
   
   .toggle-handle {

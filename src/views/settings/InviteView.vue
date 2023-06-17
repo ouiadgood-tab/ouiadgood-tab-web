@@ -1,10 +1,8 @@
 <template>
-    <div>
-        <div class="setPos"> 
-            <SettingNav/>
-        </div >
-        <InviteFriends class="invite"/>
-    </div>
+            <SettingNav>
+
+                <InviteFriends class="invite"/>
+            </SettingNav>
 </template>
 
 <script>
@@ -22,6 +20,6 @@ export default{
     position: static;
 }
 .invite{
-    margin-top: -45%;
+
 }
 </style>

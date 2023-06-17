@@ -1,13 +1,15 @@
 <template>
   <div id="backgroundImage">
-    <DisplayImages :image-url="backgroundImageUrl" />
-    <drop-down />
-    <note-widget v-if="notesEnabled" />
-    <TodoList v-if="todoListEnabled"/>
-    <image-logo />
-    <BookMark v-if="bookmarkEnabled"/>
-    <date-time v-if="clockEnabled"/>
-    <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
+    <DisplayImages :image-url="backgroundImageUrl">
+      <drop-down />
+      <note-widget v-if="notesEnabled" />
+      <TodoList v-if="todoListEnabled"/>
+      <BookMark v-if="bookmarkEnabled"/>
+      <image-logo />
+      <date-time v-if="clockEnabled"/>
+      <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
+
+    </DisplayImages>
   </div>
 </template>
 

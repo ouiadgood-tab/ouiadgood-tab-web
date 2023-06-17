@@ -297,13 +297,12 @@ a[href="/new"]{
 .dropdowns {
   display: flex;
   justify-content: right;
-  margin-top: -25px;
   margin-right: 100px;
   color: rgba(255, 255, 255, 0.795);
 }
 
 .dropdown {
-  margin-right: 15px;
+
   list-style: none;
   position: relative;
   font-size: 30px;

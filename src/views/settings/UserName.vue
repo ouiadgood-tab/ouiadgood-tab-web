@@ -1,10 +1,10 @@
 <template>
       <div class="model">
         <div class="modal-content">
+          <p class="share">Change Username</p>
             <div class="linkText">
-                <p class="share">{{ translatedUserName.title }}</p>
-                <input type="url" name="invite-link" class="inviteInput" :placeholder="translatedUserName.placeholder" v-model="newUsername"/>
-                <button class="btnTab" @click="updateUsername">{{ translatedUserName.button }}</button>
+                <input type="url" name="invite-link" class="inviteInput" placeholder="Username" v-model="newUsername"/>
+                <button class="btnTab" @click="updateUsername">Update Username</button>
             </div>
         </div>
       </div>
@@ -79,31 +79,22 @@ export default {
  .inviteInput {
   border: none;
   border-bottom: 1px solid #ccc;
-  font-size: 18px;
+  font-size: 14px;
   padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 1.5%;
-  width: 70%;
   box-sizing: border-box;
 }
 
 .inviteInput:hover {
   border: none;
   border-bottom: 2px solid #b6b6b6;
-  font-size: 18px;
   padding: 5px;
-  margin-top: 5px;
-  width: 70%;
   box-sizing: border-box;
 }
 .inviteInput:focus {
   outline: none;
   border-bottom-color: #ccc;
-  font-size: 19px;
 }
-.share{
-    align-self: center;
-}
+
 .btnTab {
   background-color: #13b0c0;
   color: #fff;
@@ -119,14 +110,24 @@ export default {
 .btnTab:hover {
   background-color: #14c3d6;
 }
+
+.linkText{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.share{
+  font-weight: bold;
+  padding: 10px 0;
+  color:rgb(5, 169, 219);
+  font-size: 20px;
+}
 .model{
-    width: 25%;
-    height: 20vh;
-    margin-left: 50%;
-    margin-top: -10%;
-    padding-top: 10px;
     border-radius: 10px;
+    padding: 25px;
+    width: 50%;
+    margin: auto;
     background-color: #fff;
-    box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.221);
 }
 </style>

@@ -138,11 +138,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center ;
-    padding: 20px 150px;
+    padding: 40px 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    width: 90%;
     color: rgb(5, 169, 219);
-    width: 80vh;
-    height: 12vh;
-    margin-left: 28%;
     border: 1px solid #ccc;
 }
 

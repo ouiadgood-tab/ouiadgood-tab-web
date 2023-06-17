@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">{{ translatedInviteContainer.share }}</p>
@@ -80,27 +80,32 @@ export default {
 </script>
 
 <style scoped>
+.container{
+}
 .tabInfo2 {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+    gap:30px;
+    margin: 30px 0;
   flex-wrap: wrap;
-  margin-left: 20%;
 }
 
 .linkText {
   display: flex;
   flex-direction: column;
+  padding: 30px;
   align-items: flex-start;
   justify-content: center;
   text-align: left;
 }
 
 .share{
-    margin-left: -47%;
+ 
 }
 .msg{
-    margin-left: 5%;
+
 }
 
 .linkText > p {
@@ -113,7 +118,6 @@ export default {
   font-size: 18px;
   padding: 5px;
   margin-top: 5px;
-  width: 70%;
   box-sizing: border-box;
 }
 
@@ -123,7 +127,6 @@ export default {
   font-size: 18px;
   padding: 5px;
   margin-top: 5px;
-  width: 70%;
   box-sizing: border-box;
 }
 .inviteInput:focus {
@@ -138,35 +141,25 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
   text-align: center;
-  padding:  40px 20px 5px 20px;
-  margin: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.129);
   
 }
 
 .linkText{
     color: #020202 !important ;
-    width: 50vh;
-    min-height: 150px;
 }
 
 .linkText p{
     color: #707070 !important ;
 }
 
-.fNum{
-    width: 250px;
-  min-height: 150px;
-}
-.heart{
-    width: 250px;
-  min-height: 150px;
-
+.fNum, .heart{
+  padding: 30px;
 }
 .heart span{
-    margin-top: -3%;
+  
 }
 
 span{
@@ -177,12 +170,11 @@ span{
 .head {
     background-color: #fff;
   text-align: center;
-  padding: 20px 150px 20px 150px;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 5%;
   color: rgb(5, 169, 219);
-  width: 51%;
-  margin-left: 21%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.213);
 }
 
 </style>
