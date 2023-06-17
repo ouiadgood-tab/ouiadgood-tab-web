@@ -74,7 +74,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin-top: -3%;
   color: #fff;
   font-size: 2rem;
 }
@@ -83,8 +82,17 @@ h1{
   color: #fff;
 }
 .TimeDate{
-  margin-top: 5%;
   position: relative;
+  padding: 25px;
+  text-align: center;
 }
 
+@media screen and (max-width:450px) {
+  h1{
+    font-size: 3rem;
+  }
+  h3{
+    font-size: 1.4rem;
+  }
+}
 </style>

@@ -56,7 +56,8 @@ export default{
 
 <style scoped>
 .banner{
-    position:relative;
+    position:fixed;
+    bottom: 1%;
     background-color:rgb(255, 255, 255);
     padding: 20px;
     width: 60%;
@@ -64,6 +65,8 @@ export default{
     align-self: center;
     margin: auto;
     margin-top: -1%;
+    left: 50%;
+    transform: translateX(-50%);
     color: #000;
     font-size: 1.3em;
     text-align: center;
@@ -84,5 +87,8 @@ export default{
 
 .btnTab:hover {
   background-color: #14c3d6;
+}
+p{
+  padding: 10px 0;
 }
 </style>

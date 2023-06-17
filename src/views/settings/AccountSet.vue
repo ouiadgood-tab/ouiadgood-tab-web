@@ -4,21 +4,11 @@
            <div class="title">
             <h2 class="mainText">{{ translatedAccountContainer.account }}</h2>
             <h5 class="mainText2">{{ translatedAccountContainer.lan }}</h5>
-<<<<<<< HEAD
-            <div class="lanFlex switchFlex">
-              <span class="en">English</span>
-            <label class="switch lan">
-                <input type="checkbox" class="checkbox" :checked="locale === 'fr'" @change="toggleLanguage">
-                <div class="slider frColor"></div>
-            </label>
-            <span class="fr">French</span>
-=======
            </div>
           <div class="lang-cont">
             <p>English</p>
             <ToggleSwitch :initialState="localeBool" :toggleCallback="toggleLanguage" /> 
             <p>French</p>
->>>>>>> 4a6052f1 (fixing:redesign)
           </div>
         </div>
 
@@ -37,16 +27,7 @@
         <div class="head">
             <div class="grayOutMain">
                 <p class="mainText">{{ translatedAccountContainer.advance }}</p>
-<<<<<<< HEAD
-                <div class="switchFlex">
-                    <label class="switch" >
-                    <input type="checkbox" class="checkbox" @click="toggleDeleteAcct"> 
-                    <div class="slider"></div>
-                    </label>
-                </div>
-=======
                 <ToggleSwitch :initialState="showDeleteAcct" :toggleCallback="toggleDeleteAcct" /> 
->>>>>>> 4a6052f1 (fixing:redesign)
                 <div class="deleteAcct" :class="{ 'show': showDeleteAcct }">
                     <h2 class="mainText delete">{{ translatedAccountContainer.delete }}</h2>
                     <button class="btnDel" @click="deleteAccount">{{ translatedAccountContainer.deleteBtn }}</button>

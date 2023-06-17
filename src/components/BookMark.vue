@@ -1,6 +1,4 @@
 <template>
-  <div>
-    <div class="bookmark-container">
       <div class="bookmark-item" >
         <BookMark1/>
         <BookMark2/>
@@ -8,9 +6,6 @@
         <BookMark4/>
         <BookMark5/>
       </div>
-    </div>
-   
-  </div>
 </template>
 
 <script>
@@ -39,16 +34,14 @@ export default {
   display: flex;
   justify-self: center;
   align-items:center;
-  height: 12vh;
-  width: 80vh;
+  margin: 30px 0;
   padding: 20px;
   border-radius: 5px;
-  left: 28%;
-  margin-top: -4%;
-  margin-bottom: -5%;
   z-index: 2;
 }
 .bookmark-item{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

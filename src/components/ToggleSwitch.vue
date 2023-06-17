@@ -50,6 +50,7 @@
     height: 26px;
     background-color: #fff;
     border-radius: 50%;
+    transition: .5s ease;
     position: absolute;
     top: 2px;
     left: 2px;

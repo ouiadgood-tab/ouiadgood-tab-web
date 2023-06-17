@@ -1,25 +1,19 @@
 <template>
-  <drop-down />
-  <note-widget v-if="notesEnabled" />
-  <TodoList v-if="todoListEnabled"/>
-  <BookMark v-if="bookmarkEnabled"/>
-  <date-time v-if="clockEnabled"/>
+  <div id="backgroundImage">
+    <DisplayImages :image-url="backgroundImageUrl">
+      <drop-down />
+    </DisplayImages>
+  </div>
 </template>
 
 <script>
-import DateTime from '@/components/DateTime.vue';
-import DropDown from '@/components/DropDown.vue';
-import NoteWidget from '@/components/NoteWidget.vue';
-import BookMark from '@/components/BookMark.vue';
-import TodoList from '@/components/TodoList.vue';
+import DisplayImages from "./settings/Background/DisplayImages.vue";
+import DropDown from "@/components/DropDown.vue";
 export default {
   name: "HomeView",
   components: {
+    DisplayImages,
     DropDown,
-    DateTime,
-    NoteWidget,
-    TodoList,
-    BookMark
   },
 
   data() {
@@ -30,15 +24,14 @@ export default {
       bookmarkEnabled: false,
     };
   },
-    mounted() {
-      this.backgroundImageUrl;
+  mounted() {
+    this.backgroundImageUrl;
   },
   created() {
-    this.notesEnabled = localStorage.getItem('notesEnabled') === 'true';
-    this.todoListEnabled = localStorage.getItem('todoListEnabled') === 'true';
-    this.clockEnabled = localStorage.getItem('ClockEnabled') === 'true';
-    this.bookmarkEnabled = localStorage.getItem('bookmarkEnabled') === 'true';
+    this.notesEnabled = localStorage.getItem("notesEnabled") === "true";
+    this.todoListEnabled = localStorage.getItem("todoListEnabled") === "true";
+    this.clockEnabled = localStorage.getItem("ClockEnabled") === "true";
+    this.bookmarkEnabled = localStorage.getItem("bookmarkEnabled") === "true";
   },
 };
 </script>
-

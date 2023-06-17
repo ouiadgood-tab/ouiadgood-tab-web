@@ -102,7 +102,6 @@ export default {
   justify-content: center;
   align-items: center;
   color: #fff;
-  margin-top: 20px;
   margin-left: 30px;
   cursor: pointer;
 }
@@ -128,10 +127,8 @@ export default {
 }
 
 .notes {
-  position: absolute;
   top: 42px;
-  left: 15%;
-  transform: translateX(-50%);
+  left: 5%;
   width: 210%;
   height: 500px;
   margin: auto;

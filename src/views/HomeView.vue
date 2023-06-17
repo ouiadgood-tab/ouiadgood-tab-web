@@ -2,37 +2,38 @@
   <div id="backgroundImage">
     <DisplayImages :image-url="backgroundImageUrl">
       <drop-down />
-      <note-widget v-if="notesEnabled" />
-      <TodoList v-if="todoListEnabled"/>
-      <BookMark v-if="bookmarkEnabled"/>
       <image-logo />
-      <date-time v-if="clockEnabled"/>
-      <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" />
-
-    </DisplayImages>
+      <BookMark v-if="bookmarkEnabled"/>
+      <date-time v-if="clockEnabled"/> 
+      <!-- 
+        <note-widget v-if="notesEnabled" />
+        <TodoList v-if="todoListEnabled"/>
+      -->
+      <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
+      </DisplayImages>
   </div>
 </template>
 
 <script>
-import DateTime from '@/components/DateTime.vue';
-import DropDown from '@/components/DropDown.vue';
-import ImageLogo from '@/components/ImageLogo.vue';
-import NoteWidget from '@/components/NoteWidget.vue';
-import CookieBanner from '@/components/CookieBanner.vue';
 import DisplayImages from './settings/Background/DisplayImages.vue';
-import TodoList from '@/components/TodoList.vue';
+import DropDown from '@/components/DropDown.vue';
+import DateTime from '@/components/DateTime.vue';
+import ImageLogo from '@/components/ImageLogo.vue';
+// import NoteWidget from '@/components/NoteWidget.vue';
+import CookieBanner from '@/components/CookieBanner.vue';
+// import TodoList from '@/components/TodoList.vue';
 import BookMark from '@/components/BookMark.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    DropDown,
-    NoteWidget,
-    ImageLogo,
-    DateTime,
-    CookieBanner,
     DisplayImages,
-    TodoList,
+    DropDown,
+    CookieBanner,
+    DateTime,
+    // NoteWidget,
+    ImageLogo,
+    // TodoList,
     BookMark
 },
   data() {

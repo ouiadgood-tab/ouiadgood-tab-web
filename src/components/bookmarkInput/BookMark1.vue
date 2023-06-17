@@ -84,21 +84,22 @@ export default {
 <style scoped>
 .item{
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.349);
-  font-size: 3rem;
-  padding: 10px;
-  border-radius: 50%;
+    font-size: 1.5rem;
+width:70px;
+height: 70px;
+  border-radius: 100px;
   cursor: pointer;
 }
 .fa-plus{
   color:rgba(221, 222, 223, 0.863);
 }
 .item-container{
-  padding: 23px;
+  padding: 10px;
   border-radius: 5%;
-  margin-right:1rem;
   position: relative;
 }
 .item-container:hover{
@@ -106,6 +107,7 @@ export default {
 }
 .item-container:hover .fa-times {
   display: block;
+  padding: 6px;
 }
 .fa-times {
   position: absolute;

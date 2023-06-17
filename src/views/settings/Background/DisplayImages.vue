@@ -67,7 +67,7 @@
   <style>
   .background-image {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: #000;
     background-size: cover;
     background-position: center;

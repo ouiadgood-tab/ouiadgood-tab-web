@@ -164,4 +164,13 @@ if(getUser.admin){
   color: #fff;
   font-weight: bold;
 }
+
+
+@media screen and (max-width:600px) {
+  .settings-nav{
+    grid-template-columns:  1fr !important;
+  }
+  
+}
+
   </style>

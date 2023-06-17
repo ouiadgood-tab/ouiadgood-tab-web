@@ -99,7 +99,7 @@ export default {
   height: 13rem;
   position: absolute;
   margin-top: -7rem;
-  left: -26rem;
+  left: 5rem;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -126,15 +126,16 @@ export default {
 }
 .input-wrapper {
   margin-bottom: 20px;
+  position: relative;
 }
 .title{
   font-size: 1rem;
-  margin-left: -18rem;
+  font-weight: bold;
+  padding: 6px 0;
 }
 label {
   display: block;
-  margin-bottom: 5px;
-  margin-left: -25%;
+
   font-weight: 100;
   font-size: 20px;
   color: #fff;
