@@ -67,35 +67,12 @@
             if (this.locale === "en") {
                 translations = {
                     title: "Select a Background Image",
-                   'Colorful sky': 'Colorful sky',
-                    'Storms Brewing': 'Storms Brewing',
-                    'NYC Sunset': 'NYC Sunset',
-                    Sunrise: 'Sunrise',
-                    Wonder: 'Wonder',
-                    Kitty: 'Kitty',
-                    'Beautiful nature': 'Beautiful nature',
-                    Sunset: 'Sunset',
-                    'grass land': 'grass land',
-                    'Reef dive': 'Reef dive',
-                    'Take a Peak': 'Take a Peak',
-                    'When the Duck Settles': 'When the Duck Settles',
+                    
                 };
             }
             else if (this.locale === "fr") {
                 translations = {
                   title: "Sélectionnez une image d'arrière-plan",
-                  'Colorful sky': 'Ciel coloré',
-                    'Storms Brewing': 'Tempêtes en préparation',
-                    'NYC Sunset': 'Coucher de soleil à NYC',
-                    Sunrise: 'Lever de soleil',
-                    Wonder: 'Merveille',
-                    Kitty: 'Chaton',
-                    'Beautiful nature': 'Belle nature',
-                    Sunset: 'Coucher de soleil',
-                    'grass land': 'Prairie',
-                    'Reef dive': 'Plongée dans le récif',
-                    'Take a Peak': 'Prendre un pic',
-                    'When the Duck Settles': 'Quand le canard se pose',
                 };
             }
             else {
