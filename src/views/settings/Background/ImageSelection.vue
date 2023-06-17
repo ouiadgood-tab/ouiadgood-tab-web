@@ -111,8 +111,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 25vh; 
-  width: 46vh; 
+  height: 23vh; 
+  width: 44vh; 
   margin: 0 auto;
 
   }
