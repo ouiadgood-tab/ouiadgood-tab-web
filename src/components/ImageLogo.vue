@@ -1,10 +1,6 @@
 <template>
 <div class="centerDiv">
-<<<<<<< HEAD
-<img alt="OUI AD GOOD logo" src="../assets/oui.png"> 
-=======
 <img alt="OUI AD GOOD logo" src="/ouiadgood-logo-centered-by-OuiDoGood.png"> 
->>>>>>> 6131f0dd (fixes)
 <SearchWidget/>
 </div>
 </template>
