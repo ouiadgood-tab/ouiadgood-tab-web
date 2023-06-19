@@ -17,7 +17,7 @@ export default{
 <style scoped>
 img{
     height: 50%;
-    width: 30%;
+    width: 40%;
     margin-bottom: 5%;
     margin-right: 3%;
     margin-top: 0%;
