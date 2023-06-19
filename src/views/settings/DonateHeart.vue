@@ -211,6 +211,7 @@ export default {
     axios
       .get("https://ouiadgood.onrender.com/charity")
       .then((response) => {
+        console.log(response);
         this.charitys = response.data;
         this.charitys = this.charitys.map((chh) => {
           // Convert file data to a Uint8Array
@@ -230,7 +231,6 @@ export default {
               image: base64 + arrayBufferToBase64(chh.image.data.data),
             };
           }
-
           return {
             name: chh.name,
             about: chh.about,
