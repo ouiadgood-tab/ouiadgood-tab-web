@@ -1,15 +1,7 @@
 <template>
-  
+  <!-- ENTRY APP OF THE APPLICATION -->
   <router-view/>
 </template>
-
-<script>
-
-export default{
-
-
-}
-</script>
 
 <style>
 *{
