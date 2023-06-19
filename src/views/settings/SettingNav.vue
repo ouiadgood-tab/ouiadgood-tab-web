@@ -7,8 +7,8 @@
       </span>
     </div>
 
-   <div class="settings-nav"  :class="admin && 'admin'">
-    <nav class="horizontal-nav" v-show="!admin">
+   <div class="settings-nav">
+    <nav class="horizontal-nav">
       <p class="nav-title">{{ translatedSettingContainer.title1 }}</p>
     <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
     <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>

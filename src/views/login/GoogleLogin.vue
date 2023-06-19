@@ -1,8 +1,4 @@
 <template>
-  <!-- <button @click="login();">
-    <i class="fa fab-google logoG"></i>
-    Login with Google
-  </button> -->
   <GoogleLogin  :callback="callback" />
 </template>
 

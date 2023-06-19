@@ -5,10 +5,6 @@
       <image-logo />
       <BookMark v-if="bookmarkEnabled"/>
       <date-time v-if="clockEnabled"/> 
-      <!-- 
-        <note-widget v-if="notesEnabled" />
-        <TodoList v-if="todoListEnabled"/>
-      -->
       <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
     </DisplayImages>
     <CustomAds />
@@ -21,9 +17,7 @@ import DropDown from '@/components/DropDown.vue';
 import DateTime from '@/components/DateTime.vue';
 import ImageLogo from '@/components/ImageLogo.vue';
 import CustomAds from '@/components/CustomAds.vue';
-// import NoteWidget from '@/components/NoteWidget.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
-// import TodoList from '@/components/TodoList.vue';
 import BookMark from '@/components/BookMark.vue';
 
 export default {
@@ -33,10 +27,8 @@ export default {
     DropDown,
     CookieBanner,
     DateTime,
-    // NoteWidget,
     ImageLogo,
     CustomAds,
-    // TodoList,
     BookMark
 },
   data() {

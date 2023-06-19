@@ -12,25 +12,55 @@
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
-              <input class="input" type="email" placeholder="Enter your email" v-model="email" @input="validateEmail" ref="emailInput">
-              <span v-show="!validEmail && email.length > 0" class="help is-danger">Please enter a valid email address.</span>
+              <input
+                class="input"
+                type="email"
+                placeholder="Enter your email"
+                v-model="email"
+                @input="validateEmail"
+                ref="emailInput"
+              />
+              <span
+                v-show="!validEmail && email.length > 0"
+                class="help is-danger"
+                >Please enter a valid email address.</span
+              >
             </div>
           </div>
           <div class="field">
             <label class="label">Password</label>
             <div class="control password-input">
-            <input class="input" :type="passwordVisible ? 'text' : 'password'" placeholder="Enter your password" v-model="password" @input="validatePassword" ref="passwordInput">
-            <span class="icon is-small is-right password-toggle-icon" @click="togglePasswordVisibility">
-              <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
-            </span>
-           </div>
+              <input
+                class="input"
+                :type="passwordVisible ? 'text' : 'password'"
+                placeholder="Enter your password"
+                v-model="password"
+                @input="validatePassword"
+                ref="passwordInput"
+              />
+              <span
+                class="icon is-small is-right password-toggle-icon"
+                @click="togglePasswordVisibility"
+              >
+                <i
+                  class="fa"
+                  :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
+              </span>
+            </div>
           </div>
-          
+
           <GoogleLogin />
 
           <div class="field">
             <div class="button">
-              <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Continue</button>
+              <button
+                class="btnTab"
+                :disabled="!isValidForm"
+                @click.prevent="submitLogin"
+              >
+                Continue
+              </button>
             </div>
           </div>
         </form>
@@ -44,84 +74,81 @@
 </template>
 
 <script>
-import axios from 'axios';
-import GoogleLogin from './GoogleLogin.vue';
+import axios from "axios";
+import GoogleLogin from "./GoogleLogin.vue";
 
 export default {
-    name: "EmailLogin",
-    components:{
-      GoogleLogin
+  name: "EmailLogin",
+  components: {
+    GoogleLogin,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      showModal: true,
+      passwordVisible: false, // added property for password visibility
+    };
+  },
+  computed: {
+    validEmail() {
+      return /\S+@\S+\.\S+/.test(this.email);
     },
-    data() {
-        return {
-            email: "",
-            password: "",
-            showModal: true,
-            passwordVisible: false, // added property for password visibility
+    validPassword() {
+      return this.password.length >= 8;
+    },
+    isValidForm() {
+      return this.validEmail && this.validPassword;
+    },
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
+    },
+    validateEmail() {
+      if (this.email.length === 0 || this.validEmail) {
+        this.$refs.emailInput.setCustomValidity("");
+      } else {
+        this.$refs.emailInput.setCustomValidity(
+          "Please enter a valid email address."
+        );
+      }
+    },
+    validatePassword() {
+      if (this.password.length === 0 || this.validPassword) {
+        this.$refs.passwordInput.setCustomValidity("");
+      } else {
+        this.$refs.passwordInput.setCustomValidity(
+          "Please enter a password with at least 8 characters."
+        );
+      }
+    },
+    submitLogin() {
+      if (this.validEmail && this.validPassword) {
+        // Create a user object with the login details
+        const user = {
+          email: this.email,
+          password: this.password,
         };
-    },
-    computed: {
-        validEmail() {
-            return /\S+@\S+\.\S+/.test(this.email);
-        },
-        validPassword() {
-            return this.password.length >= 8;
-        },
-        isValidForm() {
-            return this.validEmail && this.validPassword;
-        },
-    },
-    methods: {
-        togglePasswordVisibility() {
-            this.passwordVisible = !this.passwordVisible;
-        },
-        validateEmail() {
-            if (this.email.length === 0 || this.validEmail) {
-                this.$refs.emailInput.setCustomValidity("");
-            }
-            else {
-                this.$refs.emailInput.setCustomValidity("Please enter a valid email address.");
-            }
-        },
-        validatePassword() {
-            if (this.password.length === 0 || this.validPassword) {
-                this.$refs.passwordInput.setCustomValidity("");
-            }
-            else {
-                this.$refs.passwordInput.setCustomValidity("Please enter a password with at least 8 characters.");
-            }
-        },
-        submitLogin() {
-            if (this.validEmail && this.validPassword) {
-                // Create a user object with the login details
-                const user = {
-                    email: this.email,
-                    password: this.password,
-                };
-                // Make a POST request to the API endpoint
-                axios.post("https://ouiadgood.onrender.com/users/add", user)
-                    .then(response => {
-                    // Save the request in LocalStorage
-                   
-                    localStorage.setItem("loginRequest", JSON.stringify(response.data));
-                    // Redirect to /home
-                    if(response.data.admin == true){
-                      console.log(response.data.admin, "asa")
-                      this.$router.push("/setting/Admin")
-                    }else{
-                      this.$router.push("/home");
+        // Make a POST request to the API endpoint
+        axios
+          .post("https://ouiadgood.onrender.com/users/add", user)
+          .then((response) => {
+            // Save the request in LocalStorage
 
-                    }
-                })
-                    .catch(error => {
-                    console.error(error);
-                });
-            }
-        }
+            localStorage.setItem("loginRequest", JSON.stringify(response.data));
+            // Redirect to /home
+
+            this.$router.push("/home");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     },
+  },
 };
 </script>
-
 
 <style scoped>
 .btn {
@@ -135,23 +162,22 @@ export default {
   transition: all 0.3s ease;
 }
 
-.title{
+.title {
   padding: 15px 0;
 }
- 
-.loginLogo{
+
+.loginLogo {
   width: 30px;
   height: 30px;
   margin-bottom: -5px;
 }
 
-.btnEm{
+.btnEm {
   background-color: #fff;
   color: grey;
   padding-left: 35px;
   padding-right: 35px;
 }
-
 
 .overlay {
   height: 100%;
@@ -159,7 +185,6 @@ export default {
 }
 
 .modal {
-
   background-color: white;
   padding: 30px;
   max-width: 400px;
@@ -183,10 +208,8 @@ export default {
   transform: scale(1.1);
 }
 
-
 .field {
   margin-bottom: 10px;
-
 }
 
 .label {
@@ -208,7 +231,6 @@ export default {
   color: #dc3545;
 }
 
-
 .btnTab {
   background-color: #13b0c0;
   color: #fff;
@@ -226,27 +248,26 @@ export default {
   background-color: #14c3d6;
 }
 
- /* Eye icon styles */
- .password-toggle-icon {
-   font-size: 14px !important;
-    color: #888;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
+/* Eye icon styles */
+.password-toggle-icon {
+  font-size: 14px !important;
+  color: #888;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
 
-  .password-toggle-icon:hover {
-    color: #333;
-  }
+.password-toggle-icon:hover {
+  color: #333;
+}
 
-  /* Password input styles */
-  .password-input {
-    padding-right: 0px; /* Increase padding to accommodate the icon */
-    position: relative; /* Make the container relative for absolute positioning of the icon */
-  }
-  .terms {
-    color: #292828;
-    padding: 10px 0;
-  }
-  
+/* Password input styles */
+.password-input {
+  padding-right: 0px; /* Increase padding to accommodate the icon */
+  position: relative; /* Make the container relative for absolute positioning of the icon */
+}
+.terms {
+  color: #292828;
+  padding: 10px 0;
+}
 </style>

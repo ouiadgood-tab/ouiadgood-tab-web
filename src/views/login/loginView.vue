@@ -11,8 +11,6 @@
 </template>
 
 <script>
-//import { useAuth0 } from '@auth0/auth0-vue';
-//import axios from 'axios';
 import EmailLogin from './EmailLogin.vue';
 
 export default {

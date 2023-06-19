@@ -21,26 +21,29 @@
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <MoneyCount class="icon" />
         <ul v-if="showDropdown" class="dropdown">
-        <li>{{ translatedDropDownContainer.moneyTitle }}</li>
-        <button class="btnInvite">{{ translatedDropDownContainer.moneyButton}}</button>
+          <li>{{ translatedDropDownContainer.moneyTitle }}</li>
+          <button class="btnInvite">
+            {{ translatedDropDownContainer.moneyButton }}
+          </button>
         </ul>
       </li>
-    <router-link to="/new" target="_blank">
-      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-        <i class="fa-solid fa-display icon"></i>
-        <ul v-if="showDropdown" class="dropdown">
-          <li class="bold">{{ translatedDropDownContainer.videoTitle }}</li>
-          <li class="">{{ translatedDropDownContainer.videSub }}</li>
-        </ul>
-      </li>
-    </router-link>
+      <router-link to="/new" target="_blank">
+        <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+          <i class="fa-solid fa-display icon"></i>
+          <ul v-if="showDropdown" class="dropdown">
+            <li class="bold">{{ translatedDropDownContainer.videoTitle }}</li>
+            <li class="">{{ translatedDropDownContainer.videSub }}</li>
+          </ul>
+        </li>
+      </router-link>
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul v-if="showDropdown" class="dropdown">
           <div class="leftSide"></div>
           <div class="heartDrop">
             <h2>
-              {{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i>
+              {{ heartDonated }}
+              <i class="fa-sharp fa-regular fa-heart icon"></i>
             </h2>
             <P>{{ translatedDropDownContainer.donate }}</P>
             <button class="btnInvite">
@@ -52,7 +55,10 @@
           <hr />
           <div class="heartDrop">
             <div class="leftSide"></div>
-            <h2>{{ inviteNumber }}<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+            <h2>
+              {{ inviteNumber
+              }}<i class="fa-sharp fa-regular fa-heart icon"></i>
+            </h2>
             <P>{{ translatedDropDownContainer.invite }}</P>
             <button class="btnInvite">
               <router-link class="router" to="/setting/Invite">{{
@@ -78,33 +84,40 @@
         <i class="fa-solid fa-ellipsis icon"></i>
         <ul v-if="showDropdown" class="dropdown eli">
           <router-link class="router" to="/setting/Donate"
-          ><div>
-            <i class="fa-solid fa-heart drop-icon"></i>
-            {{ translatedDropDownContainer.donateButton }}
-          </div></router-link
-        >
-        <router-link class="router" to="/setting/Stats">
-          <div>
-            <i class="fa-solid fa-chart-simple drop-icon"></i>
-            {{ translatedDropDownContainer.stats }}
-          </div></router-link
-        >
-        <router-link class="router" to="/setting/Invite">
-          <div>
-            <i class="fa-solid fa-user-plus drop-icon"></i>
-            {{ translatedDropDownContainer.inviteButton }}
+            ><div>
+              <i class="fa-solid fa-heart drop-icon"></i>
+              {{ translatedDropDownContainer.donateButton }}
+            </div></router-link
+          >
+          <router-link class="router" to="/setting/Stats">
+            <div>
+              <i class="fa-solid fa-chart-simple drop-icon"></i>
+              {{ translatedDropDownContainer.stats }}
+            </div></router-link
+          >
+          <router-link v-show="admin" class="router" to="/setting/Admin">
+            <div>
+              <i class="fa-solid fa-user-tie drop-icon"></i>
+              {{ translatedDropDownContainer.admin }}
+            </div></router-link
+          >
+
+          <router-link class="router" to="/setting/Invite">
+            <div>
+              <i class="fa-solid fa-user-plus drop-icon"></i>
+              {{ translatedDropDownContainer.inviteButton }}
+            </div>
+          </router-link>
+          <router-link class="router" to="/setting/Widget">
+            <div>
+              <i class="fa-solid fa-gear drop-icon"></i>
+              {{ translatedDropDownContainer.Setting }}
+            </div></router-link
+          >
+          <div @click="logoutUser" class="router">
+            <i class="fa-solid fa-right-from-bracket drop-icon"></i>
+            {{ translatedDropDownContainer.logout }}
           </div>
-        </router-link>
-        <router-link class="router" to="/setting/Widget">
-          <div>
-            <i class="fa-solid fa-gear drop-icon"></i>
-            {{ translatedDropDownContainer.Setting }}
-          </div></router-link
-        >
-        <div @click="logoutUser" class="router">
-          <i class="fa-solid fa-right-from-bracket drop-icon"></i>
-          {{ translatedDropDownContainer.logout }}
-        </div>
         </ul>
       </li>
     </ul>
@@ -124,6 +137,7 @@ export default {
       showDropdown: false,
       heart: 0,
       totalheart: 0,
+      admin: false,
       maxHeart: 0,
       todayHeart: 0,
       maxHeartDate: "",
@@ -153,6 +167,7 @@ export default {
           openTab: "Open a tab",
           recruit: "Recruit friend",
           stats: "Your Stats",
+          admin: "Admin",
           Setting: "Setting",
           logout: "Logout",
         };
@@ -170,6 +185,7 @@ export default {
           inviteButton: "Inviter des amis",
           openTab: "Ouvrir un onglet",
           recruit: "Recruter un ami",
+          admin: "administrateur",
           stats: "Vos statistiques",
           Setting: "Paramètre",
           logout: "Se déconnecter",
@@ -184,6 +200,12 @@ export default {
     },
   },
   created() {
+    //check is logged in user is admin
+    const getUser = JSON.parse(localStorage.getItem("loginRequest") || "{}");
+    if (getUser.admin) {
+      this.admin = getUser.admin || false;
+    }
+
     // Retrieve the stored value from the local storage
     const heartDonated = localStorage.getItem("heartDonated");
     const loginRequest = JSON.parse(
@@ -275,11 +297,11 @@ export default {
 </script>
 
 <style>
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
-hr{
+hr {
   margin: 10px 0;
 }
 .top-navigation {
@@ -294,7 +316,7 @@ ul {
   padding: 0;
 }
 
-.bold{
+.bold {
   font-weight: bold;
   padding: 4px;
 }
@@ -323,15 +345,16 @@ li {
   backdrop-filter: blur(10px);
 }
 
-.dropdown.bg{}
+.dropdown.bg {
+}
 
-.dropdown.eli .router{
+.dropdown.eli .router {
   display: flex;
-  gap:10px;
+  gap: 10px;
   border-radius: 10px;
   padding: 10px;
 }
-.dropdown.eli .router:hover{
+.dropdown.eli .router:hover {
   background: #13afc0f4;
 }
 
@@ -352,7 +375,7 @@ li:hover .dropdown {
   text-align: center;
   font-size: 70%;
   font-weight: 300;
-  margin:10px 5px;
+  margin: 10px 5px;
   cursor: pointer;
   width: 80%;
   border-radius: 8px;
@@ -364,19 +387,19 @@ li:hover .dropdown {
   background-color: #f2d70f;
 }
 
-.heartDrop{
+.heartDrop {
   padding: 5px;
 }
 
-.heartDrop .leftSide{
+.heartDrop .leftSide {
   margin: 10px 0;
 }
 
-.heartDrop .leftSide + p{
+.heartDrop .leftSide + p {
   display: flex;
   align-items: center;
   font-weight: bold;
-  gap:5px;
+  gap: 5px;
   justify-content: center;
 }
 </style>
