@@ -10,7 +10,7 @@
       </div>
       <p>{{ getNameFromBookmarks() }}</p>
     </div>
-    <TheBookMark1 v-if="showBookmark" @close-bookmark="hideBookmark" :bookmark="getFirstBookmark()" />
+    <TheBookMark1 :bookmarkId="bookmarkId" v-if="showBookmark" @close-bookmark="hideBookmark" :bookmark="getFirstBookmark()" />
   </div>
 </template>
 
@@ -19,15 +19,22 @@ import TheBookMark1 from './TheBookMark1.vue';
 
 export default {
   name: "BookMark1",
+  props:{
+    id:{
+      type:String,
+      required:true
+    }
+  },
   data() {
     return {
       showTimes: false,
+      bookmarkId:this.id,
       showBookmark: false,
     };
   },
   computed: {
     bookmarks() {
-      const storedBookmarks = localStorage.getItem("bookmarks1");
+      const storedBookmarks = localStorage.getItem("bookmarks"+this.bookmarkId);
       if (storedBookmarks) {
         const parsedBookmarks = JSON.parse(storedBookmarks);
         return parsedBookmarks;
@@ -72,7 +79,7 @@ export default {
       }
     },
     deleteBookmark(){
-      localStorage.removeItem("bookmarks1");
+      localStorage.removeItem("bookmarks"+this.bookmarkId);
       window.location.reload(); // Reload the page
     },
   },

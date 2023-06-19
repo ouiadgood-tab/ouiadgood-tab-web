@@ -220,17 +220,18 @@ export default {
 
 .deleteAcct {
   display: none;
+  margin: 10px;
 }
 .deleteAcct.show {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   gap:20px;
   margin-top: 20px;
   justify-content: space-between;
   background-color: #fff;
   color: rgb(5, 169, 219);
   border: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 

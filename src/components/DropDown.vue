@@ -25,7 +25,7 @@
         <button class="btnInvite">{{ translatedDropDownContainer.moneyButton}}</button>
         </ul>
       </li>
-    <router-link to="/new">
+    <router-link to="/new" target="_blank">
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <i class="fa-solid fa-display icon"></i>
         <ul v-if="showDropdown" class="dropdown">
@@ -37,6 +37,7 @@
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul v-if="showDropdown" class="dropdown">
+          <div class="leftSide"></div>
           <div class="heartDrop">
             <h2>
               {{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i>
@@ -50,6 +51,7 @@
           </div>
           <hr />
           <div class="heartDrop">
+            <div class="leftSide"></div>
             <h2>{{ inviteNumber }}<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
             <P>{{ translatedDropDownContainer.invite }}</P>
             <button class="btnInvite">
@@ -65,7 +67,7 @@
               <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
             </div>
             <div class="heartDrop">
-              <p class="leftSide1">{{ translatedDropDownContainer.recruit }}</p>
+              <p class="leftSide">{{ translatedDropDownContainer.recruit }}</p>
               <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
             </div>
           </div>
@@ -317,12 +319,20 @@ li {
   border-radius: 10px;
   font-size: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #13afc063;
+  backdrop-filter: blur(10px);
 }
+
+.dropdown.bg{}
 
 .dropdown.eli .router{
   display: flex;
   gap:10px;
+  border-radius: 10px;
   padding: 10px;
+}
+.dropdown.eli .router:hover{
+  background: #13afc0f4;
 }
 
 li:hover .dropdown {
@@ -342,7 +352,7 @@ li:hover .dropdown {
   text-align: center;
   font-size: 70%;
   font-weight: 300;
-  margin: 5px;
+  margin:10px 5px;
   cursor: pointer;
   width: 80%;
   border-radius: 8px;
@@ -352,5 +362,21 @@ li:hover .dropdown {
 
 .btnInvite:hover {
   background-color: #f2d70f;
+}
+
+.heartDrop{
+  padding: 5px;
+}
+
+.heartDrop .leftSide{
+  margin: 10px 0;
+}
+
+.heartDrop .leftSide + p{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap:5px;
+  justify-content: center;
 }
 </style>

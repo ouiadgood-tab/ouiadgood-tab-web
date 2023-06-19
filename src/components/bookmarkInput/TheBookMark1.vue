@@ -21,6 +21,12 @@
   
   <script>
   export default {
+    props:{
+      bookmarkId:{
+        type:String,
+        required:true
+      }
+    },
     name: "TheBookMark1",
     data() {
       return {
@@ -72,7 +78,7 @@
     // let bookmarks5 = localStorage.getItem("bookmarks5");
     // bookmarks5 = bookmarks5 ? JSON.parse(bookmarks5) : [];
     // bookmarks5.push(bookmark);
-    localStorage.setItem("bookmarks1", JSON.stringify(bookmark1));
+    localStorage.setItem("bookmarks"+this.bookmarkId, JSON.stringify(bookmark1));
   
     this.clearInputs();
     window.location.reload(); // Reload the page
@@ -91,18 +97,20 @@
   
   <style scoped>
   .bookMark-container {
-    position: relative;
+
   }
   .form-div {
     background-color: #13afc088;
-    width: 25rem;
+    max-width: 500px;
     height: 13rem;
     position: absolute;
-    margin-top: -7rem;
-    left: 5rem;
+    left: 50%;
+    top:50%;
+    backdrop-filter: blur(10px);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -153,7 +161,7 @@
   }
   button {
     height: 30px;
-    width: 10rem;
+    width: 150px;
     border-radius: 5px;
     border: none;
     padding: 5px 10px;

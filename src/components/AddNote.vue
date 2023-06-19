@@ -1,8 +1,8 @@
 <template>
   <div class="notes-container">
-    <div class="pink-div">
+    <div class="pink-div" @click="addNote">
       {{ translatedNotesContainer.title }}
-      <i class="fa-sharp fa-solid fa-circle-plus" @click="addNote"></i>
+      <i class="fa-sharp fa-solid fa-circle-plus"></i>
     </div>
     <div class="notes show-scrollbar">
       <div v-for="(note, index) in notes" :key="index" class="note" :style="{ top: note.top + 'px', left: note.left + 'px', zIndex: note.zIndex }">
@@ -91,23 +91,21 @@ export default {
 <style scoped>
 .notes-container {
   position: relative;
+  margin-top: 10px;
 }
 
 .pink-div {
   background-color: #19c5d1;
-  width: 100px;
-  height: 40px;
+padding: 10px;
   display: flex;
   border-radius: 10px ;
   justify-content: center;
   align-items: center;
   color: #fff;
-  margin-left: 30px;
   cursor: pointer;
 }
 
 .fa-circle-plus {
-  margin-left: 10px;
   color: #fff;
   font-size: 18px;
 }
@@ -127,10 +125,7 @@ export default {
 }
 
 .notes {
-  top: 42px;
-  left: 5%;
-  width: 210%;
-  height: 500px;
+
   margin: auto;
   overflow-y: auto;
   border-radius: 10px;
@@ -155,18 +150,17 @@ export default {
 }
 
 .note {
-  position: absolute;
   background-color: rgba(255,255,255, 0.1);
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  width: 200px;
+
+  margin: 20px 0;
   z-index: 1;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   color: #333;
   line-height: 1.5;
-  margin-left: -20px;
 }
 
 .note-header {
@@ -184,10 +178,12 @@ export default {
 
 .note-body {
   height: 100px;
+  margin: 10px;
 }
 
 .note-body textarea {
-  width: 100%;
+  width: calc(100% - 10px);
+  padding: 5px 10px;
   height: 100%;
   border: none;
   outline: none;

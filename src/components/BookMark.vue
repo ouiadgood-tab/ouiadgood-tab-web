@@ -1,28 +1,20 @@
 <template>
       <div class="bookmark-item" >
-        <BookMark1/>
-        <BookMark2/>
-        <BookMark3/>
-        <BookMark4/>
-        <BookMark5/>
+        <BookMark1 :id="1"/>
+        <BookMark1 :id="2"/>
+        <BookMark1 :id="3"/>
+        <BookMark1 :id="4"/>
+        <BookMark1 :id="5"/>
       </div>
 </template>
 
 <script>
 import BookMark1 from './bookmarkInput/BookMark1.vue';
-import BookMark2 from './bookmarkInput/BookMark2.vue';
-import BookMark3 from './bookmarkInput/BookMark3.vue';
-import BookMark4 from './bookmarkInput/BookMark4.vue';
-import BookMark5 from './bookmarkInput/BookMark5.vue';
 
 export default {
   name: "BookMark",
   components: { 
-    BookMark1, 
-    BookMark2,
-    BookMark3,
-    BookMark4,
-    BookMark5
+    BookMark1,
    },
 };
 </script>

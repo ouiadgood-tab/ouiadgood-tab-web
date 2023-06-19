@@ -176,7 +176,7 @@ img{
   position: absolute;
   display: flex;
   bottom: -100%;
-  transform: translateY(50%);
+  transform: translateY(70%);
   padding: 20px;
   border-radius: 50px;
   justify-content: center;

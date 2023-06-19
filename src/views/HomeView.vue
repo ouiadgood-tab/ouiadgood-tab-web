@@ -10,7 +10,8 @@
         <TodoList v-if="todoListEnabled"/>
       -->
       <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
-      </DisplayImages>
+    </DisplayImages>
+    <CustomAds />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import DisplayImages from './settings/Background/DisplayImages.vue';
 import DropDown from '@/components/DropDown.vue';
 import DateTime from '@/components/DateTime.vue';
 import ImageLogo from '@/components/ImageLogo.vue';
+import CustomAds from '@/components/CustomAds.vue';
 // import NoteWidget from '@/components/NoteWidget.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 // import TodoList from '@/components/TodoList.vue';
@@ -33,6 +35,7 @@ export default {
     DateTime,
     // NoteWidget,
     ImageLogo,
+    CustomAds,
     // TodoList,
     BookMark
 },

@@ -105,11 +105,16 @@
   form{
     margin: 10px 0;
   }
-
+  .input-group{
+    display: flex;
+    align-items: center;
+    gap:10px
+  }
   input{
     border: 1px solid #eee;
     padding: 10px;
-    margin:0 10px
+    margin:0 10px;
+    width: 100%;
   }
   button{
     padding: 14px;
@@ -119,9 +124,17 @@
   }
   canvas {
     background-image: url(./apply.jpg); /* Replace 'default-image.jpg' with your desired default image */
-    background-size: cover;
-    width: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
     height: 300px;
+    width: 500px;
+  }
+
+  @media screen and (max-width:800px) {
+    canvas {
+    width: 50vw;
+    } 
+
   }
 
 
