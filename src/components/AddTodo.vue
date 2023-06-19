@@ -69,8 +69,8 @@
       let translations;
       if (this.locale === 'en') {
         translations = {
-          title: 'TOdo List',
-          placeholder: "Enter a todo",
+          title: 'To Do List',
+          placeholder: "Enter a to do",
           addButton: "Add",
           deleteButton: "Delete",
         };

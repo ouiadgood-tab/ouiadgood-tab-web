@@ -61,6 +61,7 @@ const routes = [
       path: '/new',
       name: 'New',
       component: VideoViewVue,
+      meta: { requiresAuth: true },
     },
 
     {
@@ -85,7 +86,8 @@ const routes = [
   // redirect
   {
     path: '/home',
-    redirect: '/'
+    redirect: '/',
+    meta: { requiresAuth: true },
   },
 
   // catch-all route for undefined routes
@@ -115,29 +117,18 @@ const isAuthenticated = () =>{
 }
 
 router.beforeEach((to, from, next) => {
-  console.log()
-    if(to.meta.requiresAdmin && isAuthenticated().admin == false){
-      return new Promise((resolve) => {
-        resolve(
-          next({
-            path: '/',
-          })
-        );
-      });
-    }
-  if (to.meta.requiresAuth && !isAuthenticated()) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    return new Promise((resolve) => {
-      resolve(
-        next({
-          path: '/login',
-          query: { redirect: to.fullPath },
-        })
-      );
-    });
+  const isLoggedIn = isAuthenticated().email
+  const isAdmin = isAuthenticated().admin
+
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    // Redirect to the login page if authentication is required but user is not logged in
+    next('/login')
+  }else if (to.meta.requiresAdmin && (!isLoggedIn || !isAdmin)) {
+    // Redirect to the home page if admin access is required but user is not logged in or is not an admin
+    next('/login')
   } else {
-    next();
+    // Proceed with the navigation
+    next()
   }
 });
 

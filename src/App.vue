@@ -15,7 +15,7 @@ export default{
 *{
   margin: 0;
   padding: 0;
-  font-family: "Georama",Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

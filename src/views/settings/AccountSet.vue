@@ -14,6 +14,18 @@
 
 
         <div class="head">
+          <div class="title">
+           <h2 class="mainText">{{ translatedAccountContainer.personalizaion }}</h2>
+          </div>
+         <div class="lang-cont">
+           <p>Yes</p>
+           <ToggleSwitch :initialState="personalize" :toggleCallback="togglePersonalize" /> 
+           <p>No</p>
+         </div>
+       </div>
+
+
+        <div class="head">
             <div class="title">
                 <h3 class="mainText">{{ translatedAccountContainer.username}}</h3>
                 <p class="userE">{{ username }}</p>
@@ -50,6 +62,7 @@ export default {
   data() {
     return {
       showDeleteAcct: false,
+      personalize:localStorage.getItem('ads') || 'true',
       isUserNamePopupVisible: false,
       username: '', // Store the retrieved username
       localeBool: localStorage.getItem('locale') == "fr" ? true :false,
@@ -66,6 +79,7 @@ export default {
           username:"Username",
           change: "CHANGE",
           advance: "Advance",
+          personalizaion:"Personalization",
           delete: "Delete Account",
           deleteBtn: "DELETE ACCOUNT",
           lan: 'change language'
@@ -73,6 +87,7 @@ export default {
       } else if (this.locale === 'fr') {
         translations = {
           account: "Compte",
+          personalizaion:"Personnalisation",
           username:"Nom d'utilisateur",
           change: "CHANGEMENT",
           advance: "Avance",
@@ -93,6 +108,10 @@ export default {
     this.fetchUsernameFromLocalStorage() // Fetch the username when the component is mounted
   },
   methods: {
+    togglePersonalize(active){
+      this.personalize = active ? 'true' : 'false';
+      localStorage.setItem('ads', this.personalize);
+    },
     toggleLanguage(active) {
       this.locale = active ? 'fr' : 'en';
       this.localeBool =active

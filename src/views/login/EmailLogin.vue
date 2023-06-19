@@ -7,7 +7,7 @@
     <div class="modal" v-if="showModal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <h3>Login with Email</h3>
+        <h3 class="title">Login / Sign up with Email</h3>
         <form>
           <div class="field">
             <label class="label">Email</label>
@@ -30,10 +30,14 @@
 
           <div class="field">
             <div class="button">
-              <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Login</button>
+              <button class="btnTab" :disabled="!isValidForm" @click.prevent="submitLogin">Continue</button>
             </div>
           </div>
         </form>
+      </div>
+      <div class="terms">
+        <p>By continuing, you are indicating that you accept our</p>
+        <p><span>Terms of Service </span>and <span>Privacy Policy</span></p>
       </div>
     </div>
   </div>
@@ -130,6 +134,10 @@ export default {
   font-size: 2rem;
   transition: all 0.3s ease;
 }
+
+.title{
+  padding: 15px 0;
+}
  
 .loginLogo{
   width: 30px;
@@ -144,28 +152,18 @@ export default {
   padding-right: 35px;
 }
 
-.logoEm{
-  margin-left: -16%;
-}
 
 .overlay {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-  position: absolute;
-  top: 38%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
   background-color: white;
-  padding: 20px;
-  width: 400px;
+  padding: 30px;
+  max-width: 400px;
+  margin: 10px auto;
   border-radius: 5%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
@@ -215,6 +213,7 @@ export default {
   background-color: #13b0c0;
   color: #fff;
   padding: 12px 24px;
+  margin: 10px 0;
   font-size: 16px;
   border: none;
   border-radius: 4px;
@@ -229,11 +228,10 @@ export default {
 
  /* Eye icon styles */
  .password-toggle-icon {
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translateY(-50%);
+   font-size: 14px !important;
     color: #888;
+    margin: 0 5px;
+    cursor: pointer;
     transition: color 0.3s;
   }
 
@@ -246,4 +244,9 @@ export default {
     padding-right: 0px; /* Increase padding to accommodate the icon */
     position: relative; /* Make the container relative for absolute positioning of the icon */
   }
+  .terms {
+    color: #292828;
+    padding: 10px 0;
+  }
+  
 </style>
