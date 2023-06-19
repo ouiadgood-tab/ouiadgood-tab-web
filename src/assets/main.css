@@ -1,8 +1,8 @@
+
 body {
     background-repeat: no-repeat;
     background-size: cover;
     animation: changeBackground 300s infinite;
-    height: 90vh;
     min-height: 90vh;
   }
 
@@ -29,7 +29,7 @@ body {
 
 .TimeDate {
     justify-content: center;
-    margin-top: 10%;
+    /* margin-top: 10%; */
 }
 
   /* Example: Modify background-size for screens between 768px and 1024px */

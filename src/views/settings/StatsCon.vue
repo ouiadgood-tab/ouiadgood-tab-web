@@ -6,6 +6,7 @@
                 {{ translatedStatsContainer.title }}
             </div>
         </div>
+
         <div class="tabInfo">
             <div>
                 <span>{{daysLogged}}</span>
@@ -26,7 +27,7 @@
                 <p class="grayOut">28 hearts until next level</p>
             </div>-->
         </div>
-        <div class="tabInfo2">
+        <div class="tabInfo">
             <div>
                 <span>{{ inviteNumber }}</span>
                 <p>{{ translatedStatsContainer.recruit }}</p>
@@ -191,8 +192,8 @@ function isToday(date1, date2) {
   justify-content: flex-start;
   align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center; 
+  margin: 20px;
 }
 .router{
     text-decoration: none;
@@ -202,20 +203,18 @@ function isToday(date1, date2) {
 .head {
   background-color: #fff;
   color: rgb(5, 169, 219);
-  padding: 20px 160px 20px 160px;
-  width: 100vh;
-  margin-left: 20%;
-  margin-bottom: 5%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding:30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.177);
 }
 .tabInfo {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  margin: 30px 0;
+  gap:30px;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-left: 20%;
-  margin-top: -5%;
 }
 
 .tabInfo > div{
@@ -223,38 +222,13 @@ function isToday(date1, date2) {
   color: #13b0c0;
   display: flex;
   flex-direction: column;
+  height: 100%;
   align-items: center;
   text-align: center;
-  padding:  40px 20px 0px 20px;
-  margin: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  width: 215px;
-  min-height: 150px;
+  padding:  40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabInfo2 {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-left: 20%;
-}
-
-.tabInfo2 > div{
-    background-color: #fff;
-  color: #13b0c0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding:  40px 20px 5px 20px;
-  margin: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  width: 515px;
-  min-height: 150px;
-}
 span{
     font-size: 4rem;
     font-weight: bold;
@@ -269,6 +243,7 @@ p{
   padding: 12px 24px;
   font-size: 16px;
   border: none;
+  margin: 14px;
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -282,7 +257,6 @@ p{
 
 .grayOut{
     color: #707070 !important;
-    margin-top: -10px;
 }
 .grayOutMain{
     color: #707070 !important;
@@ -294,16 +268,5 @@ p{
     border-radius: 20%;
 }
 
-@media (max-width: 768px) {
-  .tabInfo > div {
-    width: 100%;
-  }
-  .tabInfo2 > div {
-    width: 100%;
-  }
 
-  .head{
-    width: 100%;
-  }
-}
 </style>

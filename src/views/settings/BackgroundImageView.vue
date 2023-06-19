@@ -1,27 +1,18 @@
 <template>
-    <div>
-        <div class="setPos"> 
-            <SettingNav/>
-        </div >
-        <BackgroundImage class="account"/>
-    </div>
+  <SettingNav>
+    <BackgroundImage class="account" />
+  </SettingNav>
 </template>
 
 <script>
-import SettingNav from './SettingNav.vue';
-import BackgroundImage from './Background/BackgroundImage.vue';
+import SettingNav from "./SettingNav.vue";
+import BackgroundImage from "./Background/BackgroundImage.vue";
 
-
-export default{
-    components: { SettingNav, BackgroundImage }
-}
+export default {
+  components: { SettingNav, BackgroundImage },
+};
 </script>
 
 <style scoped>
-.setPos{
-    position: static;
-}
-.account{
-    margin-top: -45%;
-}
+
 </style>

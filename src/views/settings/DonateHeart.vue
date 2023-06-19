@@ -16,20 +16,22 @@
         <a :href="charity.url">
           <img :src="charity.image" class="imgDonate" />
         </a>
+       <div class="text">
         <h1
-          class="ch-name"
-          :contenteditable="isEditing.id == charity._id"
-          @input="updateCharity"
-        >
-          {{ charity.name }}
-        </h1>
-        <p
-          class="ch-about"
-          :contenteditable="isEditing.id == charity._id"
-          @input="updateCharity"
-        >
-          {{ charity.about }}
-        </p>
+        class="ch-name"
+        :contenteditable="isEditing.id == charity._id"
+        @input="updateCharity"
+      >
+        {{ charity.name }}
+      </h1>
+      <p
+        class="ch-about"
+        :contenteditable="isEditing.id == charity._id"
+        @input="updateCharity"
+      >
+        {{ charity.about }}
+      </p>
+       </div>
         <button
           class="btnTab"
           :class="{ grayBtn: rangeValue === 0 }"
@@ -334,6 +336,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  padding: 20px;
+}
 .btn-group {
   display: flex;
   gap: 10px;
@@ -361,7 +366,10 @@ export default {
 .save-button {
   padding: 14px;
   background: red;
-  width: 80%;
+  opacity: .7;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 30px;
   font-weight: bold;
   color: #fff;
   cursor: pointer;
@@ -376,74 +384,62 @@ export default {
   background-color: gray;
   color: black;
 }
-.container {
-  margin-right: 10vh;
-}
+
 .head {
   background-color: #fff;
   color: #333;
   font-size: 13px;
-  padding: 15px 70px 15px 70px;
-  width: 60vh;
-  margin-top: 3%;
-  margin-left: 43%;
-  margin-bottom: 3%;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  margin:10px 5%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.fa-solid {
-  float: left;
-}
-.grayHead {
-  margin-left: -6%;
-  margin-right: -6%;
-}
+
+
 p {
   color: #000;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-bottom: 30px;
 }
-h1 {
-  font-size: 18px;
-  margin-bottom: 10px;
+
+.ch-name{
+  padding: 4px 0;
 }
-.worldSuck {
-  margin-top: -1% !important;
-  margin-bottom: -3%;
+
+
+.text{
+  padding: 15px;
 }
-.gDir {
-  margin-top: -1% !important;
-}
+
+
 
 .card {
   display: grid;
-  width: 35%;
-  margin-left: 2%;
-  margin-bottom: 1%;
   border-radius: 10px;
+  padding: 25px;
+  margin-top: 30px;
   background: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 25%;
-  justify-content: center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap:20px
 }
 .imgDonate {
-  width: 45vh;
+
 }
 .btnTab {
   background-color: #13b0c0;
   color: #fff;
   padding: 12px 24px;
-  width: 60%;
   justify-self: center;
   font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 10px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }

@@ -1,16 +1,18 @@
 <template>
-  <div class="background">
+  <div class="">
     <div class="vertical-nav">
-        <img src="./icon.png">
+        <img src="./icon.png" class="logo">
       <span class="close-icon" @click="closeNav">
         <i class="fa-solid fa-xmark"></i>
       </span>
     </div>
-    <nav class="horizontal-nav">
-      <p>{{ translatedSettingContainer.title1 }}</p>
+
+   <div class="settings-nav"  :class="admin && 'admin'">
+    <nav class="horizontal-nav" v-show="!admin">
+      <p class="nav-title">{{ translatedSettingContainer.title1 }}</p>
     <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
     <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
-        <p>{{ translatedSettingContainer.title2 }}</p>
+        <p class="nav-title">{{ translatedSettingContainer.title2 }}</p>
         <p v-show="admin" >
           <router-link class="router" to="/setting/Admin" :class="{ active: isActive('/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
         </p>
@@ -19,6 +21,10 @@
     <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
     <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
   </nav>
+
+  <div class="content"><slot /></div>
+   </div>
+
     </div>
   </template>
 
@@ -88,86 +94,83 @@ if(getUser.admin){
 </script>
   
   <style scoped>
-  .background{
-    background-color: #fff;
-    height: 100vh;
-    margin-left: -4%;
-    margin-right: -0.6%;
-    margin-top: -4%;
-    padding-bottom: 4%;
-    margin-bottom: 0%;
-    background-repeat: no-repeat;
-  }
-  .vertical-nav {
-    background: #f2d70f;
-    position: fixed;
-    padding:5px 5px 25px 5px;
-    margin-top: 0%;
-    margin-left: 3%;
-    height: 7%;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-  }
-  
-  .vertical-nav router-link {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .close-icon {
-    cursor: pointer;
-    margin-top: 1rem;
-    width:40px;
-    height: 40px;
-    font-size: 1.4rem;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 25px;
-    color: #fff;
-    padding: 0.5%;
-  }
-
-  .close-icon:hover{
-    background-color: #be270c93;
-    border-radius: 50%;
-  }
-
-  img{
-    height: 6vh;
-    float: left;
-    margin-left: 5%;
-    margin-top: 1.5rem;
-  }
-
-  .horizontal-nav {
+.logo{
+  width: 40px;
+}
+.content{
+  position: relative;
+}
+.vertical-nav{
   display: flex;
-  position: fixed;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 10px;
-  padding-left: 8%;
-  color: #b3aeae;
-  margin-top: 5%;
-  
+  justify-content: space-between;
+  padding: 10px;
+  background: #f2d70f;
+  align-items: center;
+}
+.horizontal-nav{
+  padding: 2%;
+}
+.close-icon{
+  display: flex;
+  width:40px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: .3s;
+  background: #eee;
 }
 
-.router {
-  margin: 5px 0;
+.close-icon:hover{
+  transform: scale(.9);
+}
+
+.settings-nav{
+  display: grid;
+  position: relative;
+  grid-template-columns: 200px 1fr;
+  gap: 10px;
+  padding: 0 5px;
+}
+
+.settings-nav.admin{
+  grid-template-columns:auto;
+}
+
+.nav-title{
+  font-size: 20px;
+  font-weight: bold;
+  opacity: .9;
+  padding: 10px;
+}
+
+.router{
+  display: flex;
   text-decoration: none;
-  padding: 8px 120px 8px 12px;
   color: #333;
-  font-weight: 200;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px;
+}
 
+.router:hover{
+  background: #eee;
+  color: #000;
 }
-.horizontal-nav a:hover {
-  background-color: #b3aeae;
+
+.router-link-active{
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
 }
-.router.active {
-  background-color: #b3aeae;
+
+
+@media screen and (max-width:600px) {
+  .settings-nav{
+    grid-template-columns:  1fr !important;
+  }
+  
 }
 
   </style>

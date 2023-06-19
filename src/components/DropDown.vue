@@ -1,133 +1,127 @@
 <template>
-  <div class="dropdowns">
-    <ul
-      class="dropdown"
-      @click="toggleDropdown('dropdown1')"
-      :class="{ active: activeDropdown === 'dropdown1' }"
-    >
-      <div><MoneyCount class="icon" /></div>
-      <ul class="dropdown-items1" v-if="activeDropdown === 'dropdown1'">
-        <div>
-          <p class="info">
-            {{ translatedDropDownContainer.moneyTitle }}
-          </p>
-          <button class="btnInvite">
-            <router-link class="router" to="/setting/Invite">{{
-              translatedDropDownContainer.moneyButton
-            }}</router-link>
-          </button>
-        </div>
-      </ul>
+  <div class="top-navigation">
+    <ul>
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <i class="fa-sharp fa-regular fa-note-sticky icon"></i>
+        <ul v-if="showDropdown" class="dropdown">
+          <AddNote />
+        </ul>
+      </li>
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <i class="fa-solid fa-list icon"></i>
+        <ul v-if="showDropdown" class="dropdown">
+          <AddTodo />
+        </ul>
+      </li>
     </ul>
-    <ul
-      class="dropdown"
-      @click="toggleDropdown('dropdown2')"
-      :class="{ active: activeDropdown === 'dropdown2' }"
-    >
-      <i class="fa-solid fa-display icon"></i>
-      <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2'">
-       <a href="/new" target="_blank">
-        <div>
-          <h3 class="info">{{ translatedDropDownContainer.videoTitle }}</h3>
-          <p class="info">{{ translatedDropDownContainer.videSub }}</p>
-        </div>
-       </a>
-      </ul>
-    </ul>
-    <ul
-      class="dropdown"
-      @click="toggleDropdown('dropdown2+')"
-      :class="{ active: activeDropdown === 'dropdown2+' }"
-    >
-      {{
-        heart
-      }}<i class="fa-sharp fa-regular fa-heart icon"></i>
-      <ul class="dropdown-items" v-if="activeDropdown === 'dropdown2+'">
-        <div class="heartDrop">
-          <h2>
-            {{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i>
-          </h2>
-          <P>{{ translatedDropDownContainer.donate }}</P>
-          <button class="btnInvite">
-            <router-link class="router" to="/setting/Donate">{{
-              translatedDropDownContainer.donateButton
-            }}</router-link>
-          </button>
-        </div>
-        <hr />
-        <div class="heartDrop">
-          <h2>{{ inviteNumber }}<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
-          <P>{{ translatedDropDownContainer.invite }}</P>
-          <button class="btnInvite">
-            <router-link class="router" to="/setting/Invite">{{
-              translatedDropDownContainer.inviteButton
-            }}</router-link>
-          </button>
-        </div>
-        <hr />
-        <div>
-          <div class="heartDrop openSpace">
-            <p class="leftSide">{{ translatedDropDownContainer.openTab }}</p>
-            <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
-          </div>
+
+    <!-- LEFT BAR -->
+
+    <ul>
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <MoneyCount class="icon" />
+        <ul v-if="showDropdown" class="dropdown">
+        <li>{{ translatedDropDownContainer.moneyTitle }}</li>
+        <button class="btnInvite">{{ translatedDropDownContainer.moneyButton}}</button>
+        </ul>
+      </li>
+    <router-link to="/new" target="_blank">
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <i class="fa-solid fa-display icon"></i>
+        <ul v-if="showDropdown" class="dropdown">
+          <li class="bold">{{ translatedDropDownContainer.videoTitle }}</li>
+          <li class="">{{ translatedDropDownContainer.videSub }}</li>
+        </ul>
+      </li>
+    </router-link>
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <i class="fa-sharp fa-regular fa-heart icon"></i>
+        <ul v-if="showDropdown" class="dropdown">
+          <div class="leftSide"></div>
           <div class="heartDrop">
-            <p class="leftSide1">{{ translatedDropDownContainer.recruit }}</p>
-            <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+            <h2>
+              {{ heartDonated }} <i class="fa-sharp fa-regular fa-heart icon"></i>
+            </h2>
+            <P>{{ translatedDropDownContainer.donate }}</P>
+            <button class="btnInvite">
+              <router-link class="router" to="/setting/Donate">{{
+                translatedDropDownContainer.donateButton
+              }}</router-link>
+            </button>
           </div>
-        </div>
-      </ul>
-    </ul>
-    <ul
-      class="dropdown"
-      @click="toggleDropdown('dropdown3')"
-      :class="{ active: activeDropdown === 'dropdown3' }"
-    >
-      <i class="fa-solid fa-ellipsis icon"></i>
-      <div>
-        <div class="dropdown-items" v-if="activeDropdown === 'dropdown3'">
-          <router-link class="router" to="/setting/Donate"
-            ><div>
-              <i class="fa-solid fa-heart drop-icon"></i>
-              {{ translatedDropDownContainer.donateButton }}
-            </div></router-link
-          >
-          <router-link class="router" to="/setting/Stats">
-            <div>
-              <i class="fa-solid fa-chart-simple drop-icon"></i>
-              {{ translatedDropDownContainer.stats }}
-            </div></router-link
-          >
-          <router-link class="router" to="/setting/Invite">
-            <div>
-              <i class="fa-solid fa-user-plus drop-icon"></i>
-              {{ translatedDropDownContainer.inviteButton }}
+          <hr />
+          <div class="heartDrop">
+            <div class="leftSide"></div>
+            <h2>{{ inviteNumber }}<i class="fa-sharp fa-regular fa-heart icon"></i></h2>
+            <P>{{ translatedDropDownContainer.invite }}</P>
+            <button class="btnInvite">
+              <router-link class="router" to="/setting/Invite">{{
+                translatedDropDownContainer.inviteButton
+              }}</router-link>
+            </button>
+          </div>
+          <hr />
+          <div>
+            <div class="heartDrop openSpace">
+              <p class="leftSide">{{ translatedDropDownContainer.openTab }}</p>
+              <p>1<i class="fa-sharp fa-regular fa-heart icon"></i></p>
             </div>
-          </router-link>
-          <router-link class="router" to="/setting/Widget">
-            <div>
-              <i class="fa-solid fa-gear drop-icon"></i>
-              {{ translatedDropDownContainer.Setting }}
-            </div></router-link
-          >
-          <div @click="logoutUser" class="router">
-            <i class="fa-solid fa-right-from-bracket drop-icon"></i>
-            {{ translatedDropDownContainer.logout }}
+            <div class="heartDrop">
+              <p class="leftSide">{{ translatedDropDownContainer.recruit }}</p>
+              <p>350<i class="fa-sharp fa-regular fa-heart icon"></i></p>
+            </div>
           </div>
+        </ul>
+      </li>
+
+      <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+        <i class="fa-solid fa-ellipsis icon"></i>
+        <ul v-if="showDropdown" class="dropdown eli">
+          <router-link class="router" to="/setting/Donate"
+          ><div>
+            <i class="fa-solid fa-heart drop-icon"></i>
+            {{ translatedDropDownContainer.donateButton }}
+          </div></router-link
+        >
+        <router-link class="router" to="/setting/Stats">
+          <div>
+            <i class="fa-solid fa-chart-simple drop-icon"></i>
+            {{ translatedDropDownContainer.stats }}
+          </div></router-link
+        >
+        <router-link class="router" to="/setting/Invite">
+          <div>
+            <i class="fa-solid fa-user-plus drop-icon"></i>
+            {{ translatedDropDownContainer.inviteButton }}
+          </div>
+        </router-link>
+        <router-link class="router" to="/setting/Widget">
+          <div>
+            <i class="fa-solid fa-gear drop-icon"></i>
+            {{ translatedDropDownContainer.Setting }}
+          </div></router-link
+        >
+        <div @click="logoutUser" class="router">
+          <i class="fa-solid fa-right-from-bracket drop-icon"></i>
+          {{ translatedDropDownContainer.logout }}
         </div>
-      </div>
+        </ul>
+      </li>
     </ul>
   </div>
 </template>
-
 <script>
 import MoneyCount from "./MoneyCount.vue";
 import axios from "axios";
-import { googleLogout } from "vue3-google-login"
+import { googleLogout } from "vue3-google-login";
+import AddTodo from "./AddTodo.vue";
+import AddNote from "./AddNote.vue";
 export default {
   name: "DropDown",
   data() {
     return {
       activeDropdown: null,
+      showDropdown: false,
       heart: 0,
       totalheart: 0,
       maxHeart: 0,
@@ -137,12 +131,11 @@ export default {
       locale: localStorage.getItem("locale") || "en",
     };
   },
-
   computed: {
-    inviteNumber(){
-            const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
-            return loginRequest ? loginRequest.numberOfReferred : 0;
-        },
+    inviteNumber() {
+      const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
+      return loginRequest ? loginRequest.numberOfReferred : 0;
+    },
     translatedDropDownContainer() {
       let translations;
       if (this.locale === "en") {
@@ -190,7 +183,6 @@ export default {
       return translations;
     },
   },
-
   created() {
     // Retrieve the stored value from the local storage
     const heartDonated = localStorage.getItem("heartDonated");
@@ -206,10 +198,8 @@ export default {
       this.heart = loginRequest.heart || 0;
       this.totalheart = loginRequest.totalheart || 0;
     }
-
     this.todayHeart = parseInt(localStorage.getItem("todayHeart")) || 0;
     this.maxHeart = parseInt(localStorage.getItem("maxHeart")) || 0;
-
     const currentDate = new Date().toLocaleDateString();
     if (currentDate != savedDate) {
       if (this.maxHeart > this.todayHeart) {
@@ -229,16 +219,14 @@ export default {
     // Increment the heart value when the page loads or refreshes
     this.incrementHeart();
   },
-
   methods: {
     logoutUser() {
       // Delete local storage data
       localStorage.removeItem("loginRequest");
-    
       // Redirect to /login
       // this.$router.push('/login');
       window.location.replace("/login");
-      googleLogout()
+      googleLogout();
     },
     incrementHeart() {
       const loginRequest = JSON.parse(
@@ -247,11 +235,9 @@ export default {
       this.heart++; // Increment the heart count
       this.totalheart++; // Increment the heart count
       this.todayHeart++; // Increment the todayHeart count
-
       if (this.todayHeart > this.maxHeart) {
         this.maxHeart = this.todayHeart;
       }
-
       if (loginRequest) {
         loginRequest.heart = this.heart;
         loginRequest.totalheart = this.totalheart;
@@ -260,7 +246,6 @@ export default {
       //Update the value in the local storage
       localStorage.setItem("todayHeart", this.todayHeart.toString());
       localStorage.setItem("maxHeart", this.maxHeart.toString());
-
       // Make the HTTP request to update the heart count in the database
       axios
         .patch("https://ouiadgood.onrender.com/users/heart", {
@@ -285,134 +270,78 @@ export default {
       }
     },
   },
-  components: { MoneyCount },
+  components: { MoneyCount, AddTodo, AddNote },
 };
 </script>
 
-<style scoped>
-
-a[href="/new"]{
+<style>
+a{
   text-decoration: none;
+  color: inherit;
 }
-.dropdowns {
+hr{
+  margin: 10px 0;
+}
+.top-navigation {
+  padding: 20px 10px;
   display: flex;
-  justify-content: right;
-  margin-top: -25px;
-  margin-right: 100px;
-  color: rgba(255, 255, 255, 0.795);
-}
-
-.dropdown {
-  margin-right: 15px;
-  list-style: none;
-  position: relative;
-  font-size: 30px;
-}
-
-.dropdown-items {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 10rem;
-  padding: 0;
-  background-color: #13afc02f;
-  border-top: none;
-  z-index: 1;
-}
-
-.dropdown-items1 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  padding: 0;
-  background-color: #13afc02f;
-  border-top: none;
-  z-index: 1;
-}
-.dropdown-items2 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 25vh;
-  padding: 0;
-  background-color: #13afc02f;
-  border-top: none;
-  z-index: 1;
-}
-.active .dropdown-items {
-  display: block;
-}
-.active .dropdown-items1 {
-  display: block;
-}
-.active .dropdown-items2 {
-  display: block;
-}
-
-.dropdown div {
-  padding: 5px;
-  cursor: pointer;
-}
-
-.icon:hover {
-  color: #fff;
-  cursor: pointer;
-}
-h2 {
-  margin-bottom: -8%;
-}
-.openSpace {
-  margin-bottom: 1%;
-}
-.heartDrop {
-  font-size: 15px;
-}
-
-.dropdown-items div {
-  padding: 10px;
-  border-top: 1px solid #ffffffdc;
-}
-
-.dropdown-items div {
-  display: block;
-  background-color: transparent;
-  border: none;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  font-size: 14px;
-  margin-top: -3%;
-}
-.router {
-  text-decoration: none;
-  color: #ffffff;
-}
-.leftSide {
-  float: left;
-}
-.leftSide1 {
-  float: left;
-  margin-left: -5%;
-}
-
-.drop-icon {
-  float: left;
-  margin-left: -6%;
-}
-
-.dropdown-items div:hover {
-  background-color: #13afc063;
-}
-.info {
-  font-size: small;
-  color: #ffffff;
+  justify-content: space-around;
 }
 
 ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bold{
+  font-weight: bold;
+  padding: 4px;
+}
+
+li {
+  display: inline-block;
+  position: relative;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  padding: 7px;
+  z-index: 1;
+  width: 200px;
+  text-align: center;
+  color: #fff;
+  background: black;
+  border-radius: 10px;
+  font-size: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #13afc063;
+  backdrop-filter: blur(10px);
+}
+
+.dropdown.bg{}
+
+.dropdown.eli .router{
+  display: flex;
+  gap:10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.dropdown.eli .router:hover{
+  background: #13afc0f4;
+}
+
+li:hover .dropdown {
+  display: block;
+}
+
+.icon {
+  font-size: 25px !important;
+  color: #fff;
 }
 
 .btnInvite {
@@ -423,7 +352,7 @@ ul {
   text-align: center;
   font-size: 70%;
   font-weight: 300;
-  margin: 5px;
+  margin:10px 5px;
   cursor: pointer;
   width: 80%;
   border-radius: 8px;
@@ -434,25 +363,20 @@ ul {
 .btnInvite:hover {
   background-color: #f2d70f;
 }
-@media (max-width: 600px) {
-  .dropdowns {
-    margin-right: 10%; /* Reduce the right margin */
-  }
-  .dropdown {
-    font-size: 20px; /* Decrease the font size */
-    margin-right: 5px; /* Reduce the right margin */
-  }
-  .dropdown-items,
-  .dropdown-items1,
-  .dropdown-items2 {
-    width: 100%; /* Set the width to 100% */
-    left: initial; /* Reset the left position */
-  }
-  .dropdown-items2 {
-    width: 100vw; /* Set the width to full viewport width */
-  }
-  .leftSide1 {
-    margin-left: -25%; /* Adjust the margin for smaller screens */
-  }
+
+.heartDrop{
+  padding: 5px;
+}
+
+.heartDrop .leftSide{
+  margin: 10px 0;
+}
+
+.heartDrop .leftSide + p{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap:5px;
+  justify-content: center;
 }
 </style>

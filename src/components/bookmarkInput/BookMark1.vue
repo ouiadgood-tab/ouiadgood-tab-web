@@ -10,7 +10,7 @@
       </div>
       <p>{{ getNameFromBookmarks() }}</p>
     </div>
-    <TheBookMark1 v-if="showBookmark" @close-bookmark="hideBookmark" :bookmark="getFirstBookmark()" />
+    <TheBookMark1 :bookmarkId="bookmarkId" v-if="showBookmark" @close-bookmark="hideBookmark" :bookmark="getFirstBookmark()" />
   </div>
 </template>
 
@@ -19,15 +19,22 @@ import TheBookMark1 from './TheBookMark1.vue';
 
 export default {
   name: "BookMark1",
+  props:{
+    id:{
+      type:String,
+      required:true
+    }
+  },
   data() {
     return {
       showTimes: false,
+      bookmarkId:this.id,
       showBookmark: false,
     };
   },
   computed: {
     bookmarks() {
-      const storedBookmarks = localStorage.getItem("bookmarks1");
+      const storedBookmarks = localStorage.getItem("bookmarks"+this.bookmarkId);
       if (storedBookmarks) {
         const parsedBookmarks = JSON.parse(storedBookmarks);
         return parsedBookmarks;
@@ -72,7 +79,7 @@ export default {
       }
     },
     deleteBookmark(){
-      localStorage.removeItem("bookmarks1");
+      localStorage.removeItem("bookmarks"+this.bookmarkId);
       window.location.reload(); // Reload the page
     },
   },
@@ -84,21 +91,22 @@ export default {
 <style scoped>
 .item{
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.349);
-  font-size: 3rem;
-  padding: 10px;
-  border-radius: 50%;
+    font-size: 1.5rem;
+width:70px;
+height: 70px;
+  border-radius: 100px;
   cursor: pointer;
 }
 .fa-plus{
   color:rgba(221, 222, 223, 0.863);
 }
 .item-container{
-  padding: 23px;
+  padding: 10px;
   border-radius: 5%;
-  margin-right:1rem;
   position: relative;
 }
 .item-container:hover{
@@ -106,6 +114,7 @@ export default {
 }
 .item-container:hover .fa-times {
   display: block;
+  padding: 6px;
 }
 .fa-times {
   position: absolute;

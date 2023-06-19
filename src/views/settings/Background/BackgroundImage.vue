@@ -19,6 +19,7 @@
                 </form>
             </div>
         </div>
+        
         <ImageSelection v-if="showImageSelection"/>
         <CustomImageInput v-if="showCustomImageInput"/>
     </div>
@@ -126,28 +127,24 @@ created() {
 
 <style scoped>
 .head {
-    background-color: #fff;
-  padding: 20px 150px;
+  background-color: #fff;
+  padding: 27px;
   color: #333;
-  width: 57.7%;
-  height: 30%;
-  margin-left: 18.59%;
+  width: 85%;
+  border-radius: 20px;
+  margin: 20px;
   border: 1px solid #ccc;
-  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.3);
 }
 
 .mainText{
-    display: flex;
-    margin-left: -14%;
-    margin-top: 4%;
-
+  display: flex;
 }
 
 .container form {
   display: flex;
+  margin: 10px 0px; 
   flex-wrap: wrap;
   flex-direction: column;
-  margin-left: -14%;
 }
 
 .container label {
@@ -160,7 +157,7 @@ created() {
 
 .container  label input {
   position: absolute;
-  left: -9999px;
+opacity: 0;
 }
 
 .container label input:checked + span {

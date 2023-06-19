@@ -1,5 +1,7 @@
 <template>
-    <div class="background-image" :style="{ backgroundImage: `url(${imageUrl})` }"></div>
+    <div class="background-image" :style="{ backgroundImage: `url(${imageUrl})` }">
+      <slot />
+    </div>
   </template>
   
   <script>
@@ -65,12 +67,22 @@
   <style>
   .background-image {
     width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+    padding: 20px 0;
+    position: relative;
+    min-height: 100vh;
+    background: #000;
     background-size: cover;
     background-position: center;
+  }
+
+  .background-image:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: #00000067;
   }
   </style>
   

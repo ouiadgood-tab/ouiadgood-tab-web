@@ -31,7 +31,10 @@ export default{
 
 
 <style scoped>
-
+.setPos{
+  width: 100%;
+  padding: 20px 0;
+}
 .create-button{
     border: none;
     background: #000;
