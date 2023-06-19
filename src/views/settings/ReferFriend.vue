@@ -51,7 +51,7 @@ export default{
                 };
             }
             return translations;
-        },
+      },
         isReferralDataExists() {
       const referral = localStorage.getItem('referral');
       return referral !== null && referral !== '';

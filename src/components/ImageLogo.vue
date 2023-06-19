@@ -1,6 +1,6 @@
 <template>
 <div class="centerDiv">
-<img alt="OUI AD GOOD logo" src="../assets/oag1.png"> 
+<img alt="OUI AD GOOD logo" src="../assets/oui.png"> 
 <SearchWidget/>
 </div>
 </template>
@@ -16,11 +16,11 @@ export default{
 
 <style scoped>
 img{
-    height: 80%;
-    width: 50%;
+    height: 50%;
+    width: 30%;
     margin-bottom: 5%;
     margin-right: 3%;
-    margin-top: -8%;
+    margin-top: 0%;
     position: relative;
 }
 
