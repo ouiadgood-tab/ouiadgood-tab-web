@@ -99,6 +99,8 @@ export default {
       admin: false,
       newName: "",
       newAbout: "",
+      newUrl:"",
+      newImage:"",
       isEditing: {
         id: null,
         edit: false,
@@ -216,19 +218,19 @@ export default {
         this.charitys = this.charitys.map((chh) => {
           // Convert file data to a Uint8Array
           if (chh.image) {
-            const arrayBufferToBase64 = (buffer) => {
-              var binary = "";
-              var bytes = [].slice.call(new Uint8Array(buffer));
-              bytes.forEach((b) => (binary += String.fromCharCode(b)));
-              return window.btoa(binary);
-            };
-            let base64 = 'data:image/jpeg;base64,';
+            // const arrayBufferToBase64 = (buffer) => {
+            //   var binary = "";
+            //   var bytes = [].slice.call(new Uint8Array(buffer));
+            //   bytes.forEach((b) => (binary += String.fromCharCode(b)));
+            //   return window.btoa(binary);
+            // };
+            // let base64 = 'data:image/jpeg;base64,';
             return {
               name: chh.name,
               url:chh.url,
               about: chh.about,
               _id: chh._id,
-              image: base64 + arrayBufferToBase64(chh.image.data.data),
+              image: chh.image
             };
           }
           return {
@@ -267,6 +269,11 @@ export default {
         .patch(`https://ouiadgood.onrender.com/charity/${id}`, {
           name: this.newName,
           about: this.newAbout,
+        },{
+          headers:{
+            'Access-Control-Allow-Origin':"*",
+            mode:"cors"
+          }
         })
         .then(() => {
           alert("Updated Successfully");
@@ -275,7 +282,7 @@ export default {
           this.isEditing.edit = false;
           this.isEditing.id = null;
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log((err)));
     },
     updateCharity(event) {
       if (event.target.className.includes("ch-name")) {
