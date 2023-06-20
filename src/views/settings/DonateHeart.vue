@@ -16,6 +16,7 @@
         <a :href="charity.url">
           <img :src="charity.image" class="imgDonate" />
         </a>
+        <input :class="'input-'+charity._id" v-show="isEditing.id == charity._id" type="file">
        <div class="text">
         <h1
         class="ch-name"
@@ -24,6 +25,10 @@
       >
         {{ charity.name }}
       </h1>
+      <!-- <p class="ch-url"
+      :contenteditable="isEditing.id == charity._id"
+      @input="updateCharity"
+       v-show="isEditing.id == charity._id" v-text="charity.url"></p> -->
       <p
         class="ch-about"
         :contenteditable="isEditing.id == charity._id"
@@ -100,7 +105,7 @@ export default {
       newName: "",
       newAbout: "",
       newUrl:"",
-      newImage:"",
+      newImage:null,
       isEditing: {
         id: null,
         edit: false,
@@ -265,24 +270,38 @@ export default {
       const selectCha = this.charitys.find((cha) => cha._id == id);
       !this.newName && (this.newName = selectCha.name);
       !this.newAbout && (this.newAbout = selectCha.about);
+      !this.newUrl && (this.newUrl = selectCha.url);
+      !this.newImage && (this.newImage = selectCha.image);
+      const imageFile = document.querySelector(".input-"+this.isEditing.id).files[0]
+      console.log(".input-"+this.isEditing.id)
+
+      console.log(imageFile)
+      const formData = new FormData();
+      formData.append("name", this.newName);
+      formData.append("about", this.newAbout);
+      formData.append("url", this.url);
+      formData.append("image", imageFile || null);
+
+      // console.log(
+      //   this.newName, this.newAbout, this.newUrl
+      // )
+      // Make a POST request to the API endpoint
       axios
-        .patch(`https://ouiadgood.onrender.com/charity/${id}`, {
-          name: this.newName,
-          about: this.newAbout,
-        },{
-          headers:{
-            'Access-Control-Allow-Origin':"*",
-            mode:"cors"
+        .post("https://ouiadgood.onrender.com/charity/add", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Accept": "application/json",
+          },
+        })
+        .then((response) => {
+          if (response.status == 200) {
+         this.deleteCharity(id)
+         alert("EDITED")
           }
         })
-        .then(() => {
-          alert("Updated Successfully");
-          this.newName = "";
-          this.newAbout = "";
-          this.isEditing.edit = false;
-          this.isEditing.id = null;
-        })
-        .catch((err) => console.log((err)));
+        .catch(() => {
+          alert("Could not edit charity");
+        });
     },
     updateCharity(event) {
       if (event.target.className.includes("ch-name")) {
@@ -291,13 +310,16 @@ export default {
       if (event.target.className.includes("ch-about")) {
         this.newAbout = event.target.textContent;
       }
+      if (event.target.className.includes("ch-url")) {
+        this.newUrl = event.target.textContent;
+      }
     },
     deleteCharity(id) {
       if (id != undefined) {
         axios
           .delete(`https://ouiadgood.onrender.com/charity/${id}`)
           .then((response) => {
-            alert("Deleted Successfully");
+            alert("Successful");
             this.charitys = response.data;
           })
           .catch((err) => console.log(err));
@@ -351,9 +373,13 @@ export default {
   gap: 10px;
   margin: 10px;
 }
+.ch-url{
+  padding: 10px;
+}
 .ch-name[contenteditable="true"],
 .ch-about[contenteditable="true"] {
   border: 1px solid black;
+  width: 100%;
   margin: 10px;
   position: relative;
 }
