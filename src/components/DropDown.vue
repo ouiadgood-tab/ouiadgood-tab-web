@@ -37,7 +37,7 @@
         </li>
       </router-link>
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-        <i class="fa-sharp fa-regular fa-heart icon"></i>
+        {{ heart }}<i class="fa-sharp fa-regular fa-heart icon"></i>
         <ul v-if="showDropdown" class="dropdown">
           <div class="leftSide"></div>
           <div class="heartDrop">
@@ -326,6 +326,7 @@ li {
   position: relative;
   padding: 20px;
   cursor: pointer;
+  color: #fff;
 }
 
 .dropdown {
