@@ -16,7 +16,8 @@ app.use( posthogPlugin);
  app.use(require('vue-script2'))
 //  app.use(Ads.Adsense)
  app.use(vue3GoogleLogin, {
-  clientId: '81713163843-776kmaegal7brehobfk6iq4rkisb9c8u.apps.googleusercontent.com',
+  clientId: '1024039220598-mh0k7q1puncjrbjtltlluf99gp4ulbv4.apps.googleusercontent.com',
+  // clientId: '81713163843-776kmaegal7brehobfk6iq4rkisb9c8u.apps.googleusercontent.com',
 })
 app.use(store)
 app.use(router).mount('#app');

@@ -4,7 +4,6 @@
   <div class="login">
     <div class="buttons">
       <EmailLogin/>
-      
     </div>
   </div>
 </div>

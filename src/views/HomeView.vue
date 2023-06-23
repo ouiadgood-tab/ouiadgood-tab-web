@@ -3,9 +3,10 @@
     <DisplayImages :image-url="backgroundImageUrl">
       <drop-down />
       <image-logo />
-      <BookMark v-if="bookmarkEnabled"/>
-      <date-time v-if="clockEnabled"/> 
+      <BookMark v-show="bookmarkEnabled"/>
+      <date-time v-show="clockEnabled"/> 
       <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
+      <AdBanner />
     </DisplayImages>
     <CustomAds />
   </div>
@@ -19,6 +20,7 @@ import ImageLogo from '@/components/ImageLogo.vue';
 import CustomAds from '@/components/CustomAds.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 import BookMark from '@/components/BookMark.vue';
+import AdBanner from '@/components/AdBanner.vue';
 
 export default {
   name: 'HomeView',
@@ -29,6 +31,7 @@ export default {
     DateTime,
     ImageLogo,
     CustomAds,
+    AdBanner,
     BookMark
 },
   data() {

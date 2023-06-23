@@ -15,64 +15,64 @@ import VideoViewVue from '@/views/VideoView.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/tab',
+    name: '/tab/home',
     component: HomeView,
     meta: { requiresAuth: true },
 
     
   },
     {
-      path: '/setting/Stats',
+      path: '/tab/setting/Stats',
       name: 'Stats',
       component: StatsView,
       meta: { requiresAuth: true },
     },
   
     {
-      path: '/setting/Background',
+      path: '/tab/setting/Background',
       name: 'Background',
       component: BackgroundImageView,
       meta: { requiresAuth: true },
     },
 
     {
-      path: '/setting/Widget',
+      path: '/tab/setting/Widget',
       name: 'Widget',
       component: WidgetView,
       meta: { requiresAuth: true },
     },
 
     {
-      path: '/setting/Donate',
+      path: '/tab/setting/Donate',
       name: 'Donate',
       component: DonateView,
       meta: { requiresAuth: true },
     },
 
     {
-      path: '/setting/Account',
+      path: '/tab/setting/Account',
       name: 'Account',
       component: AccountView,
       meta: { requiresAuth: true },
     },
 
     {
-      path: '/new',
+      path: '/tab/new',
       name: 'New',
       component: VideoViewVue,
       meta: { requiresAuth: true },
     },
 
     {
-      path: '/setting/Invite',
+      path: '/tab/setting/Invite',
       name: 'Invite',
       component: InviteView,
       meta: { requiresAuth: true },
     },
 
   {
-    path: '/login',
+    path: '/tab/login',
     name: 'login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -85,27 +85,29 @@ const routes = [
 
   // redirect
   {
-    path: '/home',
-    redirect: '/',
+    path: '/tab/home',
+    redirect: '/tab',
     meta: { requiresAuth: true },
   },
 
   // catch-all route for undefined routes
   {
-    path: '/:pathMatch(.*)*',
-    redirect: '/home'
+    path: '/:pathMatch(.*/.*)',
+    redirect: '/tab/home'
   },
   {
-    path: '/setting/Admin',
+    path: '/tab/setting/Admin',
     name: 'Admin',
     component: AdminView,
     meta: { requiresAuth: true, requiresAdmin:true },
   }
 ]
 
+const publicPath ="./"
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  base:publicPath
 })
 
 
@@ -122,10 +124,10 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && !isLoggedIn) {
     // Redirect to the login page if authentication is required but user is not logged in
-    next('/login')
+    next('/tab/login')
   }else if (to.meta.requiresAdmin && (!isLoggedIn || !isAdmin)) {
     // Redirect to the home page if admin access is required but user is not logged in or is not an admin
-    next('/login')
+    next('/tab/login')
   } else {
     // Proceed with the navigation
     next()
