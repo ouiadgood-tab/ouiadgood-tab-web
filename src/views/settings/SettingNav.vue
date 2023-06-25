@@ -10,16 +10,16 @@
    <div class="settings-nav">
     <nav class="horizontal-nav">
       <p class="nav-title">{{ translatedSettingContainer.title1 }}</p>
-    <router-link class="router" to="/setting/Widget" :class="{ active: isActive('/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
-    <router-link class="router" to="/setting/Background" :class="{ active: isActive('/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
+    <router-link class="router" to="/tab/setting/Widget" :class="{ active: isActive('/tab/setting/Widget') }">{{ translatedSettingContainer.widgets }}</router-link>
+    <router-link class="router" to="/tab/setting/Background" :class="{ active: isActive('/tab/setting/Background') }">{{ translatedSettingContainer.background }}</router-link>
         <p class="nav-title">{{ translatedSettingContainer.title2 }}</p>
         <p v-show="admin" >
-          <router-link class="router" to="/setting/Admin" :class="{ active: isActive('/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
+          <router-link class="router" to="/tab/setting/Admin" :class="{ active: isActive('/tab/setting/Admin') }">{{ translatedSettingContainer.admin }}</router-link>
         </p>
-    <router-link class="router" to="/setting/Stats" :class="{ active: isActive('/setting/Stats') }">{{ translatedSettingContainer.stat }}</router-link>
-    <router-link class="router" to="/setting/Donate" :class="{ active: isActive('/setting/Donate') }">{{ translatedSettingContainer.donate }}</router-link>
-    <router-link class="router" to="/setting/Invite" :class="{ active: isActive('/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
-    <router-link class="router" to="/setting/Account" :class="{ active: isActive('/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
+    <router-link class="router" to="/tab/setting/Stats" :class="{ active: isActive('/tab/setting/Stats') }">{{ translatedSettingContainer.stat }}</router-link>
+    <router-link class="router" to="/tab/setting/Donate" :class="{ active: isActive('/tab/setting/Donate') }">{{ translatedSettingContainer.donate }}</router-link>
+    <router-link class="router" to="/tab/setting/Invite" :class="{ active: isActive('/tab/setting/Invite') }">{{ translatedSettingContainer.invite }}</router-link>
+    <router-link class="router" to="/tab/setting/Account" :class="{ active: isActive('/tab/setting/Account') }">{{ translatedSettingContainer.account }}</router-link>
   </nav>
 
   <div class="content"><slot /></div>
