@@ -27,7 +27,7 @@
           </button>
         </ul>
       </li>
-      <router-link to="/new" target="_blank">
+      <router-link to="/tab/new" target="_blank">
         <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
           <i class="fa-solid fa-display icon"></i>
           <ul v-if="showDropdown" class="dropdown">
@@ -47,7 +47,7 @@
             </h2>
             <P>{{ translatedDropDownContainer.donate }}</P>
             <button class="btnInvite">
-              <router-link class="router" to="/setting/Donate">{{
+              <router-link class="router" to="/tab/setting/Donate">{{
                 translatedDropDownContainer.donateButton
               }}</router-link>
             </button>
@@ -61,7 +61,7 @@
             </h2>
             <P>{{ translatedDropDownContainer.invite }}</P>
             <button class="btnInvite">
-              <router-link class="router" to="/setting/Invite">{{
+              <router-link class="router" to="/tab/setting/Invite">{{
                 translatedDropDownContainer.inviteButton
               }}</router-link>
             </button>
@@ -83,32 +83,32 @@
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <i class="fa-solid fa-ellipsis icon"></i>
         <ul v-if="showDropdown" class="dropdown eli">
-          <router-link class="router" to="/setting/Donate"
+          <router-link class="router" to="/tab/setting/Donate"
             ><div>
               <i class="fa-solid fa-heart drop-icon"></i>
               {{ translatedDropDownContainer.donateButton }}
             </div></router-link
           >
-          <router-link class="router" to="/setting/Stats">
+          <router-link class="router" to="/tab/setting/Stats">
             <div>
               <i class="fa-solid fa-chart-simple drop-icon"></i>
               {{ translatedDropDownContainer.stats }}
             </div></router-link
           >
-          <router-link v-show="admin" class="router" to="/setting/Admin">
+          <router-link v-show="admin" class="router" to="/tab/setting/Admin">
             <div>
               <i class="fa-solid fa-user-tie drop-icon"></i>
               {{ translatedDropDownContainer.admin }}
             </div></router-link
           >
 
-          <router-link class="router" to="/setting/Invite">
+          <router-link class="router" to="/tab/setting/Invite">
             <div>
               <i class="fa-solid fa-user-plus drop-icon"></i>
               {{ translatedDropDownContainer.inviteButton }}
             </div>
           </router-link>
-          <router-link class="router" to="/setting/Widget">
+          <router-link class="router" to="/tab/setting/Widget">
             <div>
               <i class="fa-solid fa-gear drop-icon"></i>
               {{ translatedDropDownContainer.Setting }}

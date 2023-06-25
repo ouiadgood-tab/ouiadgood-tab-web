@@ -139,7 +139,7 @@ export default {
             localStorage.setItem("loginRequest", JSON.stringify(response.data));
             // Redirect to /home
 
-            this.$router.push("/home");
+            this.$router.push("/tab/home");
           })
           .catch((error) => {
             console.error(error);
