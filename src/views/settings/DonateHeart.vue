@@ -13,7 +13,7 @@
         data-id="charity._id"
         class="card"
       >
-        <a :href="charity.url">
+        <a :href="dynamicUrl(charity.url)">
           <img :src="charity.image" class="imgDonate" />
         </a>
         <input :class="'input-'+charity._id" v-show="isEditing.id == charity._id" type="file">
@@ -256,6 +256,10 @@ export default {
     }
   },
   methods: {
+    dynamicUrl(_url){
+      const pattern =  (/^(http|https):../i);
+     return pattern.test(_url) ? _url: 'https://'+_url 
+    },
     editCharity(id) {
       this.isEditing.edit = true;
       this.isEditing.id = id;

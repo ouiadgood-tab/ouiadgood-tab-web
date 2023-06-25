@@ -92,6 +92,7 @@ export default {
 .item{
   display: flex;
   position: relative;
+  z-index: 11;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.349);

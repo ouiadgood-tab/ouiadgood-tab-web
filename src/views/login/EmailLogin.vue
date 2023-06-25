@@ -1,81 +1,61 @@
 <template>
-  <div>
-    <!--<button class="btn btnEm" @click="showLoginModal">
-      <img class="loginLogo logoEm" src="./email.jpg">
-      Login with Email
-    </button> -->
-    <div class="modal" v-if="showModal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <h3 class="title">Login / Sign up with Email</h3>
-        <form>
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input
-                class="input"
-                type="email"
-                placeholder="Enter your email"
-                v-model="email"
-                @input="validateEmail"
-                ref="emailInput"
-              />
-              <span
-                v-show="!validEmail && email.length > 0"
-                class="help is-danger"
-                >Please enter a valid email address.</span
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control password-input">
-              <input
-                class="input"
-                :type="passwordVisible ? 'text' : 'password'"
-                placeholder="Enter your password"
-                v-model="password"
-                @input="validatePassword"
-                ref="passwordInput"
-              />
-              <span
-                class="icon is-small is-right password-toggle-icon"
-                @click="togglePasswordVisibility"
-              >
-                <i
-                  class="fa"
-                  :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
-                ></i>
-              </span>
-            </div>
-          </div>
+  <section id="root">
 
-          <GoogleLogin />
+    <div class="login-container">
+      <div class="login-header">
 
-          <div class="field">
-            <div class="button">
-              <button
-                class="btnTab"
-                :disabled="!isValidForm"
-                @click.prevent="submitLogin"
-              >
-                Continue
-              </button>
-            </div>
+        <img src="./oag.png" width="250" alt="">
+
+        <h1>Sign in</h1>
+        <p class="text">Watch Ads and Donate For Good Cause</p>
+      </div>
+
+      <form @submit.prevent="submitLogin" class="login-form">
+        <div class="input-group">
+          <input class="input" type="email" placeholder="Enter your email" v-model="email" @input="validateEmail"
+            ref="emailInput" />
+
+        </div>
+        <span v-show="!validEmail && email.length > 0" class="help is-danger">Please enter a valid email address.</span>
+        <div class="input-group">
+          <input class="input" required :type="passwordVisible ? 'text' : 'password'" placeholder="Enter your password"
+            v-model="password" @input="validatePassword" ref="passwordInput" />
+          <span class="icon is-small is-right password-toggle-icon" @click="togglePasswordVisibility">
+            <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </span>
+        </div>
+
+        <span v-show="!validPassword && password.length > 0" class="help is-danger">Please enter a valid Paasword.</span>
+
+        <div class="keep">
+          <input type="checkbox" checked name="" id="">
+          <span>Keep me signed in on this device</span>
+        </div>
+
+
+        <button type="submit" class="btnTab" :disabled="!isValidForm || isLoading">
+          <span v-if="isLoading" class="fa fa-spinner fa-spin"></span>
+          <span v-else>Sign in</span>
+        </button>
+
+        <div class="alt">
+          <p class="alt-text">or Sign in with</p>
+          <div class="alt-content">
+            <GoogleLogin />
           </div>
-        </form>
-      </div>
-      <div class="terms">
-        <p>By continuing, you are indicating that you accept our</p>
-        <p><span>Terms of Service </span>and <span>Privacy Policy</span></p>
-      </div>
+        </div>
+      </form>
     </div>
-  </div>
+
+
+
+  </section>
 </template>
 
 <script>
 import axios from "axios";
 import GoogleLogin from "./GoogleLogin.vue";
+import { toast } from 'vue3-toastify';
 
 export default {
   name: "EmailLogin",
@@ -86,6 +66,7 @@ export default {
     return {
       email: "",
       password: "",
+      isLoading: false,
       showModal: true,
       passwordVisible: false, // added property for password visibility
     };
@@ -95,7 +76,7 @@ export default {
       return /\S+@\S+\.\S+/.test(this.email);
     },
     validPassword() {
-      return this.password.length >= 8;
+      return this.password.length >= 3;
     },
     isValidForm() {
       return this.validEmail && this.validPassword;
@@ -124,7 +105,8 @@ export default {
       }
     },
     submitLogin() {
-      if (this.validEmail && this.validPassword) {
+      if (this.validEmail && this.validPassword && !this.isLoading) {
+        this.isLoading = true
         // Create a user object with the login details
         const user = {
           email: this.email,
@@ -138,12 +120,21 @@ export default {
 
             localStorage.setItem("loginRequest", JSON.stringify(response.data));
             // Redirect to /home
-
+            toast("Sign in Successfully!", {
+              autoClose: 1000,
+            }); // ToastOptions
             this.$router.push("/tab/home");
+            this.isLoading = false
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
+            this.isLoading = false
+            toast("An Error Occured !", {
+              autoClose: 1000,
+            }); // ToastOptions
           });
+      } else {
+        this.isLoading = false
+        return
       }
     },
   },
@@ -151,108 +142,96 @@ export default {
 </script>
 
 <style scoped>
-.btn {
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 2rem;
-  transition: all 0.3s ease;
-}
-
-.title {
-  padding: 15px 0;
-}
-
-.loginLogo {
-  width: 30px;
-  height: 30px;
-  margin-bottom: -5px;
-}
-
-.btnEm {
-  background-color: #fff;
-  color: grey;
-  padding-left: 35px;
-  padding-right: 35px;
-}
-
-.overlay {
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal {
-  background-color: white;
-  padding: 30px;
-  max-width: 400px;
-  margin: 10px auto;
-  border-radius: 5%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
+#root {
+  min-height: 100vh;
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.modal-header h3 {
-  margin: 0;
-}
-
-.btn:hover {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-  transform: scale(1.1);
-}
-
-.field {
-  margin-bottom: 10px;
-}
-
-.label {
-  display: block;
-  margin-bottom: 5px;
+.is-danger {
+  color: red;
   font-weight: bold;
 }
 
-.input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 15px 5px !important;
-  width: 90%;
+.keep {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  align-items: center;
 }
 
-.help {
-  display: block;
-  margin-top: 5px;
-  color: #dc3545;
+.keep input {
+  transform: scale(1.3);
+}
+
+.login-container {
+  border: 1px solid rgb(175, 175, 175);
+  width: 600px;
+  padding: 30px;
+  margin: auto;
+}
+
+.login-header {
+  padding: 0 20px;
+}
+
+.login-container .text {
+  padding: 15px 0 0 0;
+}
+
+.alt {
+  padding: 20px 0 0 0;
+}
+
+.alt-text {
+  text-align: center;
+}
+
+.login-header h1 {
+  font-size: 2.4rem;
+}
+
+.login-form {
+  padding: 20px;
+}
+
+.input-group {
+  display: flex;
+  position: relative;
+  margin: 20px 0;
+  border: 1px solid grey;
+  padding: 10px 0;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-group input {
+  padding: 13px;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: none;
 }
 
 .btnTab {
-  background-color: #13b0c0;
-  color: #fff;
-  padding: 12px 24px;
-  margin: 10px 0;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  width: 100%;
+  font-weight: bold;
+  padding: 20px;
 }
 
-.btnTab:hover {
-  background-color: #14c3d6;
+.btnTab:disabled {
+  background-color: gray;
+  pointer-events: none;
+  opacity: .6;
 }
 
 /* Eye icon styles */
 .password-toggle-icon {
   font-size: 14px !important;
   color: #888;
-  margin: 0 5px;
+  margin: 0 15px;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -261,13 +240,9 @@ export default {
   color: #333;
 }
 
-/* Password input styles */
-.password-input {
-  padding-right: 0px; /* Increase padding to accommodate the icon */
-  position: relative; /* Make the container relative for absolute positioning of the icon */
-}
-.terms {
-  color: #292828;
-  padding: 10px 0;
+@media screen and (max-width:700px) {
+  .login-container {
+    width: 80vw !important;
+  }
 }
 </style>

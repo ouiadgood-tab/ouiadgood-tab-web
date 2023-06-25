@@ -45,7 +45,7 @@ export default {
         options.second = "2-digit"; // Include seconds if showSeconds is true
       }
       const time = now.toLocaleTimeString([], options);
-      this.formattedDate = `${day}, ${month} ${date}, ${year}`;
+      this.formattedDate = `${day}, ${date} ${month} ${year}`;
       this.currentTime = time;
     },
     getTranslatedDay(dayIndex) {
@@ -83,6 +83,7 @@ h1{
 }
 .TimeDate{
   position: relative;
+  z-index: 11;
   padding: 25px;
   text-align: center;
 }

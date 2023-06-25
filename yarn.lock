@@ -2605,8 +2605,6 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
-<<<<<<< HEAD
-=======
 cross-env@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
@@ -2614,7 +2612,6 @@ cross-env@^7.0.3:
   dependencies:
     cross-spawn "^7.0.1"
 
->>>>>>> ff39a231abdc09ae811c5840dcb5be3d26eb8b8e
 cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-5.1.0.tgz"
@@ -2635,11 +2632,7 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-<<<<<<< HEAD
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
-=======
 cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
->>>>>>> ff39a231abdc09ae811c5840dcb5be3d26eb8b8e
   version "7.0.3"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -6274,6 +6267,11 @@ vue3-google-oauth2@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmjs.org/vue3-google-oauth2/-/vue3-google-oauth2-1.0.7.tgz"
   integrity sha512-XZv5+IVRLqKrsfm6DamD75e4LPynDt3xpmEw3SQBKfnUvpaIq6YuimOCPoXMfedR6nQHJeZkw62E/ii2disppA==
+
+vue3-toastify@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/vue3-toastify/-/vue3-toastify-0.1.11.tgz#d7653947e579623bf71822d1fd4b59599a09ed72"
+  integrity sha512-xOghHidGEuzLaDp9yiCdEt53c02x16m3ai/G3vq9d7XST77YAaPk1p1D0DiTbbpYUvGQGC1SYA7e3Z9+IP3r6w==
 
 vue@^3.2.41, vue@^3.2.47:
   version "3.2.47"

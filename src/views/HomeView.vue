@@ -8,7 +8,6 @@
       <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
       <AdBanner />
     </DisplayImages>
-    <CustomAds />
   </div>
 </template>
 
@@ -17,7 +16,6 @@ import DisplayImages from './settings/Background/DisplayImages.vue';
 import DropDown from '@/components/DropDown.vue';
 import DateTime from '@/components/DateTime.vue';
 import ImageLogo from '@/components/ImageLogo.vue';
-import CustomAds from '@/components/CustomAds.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 import BookMark from '@/components/BookMark.vue';
 import AdBanner from '@/components/AdBanner.vue';
@@ -30,7 +28,6 @@ export default {
     CookieBanner,
     DateTime,
     ImageLogo,
-    CustomAds,
     AdBanner,
     BookMark
 },

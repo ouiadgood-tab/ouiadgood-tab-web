@@ -1,11 +1,35 @@
 <template>
-  <img :src="currentImage" alt="">
+  <div class="tt"></div>
+<div class="ads-container">
+  <div class="col">
+    <img src="300x250-barilla.webp" alt="">
+    <img src="ebates-banner-ad-300X250.jpg" alt="">
+  </div>
+  <img class="wide-img" :src="currentImage" alt="">
+</div>
 </template>
 
 
 <style scoped>
-img{
-    margin-top:8%
+.ads-container{
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+
+}
+.col{
+  display: flex;
+  float: right;
+  flex-direction: column;
+}
+.col img{
+  width: 200px;
+}
+
+.wide-img{
+  width: 100vw;
+  height: 100px;
+  object-fit: contain;
 }
 </style>
 
@@ -15,14 +39,14 @@ export default {
     return {
       currentImage:"",
       images: [
-        "250X250.jpg",
-        "300x250-barilla.webp",
-        "728x90-kikkoman.webp",
-        "APLIVE-250x250-CPM-Banner-NEC18.gif",
-        "banner-ad-300x250-1.png",
-        "ebates-banner-ad-300X250.jpg",
-        "medium-rectangle-1.png",
-        "paulsmithcoaching-728x90-banner-example.webp",
+        // "250X250.jpg",
+        // "300x250-barilla.webp",
+        // "728x90-kikkoman.webp",
+        // "APLIVE-250x250-CPM-Banner-NEC18.gif",
+        // "banner-ad-300x250-1.png",
+        // "ebates-banner-ad-300X250.jpg",
+        // "medium-rectangle-1.png",
+        // "paulsmithcoaching-728x90-banner-example.webp",
         "vgr-728x90-banner-example.webp",
       ],
     }

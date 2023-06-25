@@ -58,8 +58,8 @@ const routes = [
     },
 
     {
-      path: '/tab/new',
-      name: 'New',
+      path: '/tab/video',
+      name: 'Video',
       component: VideoViewVue,
       meta: { requiresAuth: true },
     },
