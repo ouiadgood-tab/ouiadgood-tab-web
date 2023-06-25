@@ -69,6 +69,7 @@ export default{
     transform: translateX(-50%);
     color: #000;
     font-size: 1.3em;
+    z-index:10;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
