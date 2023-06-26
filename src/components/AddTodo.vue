@@ -130,7 +130,7 @@ h1 {
 }
 
 .todo-input button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   font-size: 16px;
   background-color: #13b0c0;
   color: #fff;
