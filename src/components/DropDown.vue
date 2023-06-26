@@ -336,7 +336,7 @@ li {
   position: absolute;
   left: 0;
   padding: 7px;
-  z-index: 1;
+  z-index: 99;
   width: 200px;
   text-align: center;
   color: #fff;
