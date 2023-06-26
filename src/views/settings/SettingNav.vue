@@ -84,7 +84,7 @@ if(getUser.admin){
     },
   methods: {
     closeNav() {
-      this.$router.push('/');
+      this.$router.push('/tab');
     },
     isActive(route) {
       return this.$route.path === route;
