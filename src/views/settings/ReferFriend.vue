@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isReferralClosed" class="container">
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">{{ translatedFriendContainer.title }}</p>
@@ -7,10 +7,14 @@
                  :placeholder="translatedFriendContainer.placeholder"
                   v-model="username"
                   :disabled="isReferralDataExists"/>
-                <div class="referBtn" @click="sendReferral"
-                >
-                {{ translatedFriendContainer.enter }}
-              </div>
+                <div style="display: flex; gap: 0px;">
+                      <div class="referBtn" @click="closeReferral">
+                      {{ translatedFriendContainer.close }}
+                    </div>
+                    <div class="referBtn" @click="sendReferral, closeReferral">
+                      {{ translatedFriendContainer.enter }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -34,6 +38,7 @@ export default{
                 translations = {
                     title: "Who referred you",
                     enter: "Enter",
+                    close:"close",
                     placeholder: localStorage.getItem(referral) || "Enter username",
                 };
             }
@@ -41,6 +46,7 @@ export default{
                 translations = {
                   title: "Qui vous a référé",
                     enter: "Entrer",
+                    close: "Fermer",
                     placeholder: localStorage.getItem(referral) || "Saisissez votre nom d'utilisateur",
                 };
             }
@@ -55,6 +61,10 @@ export default{
         isReferralDataExists() {
       const referral = localStorage.getItem('referral');
       return referral !== null && referral !== '';
+    },
+    isReferralClosed() {
+      const referralClosed = localStorage.getItem('referralClosed');
+      return referralClosed === '1';
     },
     },
     methods: {
@@ -77,23 +87,44 @@ export default{
           console.error(error);
         });
     },
+    closeReferral() {
+      const referralClosed = 'referralClosed';
+      localStorage.setItem(referralClosed, '1'); // Set the value in local storage
+      // Hide the component (you can use a flag or remove it from the DOM)
+      this.$el.style.display = 'none';
+    },
   },
 }
 </script>
 
 <style scoped>
+.container{
+  position:fixed;
+    bottom: 40%;
+    background-color:rgb(255, 255, 255);
+    padding: 20px;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000;
+    font-size: 1.3em;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 .tabInfo2 {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  margin-left: 20%;
 }
 
 .linkText {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   text-align: left;
 }
@@ -140,17 +171,17 @@ export default{
     color: #707070 !important ;
 }
 .referBtn{
-  background-color: #707070;
+  background-color: rgb(5, 169, 219);
   padding: 10px;
   color:#fff;
   border-radius: 5px;
   float: right;
-  margin-left: 50%;
+  margin-left: 5%;
+  margin-top: 5px;
   cursor: pointer;
 }
 .referBtn:hover{
-  padding: 11px;
-
+  background-color: rgb(6, 119, 153);
 }
 
 </style>
