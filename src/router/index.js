@@ -103,7 +103,7 @@ const routes = [
   }
 ]
 
-const publicPath ="./"
+const publicPath ="./tab"
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
