@@ -1,21 +1,21 @@
 <template>
   <SettingNav>
-    <div v-show="admin">
+    <!-- <div v-show="admin">
       <AdminHeader />
-    </div>
+    </div> -->
     <DonateHeart :class="!admin ? 'statsDown' : ''" />
   </SettingNav>
 </template>
 
 <script>
-import AdminHeader from "@/components/AdminHeader.vue";
+// import AdminHeader from "@/components/AdminHeader.vue";
 import DonateHeart from "./DonateHeart.vue";
 import SettingNav from "./SettingNav.vue";
 // import AdminNav from "@/components/AdminNav.vue";
 import { googleLogout } from "vue3-google-login";
 
 export default {
-  components: { SettingNav, DonateHeart, AdminHeader },
+  components: { SettingNav, DonateHeart },
   data() {
     return {
       admin: false,

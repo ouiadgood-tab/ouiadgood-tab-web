@@ -6,21 +6,21 @@
 
         <div class="drop-down">
           <button class="dropbtn" @click.capture="toggleDropdown">
-            <img :src="searchEngine" :alt="searchEngineAlt" />
+            <img class="engine-img" :src="searchEngine" :alt="searchEngineAlt" />
             <i class="fas fa-angle-down"></i>
           </button>
           <div v-show="showDropdown" class="dropdown-content">
             <a href="#" @click="changeSearchEngine('google')">
-              <img src="../assets/google.png" alt="Google" />
+              <img class="g-img" src="../assets/google.png" alt="Google" />
             </a>
             <a href="#" @click="changeSearchEngine('bing')">
-              <img src="../assets/Bing.png" alt="Bing" />
+              <img class="b-img" src="../assets/Bing.png" alt="Bing" />
             </a>
             <a href="#" @click="changeSearchEngine('duckduckgo')">
-              <img src="../assets/duckDuckGo.png" alt="DuckDuckGo" />
+              <img class="d-img" src="../assets/duckDuckGo.png" width="80" alt="DuckDuckGo" />
             </a>
             <a href="#" @click="changeSearchEngine('ecosia')">
-              <img src="../assets/Ecosia.webp" alt="Ecosia" />
+              <img class="e-img" src="../assets/Ecosia.webp" width="50" alt="Ecosia" />
             </a>
           </div>
         </div>
@@ -35,6 +35,7 @@
         type="text"
         v-model="searchQuery"
         :placeholder="translatedSearchContainer.placeholder"
+        @blur="$event=> $event.target.setAttribute('placeholder',translatedSearchContainer.placeholder)"
         @focus="clearPlaceholder"
       />
       <button type="submit" class="search-icon">
@@ -61,8 +62,9 @@ export default {
     };
   },
   methods: {
-    clearPlaceholder() {
-      this.placeholderText = this.translatedSearchContainer.placeholder;
+    clearPlaceholder(ev) {
+      // this.placeholderText = this.translatedSearchContainer.placeholder;
+      ev.target.setAttribute("placeholder","")
     },
     submitForm() {
       const searchEngineUrl = this.getSearchEngineUrl();
@@ -158,6 +160,13 @@ export default {
 img{
   width:20px
 }
+
+.d-img{
+  width: 28px;
+}
+.e-img{
+  width: 30px;
+}
 .dropbtn{
   display: flex;
   border:none;
@@ -179,6 +188,7 @@ img{
   transform: translateY(70%);
   padding: 20px;
   border-radius: 50px;
+  align-items: center;
   justify-content: center;
   gap:10px;
   z-index: 1;
@@ -222,6 +232,7 @@ outline: none;
 
 .search-container{
   position: relative;
+  z-index: 11;
 }
 
 @media screen and (max-width:600px) {

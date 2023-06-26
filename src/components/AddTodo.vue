@@ -94,15 +94,20 @@
   </script>
   
   <style scoped>
-
+@media screen and (max-width:500px){
+  .todo-container {
+    width: 80vw !important;
+  }
+}
 .todo-container {
   max-height: 400px; /* Adjust the maximum height as needed */
   overflow-y: auto;
   position: relative;
-    max-width: 500px;
+    width: 50vw;
     margin: 0 auto;
     padding: 1rem;
     background-color: #13afc02f;
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
@@ -117,16 +122,18 @@ h1 {
 
 .todo-input {
   display: flex;
+  gap:10px;
   margin-bottom: 1rem;
 }
 
 .todo-input input {
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width: 100%;
   padding: 0.5rem;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  margin-right: 0.5rem;
+  
 }
 
 .todo-input button {
@@ -154,7 +161,8 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background-color: #ffffff9d;
+  background-color: #fff;
+  color: #333;
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-bottom: 0.5rem;

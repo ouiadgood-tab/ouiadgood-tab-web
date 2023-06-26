@@ -125,6 +125,10 @@ export default {
   padding: 20px 0;
 }
 
+.container span{
+  color: #333 !important;
+}
+
 .moveDiv img {
   width: 100%;
   border-radius: 10px;

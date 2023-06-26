@@ -67,7 +67,7 @@
   <style>
   .background-image {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0 0 0 ;
     position: relative;
     min-height: 100vh;
     background: #000;

@@ -9,7 +9,7 @@
       </li>
       <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
         <i class="fa-solid fa-list icon"></i>
-        <ul v-if="showDropdown" class="dropdown1">
+        <ul v-if="showDropdown" class="dropdown no-s">
           <AddTodo />
         </ul>
       </li>
@@ -22,12 +22,14 @@
         <MoneyCount class="icon" />
         <ul v-if="showDropdown" class="dropdown">
           <li>{{ translatedDropDownContainer.moneyTitle }}</li>
-          <button class="btnInvite">
+       <router-link to="/tab/setting/invite">
+        <button class="btnInvite">
             {{ translatedDropDownContainer.moneyButton }}
           </button>
+       </router-link>
         </ul>
       </li>
-      <router-link to="/tab/new" target="_blank">
+      <router-link to="/tab/video" target="_blank">
         <li @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
           <i class="fa-solid fa-display icon"></i>
           <ul v-if="showDropdown" class="dropdown">
@@ -247,7 +249,7 @@ export default {
       localStorage.removeItem("loginRequest");
       // Redirect to /login
       // this.$router.push('/login');
-      window.location.replace("/login");
+      window.location.replace("/tab/login");
       googleLogout();
     },
     incrementHeart() {
@@ -360,6 +362,13 @@ li {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background: #13afc063;
   backdrop-filter: blur(10px);
+}
+
+.no-s{
+  background: none;
+  width: auto;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .dropdown.bg {

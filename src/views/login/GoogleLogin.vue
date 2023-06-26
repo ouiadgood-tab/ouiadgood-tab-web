@@ -1,5 +1,5 @@
 <template>
-  <GoogleLogin  :callback="callback" />
+  <GoogleLogin class="with-google"  :callback="callback" />
 </template>
 
 <script setup>
@@ -62,5 +62,13 @@ const callback = (response) => {
 .btn:hover {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   transform: scale(1.1);
+}
+
+.with-google{
+  margin: auto;
+  display: flex;
+  margin: 20px 0 0 0 ;
+  justify-content: center;
+  text-align: center;
 }
 </style>

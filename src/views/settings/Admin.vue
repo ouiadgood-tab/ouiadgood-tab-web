@@ -6,21 +6,25 @@
     </div>
     <AdminHeader />
     <div class="admin">
-      <div class="inputs">
+      <form @submit.prevent="create" class="inputs">
         <input v-model="name" :class="{ error: nameError }" name="name" placeholder="Create Charity" />
         <p class="error-message" v-if="nameError">{{ nameError }}</p>
-        
+
         <input v-model="about" :class="{ error: aboutError }" name="about" placeholder="About Charity" />
         <p class="error-message" v-if="aboutError">{{ aboutError }}</p>
-        
+
         <input v-model="url" :class="{ error: urlError }" name="url" placeholder="Charity Link" />
         <p class="error-message" v-if="urlError">{{ urlError }}</p>
-        
+
         <input type="file" class="image-upload" name="image" placeholder="" />
+        <p class="error-message" v-if="fileError">{{ fileError }}</p>
         <br />
-        
-        <button class="create-button" @click="create">Create</button>
-      </div>
+
+        <button type="submit" :disabled="isLoading" class="create-button">
+        <span v-if="isLoading" class="fa fa-spinner fa-spin"></span>
+        <span v-else>Create</span>
+        </button>
+      </form>
     </div>
   </div>
 </template>
@@ -28,7 +32,7 @@
 <script>
 import AdminHeader from "@/components/AdminHeader.vue";
 import axios from "axios";
-
+import { toast } from 'vue3-toastify';
 export default {
   name: "AdminView",
   data() {
@@ -36,9 +40,12 @@ export default {
       name: "",
       about: "",
       url: "",
+      file: "",
       nameError: "",
       aboutError: "",
       urlError: "",
+      fileError: "",
+      isLoading: false,
     };
   },
   methods: {
@@ -49,12 +56,13 @@ export default {
       formData.append("about", this.about);
       formData.append("url", this.url);
       formData.append("image", imageFile || null);
-      
+
       // Reset errors
       this.nameError = "";
       this.aboutError = "";
       this.urlError = "";
-      
+      this.fileError = "";
+
       // Validation
       const pattern = /^$|^.{0,2}$/;
       if (pattern.test(this.name)) {
@@ -66,13 +74,18 @@ export default {
       if (pattern.test(this.url)) {
         this.urlError = "URL should have at least 3 characters.";
       }
-      
+      if (typeof imageFile == "undefined") {
+        this.fileError = "Image Required";
+      }
+
       // Check if any errors exist
-      if (this.nameError || this.aboutError || this.urlError) {
+      if (this.nameError || this.aboutError || this.urlError || this.fileError) {
         return;
       }
-      
+
       // Make a POST request to the API endpoint
+    if(!this.isLoading){
+      this.isLoading = true
       axios
         .post("https://ouiadgood.onrender.com/charity/add", formData, {
           headers: {
@@ -82,15 +95,20 @@ export default {
         })
         .then((response) => {
           if (response.status == 200) {
-            alert("Created Successfully");
+            toast("Created Successfully");
             this.name = "";
             this.about = "";
             this.url = ""
+            this.isLoading = false
           }
         })
         .catch(() => {
-          alert("Could not create charity");
+          this.isLoading = false
+          toast("Could not create charity", {
+            autoClose: 1000,
+          }); // ToastOptions ("");
         });
+    }
     },
   },
   components: { AdminHeader },
@@ -98,44 +116,48 @@ export default {
 </script>
 
 <style scoped>
-
 .error {
   border-color: red;
 }
-
+button:disabled{
+  pointer-events: none;
+  opacity: .6;
+}
 .error-message {
   color: red;
   margin-top: 5px;
 }
 
-.title{
+.title {
   text-align: center;
   padding: 20px;
 }
-#me{
+
+#me {
   background: tomato;
 }
 
-.create-button{
+.create-button {
   border: none;
   background: #000;
   color: #fff;
   cursor: pointer;
 }
 
-.logout-btn{
+.logout-btn {
   border: none;
   cursor: pointer;
   border-radius: 100px;
 }
 
-.inputs{
-  display:flex;
+.inputs {
+  display: flex;
   flex-direction: column;
   max-width: 600px;
   margin: auto;
 }
-.router{
+
+.router {
   color: #fff;
   font-size: 17px;
   background: #000;
@@ -144,11 +166,13 @@ export default {
   border-radius: 40px;
   text-decoration: none;
 }
-.links{
+
+.links {
   display: flex;
   gap: 30px;
   justify-content: center;
 }
+
 input,
 button {
   display: inline-block;
@@ -157,5 +181,4 @@ button {
   border: 1px solid #00000029;
   border-radius: 10px;
 }
-
 </style>

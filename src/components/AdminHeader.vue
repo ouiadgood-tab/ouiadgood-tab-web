@@ -1,13 +1,14 @@
 <template>
     <div class="setPos">
         <div class="links">
-          <a class="router" href="/setting/Admin">Create Charity</a>
-        <a class="router me" id="me" href="/setting/Donate">Edit Charity</a>
+          <a class="router" href="/tab/setting/Admin">Create Charity</a>
+        <a class="router me" id="me" href="/tab/setting/Donate">Edit Charity</a>
+        <a class="router me" id="me" @click="goBack">Go Back</a>
         </div> 
         <br>
-        <button class="logout-btn" @click="logoutUser">
+        <!-- <button class="logout-btn" @click="logoutUser">
           <i class="fa fa-sign-out"></i>
-        </button>
+        </button> -->
       </div>
 </template>
 
@@ -16,6 +17,9 @@
 import { googleLogout } from "vue3-google-login"
 export default{
     methods:{
+      goBack(){
+        window.history.back()
+      },
         logoutUser() {
       // Delete local storage data
       localStorage.removeItem("loginRequest");
@@ -55,6 +59,9 @@ export default{
     flex-direction: column;
     max-width: 600px;
     margin: auto;
+  }
+  a{
+    cursor: pointer;
   }
   .router{
     color: #fff;

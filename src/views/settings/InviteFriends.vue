@@ -37,7 +37,8 @@ export default {
     },
     computed: {
         inviteLink() {
-            const baseUrl = "https://ouiadgood.com/";
+
+            const baseUrl = window.location.origin + "/tab"
             const loginRequest = JSON.parse(localStorage.getItem("loginRequest"));
             const username = loginRequest ? loginRequest.username : "";
             return `${baseUrl}?u=${username}`;

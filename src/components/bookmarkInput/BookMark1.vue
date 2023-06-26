@@ -92,6 +92,8 @@ export default {
 .item{
   display: flex;
   position: relative;
+  z-index: 12;
+  text-align: center;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.349);
@@ -107,6 +109,7 @@ height: 70px;
 .item-container{
   padding: 10px;
   border-radius: 5%;
+  z-index: 12;
   position: relative;
 }
 .item-container:hover{
@@ -127,13 +130,13 @@ height: 70px;
 }
 p{
   color: #fffffff1;
-  margin-top: -1px;
-  margin-bottom: -3px;
+  text-align: center;
+  margin: 4px auto;
   
 }
 .favicon{
-  width: 6vh;
-  height: 6vh;
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
   object-fit: cover;
   margin-top: 5px;

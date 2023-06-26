@@ -1,12 +1,5 @@
 <template>
-  <div class="container with-background-color">
-    <img src="./oag.png" alt="Logo" class="logo">
-  <div class="login">
-    <div class="buttons">
       <EmailLogin/>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>

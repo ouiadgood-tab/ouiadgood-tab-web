@@ -101,6 +101,7 @@ export default{
 .container{
   position:fixed;
     bottom: 40%;
+    z-index: 11;
     background-color:rgb(255, 255, 255);
     padding: 20px;
     width: 60%;
