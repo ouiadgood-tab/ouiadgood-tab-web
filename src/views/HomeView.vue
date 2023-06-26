@@ -5,6 +5,7 @@
       <image-logo />
       <BookMark v-show="bookmarkEnabled"/>
       <date-time v-show="clockEnabled"/> 
+      <ReferFriend/>
       <CookieBanner v-if="showBanner" @hideBanner="showBanner = false" /> 
       <AdBanner />
     </DisplayImages>
@@ -19,6 +20,7 @@ import ImageLogo from '@/components/ImageLogo.vue';
 import CookieBanner from '@/components/CookieBanner.vue';
 import BookMark from '@/components/BookMark.vue';
 import AdBanner from '@/components/AdBanner.vue';
+import ReferFriend from './settings/ReferFriend.vue';
 
 export default {
   name: 'HomeView',
@@ -29,7 +31,8 @@ export default {
     DateTime,
     ImageLogo,
     AdBanner,
-    BookMark
+    BookMark,
+    ReferFriend
 },
   data() {
     return {
@@ -52,3 +55,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

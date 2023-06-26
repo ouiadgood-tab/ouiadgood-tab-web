@@ -113,7 +113,7 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    z-index: 2;
+    z-index: 99;
   }
   .closeIcon {
     position: absolute;

@@ -168,6 +168,7 @@ export default {
 .login-container {
   border: 1px solid rgb(175, 175, 175);
   width: 600px;
+  border-radius: 20px;
   padding: 30px;
   margin: auto;
 }
@@ -204,6 +205,7 @@ export default {
   padding: 10px 0;
   gap: 10px;
   align-items: center;
+  border-radius: 10px;
   justify-content: space-between;
 }
 
@@ -217,6 +219,7 @@ export default {
 
 .btnTab {
   width: 100%;
+  border-radius: 10px;
   font-weight: bold;
   padding: 20px;
 }

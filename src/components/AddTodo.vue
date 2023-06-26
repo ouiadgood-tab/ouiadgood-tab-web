@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-container">
+    <div class="todo-container todo-app">
       <h1>{{ translatedTodoContainer.title }}</h1>
     
       <div class="todo-input">
@@ -7,7 +7,7 @@
         <button @click="addTodo">{{ translatedTodoContainer.addButton }}</button>
       </div>
     
-      <ul class="todo-list show-scrollbar">
+      <ul class="todo-list ">
         <li v-for="(todo, index) in todos" :key="index" class="todo-item">
           <span class="todo-text">{{ todo.text }}</span>
           <span class="timestamp">{{ formatDate(todo.createdAt) }}</span>
@@ -110,7 +110,7 @@
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    scrollbar-track-color: #000000;
+    
 }
 
 h1 {
@@ -168,26 +168,16 @@ h1 {
   margin-bottom: 0.5rem;
   
 }
-.todo-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.todo-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 15px;
-}
-
-.todo-container::-webkit-scrollbar-thumb {
-  background: #f2d80f88;
-  border-radius: 5px;
-}
-.todo-container::-webkit-scrollbar-thumb:hover {
-  background-color: #f2d70f;
-}
 
 .timestamp {
   font-size: 0.8rem;
   margin-left: 5px;
+  color:#000
+}
+
+.todo-text{
+  color: #000;
+  font-weight: bold;
 }
 
 .delete-btn {

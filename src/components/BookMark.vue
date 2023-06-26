@@ -26,13 +26,13 @@ export default {
   display: flex;
   justify-self: center;
   align-items:center;
-  margin: 30px 0;
   padding: 20px;
   border-radius: 5px;
   z-index: 2;
 }
 .bookmark-item{
   display: flex;
+  margin: 30px 0 0 0 ;
   flex-wrap: wrap;
   justify-content: center;
 }

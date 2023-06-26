@@ -105,6 +105,17 @@ export default{
   if (heartDonated){
     this.heartDonated = heartDonated;
   }
+  // Retrieve the createdAt date from the local storage loginRequest
+  const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
+  if (loginRequest && loginRequest.createdAt) {
+    const createdAt = new Date(loginRequest.createdAt);
+    const currentDate = new Date();
+    const timeDiff = Math.abs(currentDate.getTime() - createdAt.getTime());
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    this.daysLogged = daysDiff;
+  }
+
+
     // Make the API GET request to retrieve user data
     this.getTotalTab();
   },

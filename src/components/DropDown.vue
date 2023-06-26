@@ -347,6 +347,22 @@ li {
   background: #13afc063;
   backdrop-filter: blur(10px);
 }
+.dropdown1 {
+  display: none;
+  position: absolute;
+  left: 0;
+  padding: 7px;
+  z-index: 1;
+  width: 300px;
+  text-align: center;
+  color: #fff;
+  background: black;
+  border-radius: 10px;
+  font-size: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #13afc063;
+  backdrop-filter: blur(10px);
+}
 
 .no-s{
   background: none;
@@ -369,6 +385,9 @@ li {
 }
 
 li:hover .dropdown {
+  display: block;
+}
+li:hover .dropdown1 {
   display: block;
 }
 

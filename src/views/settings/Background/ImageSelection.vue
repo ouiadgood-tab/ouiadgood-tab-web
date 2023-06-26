@@ -117,6 +117,8 @@ export default {
   padding: 10px;
   align-items: center;
   padding: 13px 0;
+  margin-top: -15%;
+  justify-content: center;
 }
 
 .title {
