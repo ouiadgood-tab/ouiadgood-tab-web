@@ -72,7 +72,7 @@ export default{
       const referral = 'referral';
       localStorage.setItem(referral, this.username); // Set the value in local storage
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
-      const url = 'https://ouiadgood.onrender.com/users/referral';
+      const url = 'https://ouiadgood-lxzc.onrender.com/users/referral';
       const data = {
         username: this.username,
         email: loginRequest.email, // Use the email address from loginRequest object

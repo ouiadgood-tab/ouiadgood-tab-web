@@ -216,7 +216,7 @@ export default {
       this.rangeValue = this.heart;
     }
     axios
-      .get("https://ouiadgood.onrender.com/charity")
+      .get("https://ouiadgood-lxzc.onrender.com/charity")
       .then((response) => {
         console.log(response);
         this.charitys = response.data;
@@ -291,7 +291,7 @@ export default {
       // )
       // Make a POST request to the API endpoint
       axios
-        .post("https://ouiadgood.onrender.com/charity/add", formData, {
+        .post("https://ouiadgood-lxzc.onrender.com/charity/add", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Accept": "application/json",
@@ -321,7 +321,7 @@ export default {
     deleteCharity(id) {
       if (id != undefined) {
         axios
-          .delete(`https://ouiadgood.onrender.com/charity/${id}`)
+          .delete(`https://ouiadgood-lxzc.onrender.com/charity/${id}`)
           .then((response) => {
             alert("Successful");
             this.charitys = response.data;

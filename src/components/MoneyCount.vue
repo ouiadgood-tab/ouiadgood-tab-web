@@ -22,7 +22,7 @@ export default {
     fetchCount() {
       const savedCount = localStorage.getItem('money');
       this.count = savedCount ? parseFloat(savedCount).toFixed(2) : 0;
-      axios.get('https://ouiadgood.onrender.com/money')
+      axios.get('https://ouiadgood-lxzc.onrender.com/money')
         .then(response => {
           const apiCount = Number(response.data[0].totalmoney).toFixed(2);
           localStorage.setItem('money', apiCount);

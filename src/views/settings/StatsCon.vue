@@ -132,7 +132,7 @@ export default{
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       const userId = loginRequest._id;
       axios
-       .get(`https://ouiadgood.onrender.com/users/${userId}`)
+       .get(`https://ouiadgood-lxzc.onrender.com/users/${userId}`)
         .then(response => {
           // Handle the response and assign the data to userData
           this.totalTab = response.data.totalheart;

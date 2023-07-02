@@ -29,7 +29,7 @@ export default {
         localStorage.setItem('loginRequest', JSON.stringify(loginRequest));
       }
 
-      axios.patch('https://ouiadgood.onrender.com/users', { 
+      axios.patch('https://ouiadgood-lxzc.onrender.com/users', { 
         username: this.newUsername ,
         email: loginRequest.email
       })

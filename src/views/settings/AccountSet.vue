@@ -134,7 +134,7 @@ export default {
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       const userId = loginRequest._id;
       axios
-        .delete(`https://ouiadgood.onrender.com/users/${userId}`)
+        .delete(`https://ouiadgood-lxzc.onrender.com/users/${userId}`)
         .then(response => {
           // Handle successful deletion
           console.log(response);

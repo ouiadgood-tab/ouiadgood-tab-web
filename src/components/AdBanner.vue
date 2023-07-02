@@ -2,8 +2,8 @@
   <div class="tt"></div>
 <div class="ads-container">
   <div class="col">
-    <img src="300x250-barilla.webp" alt="">
-    <img src="ebates-banner-ad-300X250.jpg" alt="">
+    <img src="../assets/300x250-barilla.webp" alt="">
+    <img src="../assets/ebates-banner-ad-300X250.jpg" alt="">
   </div>
   <img class="wide-img" :src="currentImage" alt="">
 </div>
@@ -20,6 +20,7 @@
 .col{
   display: flex;
   float: right;
+  margin-right: 20px;
   flex-direction: column;
 }
 .col img{
@@ -47,7 +48,7 @@ export default {
         // "ebates-banner-ad-300X250.jpg",
         // "medium-rectangle-1.png",
         // "paulsmithcoaching-728x90-banner-example.webp",
-        "vgr-728x90-banner-example.webp",
+        require("../assets/vgr-728x90-banner-example.webp"),
       ],
     }
   },

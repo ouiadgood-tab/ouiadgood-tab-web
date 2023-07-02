@@ -31,7 +31,7 @@ const callback = (response) => {
     password: userData.given_name,
   };
   axios
-    .post("https://ouiadgood.onrender.com/users/add", user)
+    .post("https://ouiadgood-lxzc.onrender.com/users/add", user)
     .then((response) => {
       // Save the request in LocalStorage
       localStorage.setItem("loginRequest", JSON.stringify(response.data));

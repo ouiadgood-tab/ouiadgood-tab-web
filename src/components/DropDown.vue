@@ -272,7 +272,7 @@ export default {
       localStorage.setItem("maxHeart", this.maxHeart.toString());
       // Make the HTTP request to update the heart count in the database
       axios
-        .patch("https://ouiadgood.onrender.com/users/heart", {
+        .patch("https://ouiadgood-lxzc.onrender.com/users/heart", {
           heart: this.heart,
           email: loginRequest.email,
           totalheart: this.totalheart,

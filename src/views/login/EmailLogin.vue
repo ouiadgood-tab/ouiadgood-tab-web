@@ -114,7 +114,7 @@ export default {
         };
         // Make a POST request to the API endpoint
         axios
-          .post("https://ouiadgood.onrender.com/users/add", user)
+          .post("https://ouiadgood-lxzc.onrender.com/users/add", user)
           .then((response) => {
             // Save the request in LocalStorage
 
