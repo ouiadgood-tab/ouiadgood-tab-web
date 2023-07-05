@@ -16,11 +16,11 @@
                 <span>{{totalTab}}</span>
                 <p>{{ translatedStatsContainer.totalTab }}</p>
             </div>
-            <div>
+            <!-- <div>
                 <span>{{ maxTab }}</span>
                 <p>{{ translatedStatsContainer.maxTab }}</p>
                 <p class="grayOut">{{maxHeartDate}}</p>
-            </div>
+            </div> -->
             <!--<div>
                 <span>12</span>
                 <p>your level</p>

@@ -87,10 +87,11 @@ export default {
     if(!this.isLoading){
       this.isLoading = true
       axios
-        .post("https://ouiadgood.onrender.com/charity/add", formData, {
+        .post("https://ouiadgood-lxzc.onrender.com/charity/add", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Accept": "application/json",
+            'Access-Control-Allow-Origin':"*"
           },
         })
         .then((response) => {

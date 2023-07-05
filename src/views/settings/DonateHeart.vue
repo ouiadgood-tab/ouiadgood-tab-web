@@ -7,68 +7,38 @@
       </div>
     </div>
     <div class="cards">
-      <div
-        v-for="charity in charitys"
-        :key="charity.id"
-        data-id="charity._id"
-        class="card"
-      >
+      <div v-for="charity in charitys" :key="charity.id" data-id="charity._id" class="card">
         <a :href="dynamicUrl(charity.url)">
           <img :src="charity.image" class="imgDonate" />
         </a>
-        <input :class="'input-'+charity._id" v-show="isEditing.id == charity._id" type="file">
-       <div class="text">
-        <h1
-        class="ch-name"
-        :contenteditable="isEditing.id == charity._id"
-        @input="updateCharity"
-      >
-        {{ charity.name }}
-      </h1>
-      <!-- <p class="ch-url"
+        <input :class="'input-' + charity._id" v-show="isEditing.id == charity._id" type="file">
+        <div class="text">
+          <h1 class="ch-name" :contenteditable="isEditing.id == charity._id" @input="updateCharity">
+            {{ charity.name }}
+          </h1>
+          <!-- <p class="ch-url"
       :contenteditable="isEditing.id == charity._id"
       @input="updateCharity"
        v-show="isEditing.id == charity._id" v-text="charity.url"></p> -->
-      <p
-        class="ch-about"
-        :contenteditable="isEditing.id == charity._id"
-        @input="updateCharity"
-      >
-        {{ charity.about }}
-      </p>
-       </div>
-        <button
-          class="btnTab"
-          :class="{ grayBtn: rangeValue === 0 }"
-          :disabled="rangeValue === 0"
-          @click="donateHeart"
-        >
+          <p class="ch-about" :contenteditable="isEditing.id == charity._id" @input="updateCharity">
+            {{ charity.about }}
+          </p>
+        </div>
+        <button class="btnTab" :class="{ grayBtn: rangeValue === 0 }" :disabled="rangeValue === 0" @click="donateHeart">
           {{ getButtonLabel }}
         </button>
         <div v-show="admin">
           <button @click="deleteCharity(charity._id)" class="del-button">
             Delete
           </button>
-          <button
-            v-show="!isEditing.edit"
-            @click="editCharity(charity._id)"
-            class="edit-button"
-          >
+          <button v-show="!isEditing.edit" @click="editCharity(charity._id)" class="edit-button">
             Edit
           </button>
           <div class="btn-group">
-            <button
-              v-show="isEditing.id == charity._id"
-              @click="saveCharity(charity._id)"
-              class="save-button"
-            >
+            <button v-show="isEditing.id == charity._id" @click="saveCharity(charity._id)" class="save-button">
               Save
             </button>
-            <button
-              v-show="isEditing.id == charity._id"
-              @click="cancelEditing"
-              class="edit-button"
-            >
+            <button v-show="isEditing.id == charity._id" @click="cancelEditing" class="edit-button">
               Cancel
             </button>
           </div>
@@ -78,15 +48,8 @@
         </p>
         <div class="range" v-if="activeRangInput === 'dropdown1'">
           <p>Fewer Heart</p>
-          <input
-            type="range"
-            id="heart-range"
-            v-model.number="rangeValue"
-            :min="0"
-            :max="heart"
-            @input="updateHeart"
-            :name="charity.name"
-          />
+          <input type="range" id="heart-range" v-model.number="rangeValue" :min="0" :max="heart" @input="updateHeart"
+            :name="charity.name" />
           <p>More Heart</p>
         </div>
       </div>
@@ -95,7 +58,32 @@
 </template>
 
 <script>
+import { toast } from 'vue3-toastify';
 import axios from "axios";
+
+function dataURItoBlob(dataURI) {
+  // Convert base64/URLEncoded data component to raw binary data
+  var byteString;
+  if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+    byteString = atob(dataURI.split(',')[1]);
+  } else {
+    byteString = unescape(dataURI.split(',')[1]);
+  }
+
+  // Separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+  // Write the bytes of the string to a typed array
+  var ia = new Uint8Array(byteString.length);
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ia], { type: mimeString });
+}
+
+
+
 export default {
   name: "DonateHeart",
   data() {
@@ -104,8 +92,8 @@ export default {
       admin: false,
       newName: "",
       newAbout: "",
-      newUrl:"",
-      newImage:null,
+      newUrl: "",
+      newImage: null,
       isEditing: {
         id: null,
         edit: false,
@@ -223,19 +211,13 @@ export default {
         this.charitys = this.charitys.map((chh) => {
           // Convert file data to a Uint8Array
           if (chh.image) {
-            // const arrayBufferToBase64 = (buffer) => {
-            //   var binary = "";
-            //   var bytes = [].slice.call(new Uint8Array(buffer));
-            //   bytes.forEach((b) => (binary += String.fromCharCode(b)));
-            //   return window.btoa(binary);
-            // };
-            // let base64 = 'data:image/jpeg;base64,';
+
             return {
               name: chh.name,
-              url:chh.url,
+              url: chh.url,
               about: chh.about,
               _id: chh._id,
-              image: chh.image
+              image: "data:image/jpeg;base64," + chh.image
             };
           }
           return {
@@ -245,9 +227,9 @@ export default {
             image: "",
           };
         });
-        console.log(response.data);
+
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast("Could not get Charity"));
 
     //check if user is admin
     const getUser = JSON.parse(localStorage.getItem("loginRequest") || {});
@@ -256,9 +238,9 @@ export default {
     }
   },
   methods: {
-    dynamicUrl(_url){
-      const pattern =  (/^(http|https):../i);
-     return pattern.test(_url) ? _url: 'https://'+_url 
+    dynamicUrl(_url) {
+      const pattern = (/^(http|https):../i);
+      return pattern.test(_url) ? _url : 'https://' + _url
     },
     editCharity(id) {
       this.isEditing.edit = true;
@@ -276,35 +258,31 @@ export default {
       !this.newAbout && (this.newAbout = selectCha.about);
       !this.newUrl && (this.newUrl = selectCha.url);
       !this.newImage && (this.newImage = selectCha.image);
-      const imageFile = document.querySelector(".input-"+this.isEditing.id).files[0]
-      console.log(".input-"+this.isEditing.id)
+      const imageFile = document.querySelector(".input-" + this.isEditing.id).files[0]
+      console.log(".input-" + this.isEditing.id)
 
-      console.log(imageFile)
+      const filename = "image.jpg"
+      var blob = dataURItoBlob(selectCha.image);
       const formData = new FormData();
       formData.append("name", this.newName);
       formData.append("about", this.newAbout);
       formData.append("url", this.url);
-      formData.append("image", imageFile || null);
+      formData.append("image", imageFile || blob, !imageFile && filename);
 
-      // console.log(
-      //   this.newName, this.newAbout, this.newUrl
-      // )
       // Make a POST request to the API endpoint
       axios
-        .post("https://ouiadgood-lxzc.onrender.com/charity/add", formData, {
+        .patch(`https://ouiadgood-lxzc.onrender.com/charity/${id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Accept": "application/json",
           },
         })
-        .then((response) => {
-          if (response.status == 200) {
-         this.deleteCharity(id)
-         alert("EDITED")
-          }
-        })
+        .then(() => {
+            toast("Charity Edited")
+
+          })
         .catch(() => {
-          alert("Could not edit charity");
+          toast("Could not edit charity");
         });
     },
     updateCharity(event) {
@@ -323,10 +301,10 @@ export default {
         axios
           .delete(`https://ouiadgood-lxzc.onrender.com/charity/${id}`)
           .then((response) => {
-            alert("Successful");
+            toast("Deleted Successful");
             this.charitys = response.data;
           })
-          .catch((err) => console.log(err));
+          .catch(() => toast("Could not Delete"));
       }
     },
     updateHeart() {
@@ -369,17 +347,20 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
   padding: 20px;
 }
+
 .btn-group {
   display: flex;
   gap: 10px;
   margin: 10px;
 }
-.ch-url{
+
+.ch-url {
   padding: 10px;
 }
+
 .ch-name[contenteditable="true"],
 .ch-about[contenteditable="true"] {
   border: 1px solid black;
@@ -395,9 +376,11 @@ export default {
   position: absolute;
   top: -20px;
 }
+
 .grayBtn {
   background-color: gray;
 }
+
 .del-button,
 .edit-button,
 .save-button {
@@ -413,10 +396,12 @@ export default {
   border: none;
   margin: 10px auto;
 }
+
 .save-button {
   background-color: green;
   color: #fff;
 }
+
 .edit-button {
   background-color: gray;
   color: black;
@@ -426,12 +411,12 @@ export default {
   background-color: #fff;
   color: #333;
   font-size: 13px;
-  padding:30px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:20px;
-  margin:10px 5%;
+  gap: 20px;
+  margin: 10px 5%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -440,18 +425,19 @@ p {
   color: #000;
 }
 
-.ch-name{
+.ch-name {
   padding: 4px 0;
 }
 
 
-.text{
+.text {
   padding: 15px;
 }
 
 
 
 .card {
+  position: relative;
   display: grid;
   border-radius: 10px;
   padding: 25px;
@@ -459,14 +445,19 @@ p {
   background: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-.cards {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap:20px
-}
-.imgDonate {
 
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px
 }
+
+.imgDonate {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
 .btnTab {
   background-color: #13b0c0;
   color: #fff;
@@ -484,6 +475,7 @@ p {
 .btnTab:hover {
   background-color: #14c3d6;
 }
+
 .rangeDrop {
   cursor: pointer;
   font-size: 11px;
@@ -503,6 +495,7 @@ p {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
+
 .range p {
   font-size: 14px;
 }
