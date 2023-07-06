@@ -266,9 +266,9 @@ export default {
       const formData = new FormData();
       formData.append("name", this.newName);
       formData.append("about", this.newAbout);
-      formData.append("url", this.url);
+      formData.append("url", this.newUrl|| "");
       formData.append("image", imageFile || blob, !imageFile && filename);
-
+      console.log(id)
       // Make a POST request to the API endpoint
       axios
         .patch(`https://ouiadgood-lxzc.onrender.com/charity/${id}`, formData, {
@@ -279,7 +279,6 @@ export default {
         })
         .then(() => {
             toast("Charity Edited")
-
           })
         .catch(() => {
           toast("Could not edit charity");

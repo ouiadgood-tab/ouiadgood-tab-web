@@ -3,7 +3,7 @@
         <div class="tabInfo2">
             <div class="linkText">
                 <p class="share">{{ translatedFriendContainer.title }}</p>
-                <input type="url" name="invite-link" class="inviteInput" 
+                <input type="email" name="invite-link" class="inviteInput" 
                  :placeholder="translatedFriendContainer.placeholder"
                   v-model="username"
                   :disabled="isReferralDataExists"/>
@@ -11,7 +11,7 @@
                       <div class="referBtn" @click="closeReferral">
                       {{ translatedFriendContainer.close }}
                     </div>
-                    <div class="referBtn" @click="sendReferral, closeReferral">
+                    <div class="referBtn" @click="sendReferral">
                       {{ translatedFriendContainer.enter }}
                     </div>
                 </div>
@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 export default{
     name:'ReferFriend',
     data(){
@@ -36,10 +37,10 @@ export default{
             let translations;
             if (this.locale === "en") {
                 translations = {
-                    title: "Who referred you",
+                    title: "Email of Who referred you",
                     enter: "Enter",
                     close:"close",
-                    placeholder: localStorage.getItem(referral) || "Enter username",
+                    placeholder: localStorage.getItem(referral) || "Email of Who referred you",
                 };
             }
             else if (this.locale === "fr") {
@@ -47,7 +48,7 @@ export default{
                   title: "Qui vous a référé",
                     enter: "Entrer",
                     close: "Fermer",
-                    placeholder: localStorage.getItem(referral) || "Saisissez votre nom d'utilisateur",
+                    placeholder: localStorage.getItem(referral) || "Courriel de qui vous a référé",
                 };
             }
             else {
@@ -74,16 +75,18 @@ export default{
       const loginRequest = JSON.parse(localStorage.getItem('loginRequest'));
       const url = 'https://ouiadgood-lxzc.onrender.com/users/referral';
       const data = {
-        username: this.username,
+        receiver: this.username,
         email: loginRequest.email, // Use the email address from loginRequest object
       };
       axios.patch(url, data)
         .then(response => {
           // Handle successful response
+          this.closeReferral()
           console.log(response);
         })
         .catch(error => {
           // Handle error
+          toast("An Error Occured")
           console.error(error);
         });
     },
