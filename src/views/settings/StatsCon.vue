@@ -31,14 +31,14 @@
             <div>
                 <span>{{ inviteNumber }}</span>
                 <p>{{ translatedStatsContainer.recruit }}</p>
-                <button class="btnTab"> <router-link class="router" to="/setting/Invite">
+                <button class="btnTab"> <router-link class="router" to="/tab/setting/Invite">
                   {{ translatedStatsContainer.invite }}
                 </router-link></button>
             </div>
             <div>
                 <span>{{ heartDonated }}</span>
                 <p>{{ translatedStatsContainer.donate }}</p>
-                <button class="btnTab"><router-link class="router" to="/setting/Donate">
+                <button class="btnTab"><router-link class="router" to="/tab/setting/Donate">
                   {{ translatedStatsContainer.donated }}
                 </router-link></button>
             </div>

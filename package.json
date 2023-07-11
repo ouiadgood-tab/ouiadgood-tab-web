@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "cross-env": "^7.0.3",
-    "google-translate-api": "^2.3.0",
+    "google-translate-api": "^0.1.1",
     "mitt": "^3.0.0",
     "posthog-js": "^1.61.0",
     "uuid": "^9.0.0",
